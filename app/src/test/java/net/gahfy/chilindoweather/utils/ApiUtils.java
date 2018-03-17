@@ -1,9 +1,8 @@
-package net.gahfy.chilindoweather.utils.rxandroid;
+package net.gahfy.chilindoweather.utils;
 
 
 import android.support.annotation.NonNull;
 
-import com.google.gson.reflect.TypeToken;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
@@ -18,7 +17,8 @@ public class ApiUtils {
         final StringBuilder buf = new StringBuilder();
 
         final String javaBuildClassesFolder = ApiUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-        final String assetsPath = javaBuildClassesFolder.replace("/build/intermediates/classes/test/debug", "/src/test/assets/api_mocks/" + jsonPath);
+        String assetsPath = javaBuildClassesFolder.replace("/build/intermediates/classes/test/debug", "/src/test/assets/api_mocks/" + jsonPath);
+        assetsPath = javaBuildClassesFolder.replace("/build/intermediates/classes/test/release", "/src/test/assets/api_mocks/" + jsonPath);
 
         final FileInputStream inputStream = new FileInputStream(assetsPath);
         final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
