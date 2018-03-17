@@ -1,0 +1,15 @@
+package net.gahfy.chilindoweather.utils.rxandroid;
+
+
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+
+public class Schedulers {
+    public static Scheduler io(){
+        return io.reactivex.schedulers.Schedulers.trampoline();
+    }
+
+    public static Scheduler androidThread(){
+        return io.reactivex.schedulers.Schedulers.trampoline();
+    }
+}

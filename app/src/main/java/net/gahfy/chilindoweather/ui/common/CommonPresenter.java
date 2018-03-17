@@ -74,7 +74,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         super(view);
     }
 
-    void onViewCreated() {
+    public void onViewCreated() {
         if (needGeolocationonStartup()) {
             manageGeolocationPermission();
         }
@@ -159,7 +159,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         if (account != null) {
             view.setMenuVisibility(R.id.sign_in, false);
             view.setMenuVisibility(R.id.sign_out, true);
-            view.showProvileInfo(account.getPhotoUrl(), account.getDisplayName(), account.getEmail());
+            view.showProfileInfo(account.getPhotoUrl(), account.getDisplayName(), account.getEmail());
         } else {
             view.setMenuVisibility(R.id.sign_in, true);
             view.setMenuVisibility(R.id.sign_out, false);

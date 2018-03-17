@@ -99,7 +99,7 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public void showProvileInfo(Uri imageUrl, String userName, String userEmail) {
+    public void showProfileInfo(Uri imageUrl, String userName, String userEmail) {
         RequestOptions requestOptions = RequestOptions.circleCropTransform()
                 .placeholder(R.drawable.ic_account_placeholder)
                 .error(R.drawable.ic_account_placeholder)

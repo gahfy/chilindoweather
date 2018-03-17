@@ -1,0 +1,48 @@
+{
+  "coord": {
+    "lon": 2.26,
+    "lat": 48.84
+  },
+  "weather": [
+    {
+      "id": 701,
+      "main": "Mist",
+      "description": "mist",
+      "icon": "50n"
+    },
+    {
+      "id": 500,
+      "main": "Rain",
+      "description": "light rain",
+      "icon": "10n"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 273.98,
+    "pressure": 999,
+    "humidity": 95,
+    "temp_min": 273.15,
+    "temp_max": 274.15
+  },
+  "visibility": 2800,
+  "wind": {
+    "speed": 3.1,
+    "deg": 30
+  },
+  "clouds": {
+    "all": 90
+  },
+  "dt": 1521324000,
+  "sys": {
+    "type": 1,
+    "id": 5617,
+    "message": 0.0102,
+    "country": "FR",
+    "sunrise": 1521266311,
+    "sunset": 1521309625
+  },
+  "id": 3031137,
+  "name": "Boulogne-Billancourt",
+  "cod": 200
+}

@@ -7,7 +7,7 @@ import android.view.View;
 import net.gahfy.chilindoweather.base.BaseView;
 
 public interface CommonView extends BaseView {
-    void showProvileInfo(Uri imageUrl, String userName, String userEmail);
+    void showProfileInfo(Uri imageUrl, String userName, String userEmail);
 
     void setMenuVisibility(int resId, boolean visibility);
 

@@ -4,16 +4,20 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import net.gahfy.chilindoweather.BuildConfig;
+import net.gahfy.chilindoweather.model.api.ApiWeather;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
+import net.gahfy.chilindoweather.utils.rxandroid.ApiUtils;
 import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
 
 import java.io.IOException;
+import java.util.concurrent.Callable;
 
 import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
 import dagger.Reusable;
+import io.reactivex.Observable;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -25,53 +29,41 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.BASE_URL;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.QUERY_API_KEY;
+import static net.gahfy.chilindoweather.utils.rxandroid.ApiUtils.weatherMockPath;
 
 /**
  * Module which provides all required dependencies about network
  */
 @Module
 public class NetworkModule {
-    /**
-     * Instance of NetworkModule (as it is a Singleton)
-     */
     @NonNull
     private static final NetworkModule instance = new NetworkModule();
 
-    /**
-     * Instantiates a new NetworkModule. It is here just to make it private and use NetworkModule
-     * only as a Singleton.
-     */
     private NetworkModule() {
     }
 
-    /**
-     * Returns the instance of NetworkModule.
-     *
-     * @return the instance of NetworkModule
-     */
     @NonNull
     public static NetworkModule getInstance() {
         return instance;
     }
 
-    /**
-     * Provides the OpenWeatherMap service implementation.
-     *
-     * @param retrofit the Retrofit instance used to instantiate the service
-     * @return the OpenWeatherMap service implementation
-     */
     @Provides
     @Reusable
     @NonNull
     static OpenWeatherMapApi provideOpenWeatherMapApi(@NonNull Retrofit retrofit) {
-        return retrofit.create(OpenWeatherMapApi.class);
+        return new OpenWeatherMapApi() {
+            @Override
+            public Observable<ApiWeather> getWeather(double gpsLatitude, double gpsLongitude) {
+                return Observable.fromCallable(new Callable<ApiWeather>() {
+                    @Override
+                    public ApiWeather call() throws Exception {
+                        return ApiUtils.getUrl(weatherMockPath, ApiWeather.class);
+                    }
+                });
+            }
+        };
     }
 
-    /**
-     * Provides the Retrofit instance.
-     *
-     * @return the Retrofit instance
-     */
     @Provides
     @Reusable
     @NonNull

@@ -1,6 +1,5 @@
 package net.gahfy.chilindoweather.ui.weather;
 
-
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,13 +15,12 @@ import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
 import net.gahfy.chilindoweather.ui.common.CommonPresenter;
 import net.gahfy.chilindoweather.utils.location.LocationUtils;
 import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
+import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public final class WeatherPresenter extends CommonPresenter<WeatherView> {
 
@@ -107,7 +105,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     @Override
     protected void onLocationAvailable(Location location) {
         disposable = openWeatherMapApi.getWeather(location.getLatitude(), location.getLongitude())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.androidThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<ApiWeather>() {
                     @Override
