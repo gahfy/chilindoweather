@@ -123,7 +123,7 @@
             android:layout_width="20dp"
             android:layout_height="33dp"
             android:contentDescription="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), context.getString(weather.getWindDirectionOrientation()))}"
-            android:rotation="@{weather.getWindDirection() == null ? 0 : weather.getWindDirection()+180}"
+            android:rotation="@{(weather.getWindDirection() == null ? -180 : weather.getWindDirection())+180}"
             android:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/weather_wind_direction_circle"
             app:layout_constraintEnd_toEndOf="@+id/weather_wind_direction_circle"
