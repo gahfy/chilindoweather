@@ -18,7 +18,7 @@ public class ApiUtils {
 
         final String javaBuildClassesFolder = ApiUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         String assetsPath = javaBuildClassesFolder.replace("/build/intermediates/classes/test/debug", "/src/test/assets/api_mocks/" + jsonPath);
-        assetsPath = javaBuildClassesFolder.replace("/build/intermediates/classes/test/release", "/src/test/assets/api_mocks/" + jsonPath);
+        assetsPath = assetsPath.replace("/build/intermediates/classes/test/release", "/src/test/assets/api_mocks/" + jsonPath);
 
         final FileInputStream inputStream = new FileInputStream(assetsPath);
         final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
