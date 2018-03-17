@@ -1,11 +1,9 @@
 language: android
 android:
   components:
-    - android-17
     - android-27
     - build-tools-26.0.2
     - extra-google-google_play_services
-    - sys-img-armeabi-v7a-android-17
 
 env:
   global:
@@ -14,11 +12,11 @@ env:
 
 # Emulator Management: Create, Start and Wait
 script:
-  - ./gradlew build createDebugUnitTestCoverageReport createReleaseUnitTestCoverageReport assembleAndroidTest
-  - echo no | android create avd --force -n test -t android-17 --abi armeabi-v7a
-  - emulator -avd test -engine classic -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell setprop dalvik.vm.dexopt-flags v=n,o=v
-  - ./gradlew connectedCheck
+  - ./gradlew clean assembleDebug assembleRelease testDebug testRelease createDebugUnitTestCoverageReport createReleaseUnitTestCoverageReport assembleAndroidTest
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  # Renaming folder and files of reports so codecov.io can find it
+  - mv app/build/reports/jacoco/createDebugUnitTestCoverageReport app/build/reports/jacoco/jacocoTestDebugUnitTestReport
+  - mv app/build/reports/jacoco/jacocoTestDebugUnitTestReport/createDebugUnitTestCoverageReport.xml app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml
+  - mv app/build/reports/jacoco/createReleaseUnitTestCoverageReport app/build/reports/jacoco/jacocoTestReleaseUnitTestReport
+  - mv app/build/reports/jacoco/jacocoTestReleaseUnitTestReport/createReleaseUnitTestCoverageReport.xml app/build/reports/jacoco/jacocoTestReleaseUnitTestReport/jacocoTestReleaseUnitTestReport.xml
+  - bash < (curl -s https://codecov.io/bash)
