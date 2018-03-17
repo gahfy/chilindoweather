@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Remove the following "exclude" elements to make them a part of the auto backup -->
+    <exclude
+        domain="database"
+        path="attendee.db" />
+    <exclude
+        domain="database"
+        path="whova_messages.db" />
+    <exclude
+        domain="database"
+        path="photo.db" />
+    <exclude
+        domain="database"
+        path="agenda.db" />
+    <exclude
+        domain="database"
+        path="ebb.db" />
+    <exclude
+        domain="database"
+        path="vertical.db" />
+    <exclude
+        domain="database"
+        path="whova.db" />
+    <!-- Exclude the shared preferences file that contains the GCM registrationId -->
+    <exclude
+        domain="sharedpref"
+        path="WhovaMessagePrefFile.xml" />
+    <exclude
+        domain="sharedpref"
+        path="APP_RATER.xml" />
+    <exclude
+        domain="sharedpref"
+        path="WhovaPrefFile.xml" />
+</full-backup-content>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/background_content_description" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginStart="19dp"
+        android:alpha="0.7"
+        android:textColor="#FFF"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:textSize="16.5sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/user_email"
+        app:layout_constraintEnd_toEndOf="@+id/user_email"
+        app:layout_constraintStart_toStartOf="@+id/user_email" />
+
+    <ImageView
+        android:id="@+id/profilePicture"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginBottom="27dp"
+        android:contentDescription="@string/background_content_description"
+        app:layout_constraintBottom_toTopOf="@id/user_name"
+        app:layout_constraintStart_toStartOf="@id/user_name" />
+</android.support.constraint.ConstraintLayout>

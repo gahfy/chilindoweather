@@ -1,0 +1,75 @@
+{
+  "project_info": {
+    "project_number": "36233182739",
+    "firebase_url": "https://chilindoweather-1521105864187.firebaseio.com",
+    "project_id": "chilindoweather-1521105864187",
+    "storage_bucket": "chilindoweather-1521105864187.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:36233182739:android:8488996783ded71c",
+        "android_client_info": {
+          "package_name": "net.gahfy.chilindoweather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "36233182739-g6ngrnncemi7sh2r62qq7g4bck5dn2qo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.gahfy.chilindoweather",
+            "certificate_hash": "9293da701eee811b50c5cbba1771281305f0292d"
+          }
+        },
+        {
+          "client_id": "36233182739-6g2ofjqmu6q7noqsrnkg40o6nl5578tt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.gahfy.chilindoweather",
+            "certificate_hash": "b341daa67e85a6678722c55a32732490e62f7d38"
+          }
+        },
+        {
+          "client_id": "36233182739-kl4i3o60f8n3sehsvms8usukse74iqen.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "36233182739-m30qr0lse6ri9iik7c87d8kck1or0k4i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.gahfy.chilindoweather",
+            "certificate_hash": "ff98b6b2bf50998c76d27db23d89fffbf057bf78"
+          }
+        },
+        {
+          "client_id": "36233182739-8p227dok2jkprv8n0qocu08isganongp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjCcgpiJKRKxcJhOp4a3gf7sZbjsXVzA8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "36233182739-kl4i3o60f8n3sehsvms8usukse74iqen.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

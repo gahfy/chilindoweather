@@ -1,0 +1,136 @@
+<resources>
+    <string name="app_name">Chilindo Weather</string>
+
+    <string name="language">en</string>
+
+    <string name="wind_speed" formatted="false">%d km/h</string>
+    <string name="unknown_wind_speed">&#8230; km/h</string>
+
+    <string name="wind_directon_label">Direction:</string>
+    <string name="wind_direction_value" formatted="false">%d°%s</string>
+    <string name="unknown_wind_direction">&#8230;</string>
+
+    <string name="humidity_label">Humidity:</string>
+    <string name="humidity_value" formatted="false">%d %%</string>
+    <string name="unknown_humidity">&#8230; %%</string>
+
+    <string name="pressure_label">Pressure:</string>
+    <string name="pressure_value" formatted="false">%dhPa</string>
+    <string name="unknown_pressure">&#8230;hPa</string>
+
+    <string name="rain_label">Rain (mm/3h):</string>
+    <string name="rain_value" formatted="false">%d mm</string>
+    <string name="unknown_rain">&#8230; mm</string>
+
+    <string name="temperature_value" formatted="false">%d°</string>
+    <string name="unknown_temperature">&#8230;°</string>
+
+    <string name="calculation_date_format">MM-dd-yyyy hh:mm a</string>
+    <string name="unknown_calculation_date" />
+
+    <string name="geolocation_permission_rationale">Location permission required to show weather forecast for your location.</string>
+    <string name="geolocation_permission_grant">GRANT</string>
+    <string name="location_provider_disabled_message">All your location providers are disabled.</string>
+    <string name="location_provider_disabled_settings">SETTINGS</string>
+
+    <string name="google_sign_in_error_title">Google Sign-In Error</string>
+    <string name="google_sign_in_error_message">Google sign-in failed!</string>
+    <string name="google_sign_in_error_retry">Retry</string>
+    <string name="google_sign_in_error_cancel">Cancel</string>
+
+    <string name="menu_sign_in">Sign-In</string>
+    <string name="menu_sign_out">Log out</string>
+    <string name="menu_current_weather">Current Weather</string>
+    <string name="menu_weather_forecast">Weather Forecast</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="north_abbr">N</string>
+    <string name="west_abbr">W</string>
+    <string name="south_abbr">S</string>
+    <string name="east_abbr">E</string>
+
+    <string name="background_content_description">Background</string>
+    <string name="profile_picture_content_description">Profile picture</string>
+    <string name="wind_direction_circle_content_description">Wind direction</string>
+
+    <string name="condition_200_description">Thunderstorm with light rain</string>
+    <string name="condition_201_description">Thunderstorm with rain</string>
+    <string name="condition_202_description">Thunderstorm with heavy rain</string>
+    <string name="condition_210_description">Light thunderstorm</string>
+    <string name="condition_211_description">Thunderstorm</string>
+    <string name="condition_212_description">Heavy thunderstorm</string>
+    <string name="condition_221_description">Ragged thunderstorm</string>
+    <string name="condition_230_description">Thunderstorm with light drizzle</string>
+    <string name="condition_231_description">Thunderstorm with drizzle</string>
+    <string name="condition_232_description">Thunderstorm with heavy drizzle</string>
+
+    <string name="condition_300_description">Light intensity drizzle</string>
+    <string name="condition_301_description">Drizzle</string>
+    <string name="condition_302_description">Heavy intensity drizzle</string>
+    <string name="condition_310_description">Light intensity drizzle rain</string>
+    <string name="condition_311_description">Drizzle rain</string>
+    <string name="condition_312_description">Heavy intensity drizzle rain</string>
+    <string name="condition_313_description">Shower rain and drizzle</string>
+    <string name="condition_314_description">Heavy shower rain and drizzle</string>
+    <string name="condition_321_description">Shower drizzle</string>
+
+    <string name="condition_500_description">Light rain</string>
+    <string name="condition_501_description">Moderate rain</string>
+    <string name="condition_502_description">Heavy intensity rain</string>
+    <string name="condition_503_description">Very heavy rain</string>
+    <string name="condition_504_description">Extreme rain</string>
+    <string name="condition_511_description">Freezing rain</string>
+    <string name="condition_520_description">Light intensity shower rain</string>
+    <string name="condition_521_description">Shower rain</string>
+    <string name="condition_522_description">Heavy intensity shower rain</string>
+    <string name="condition_531_description">Ragged shower rain</string>
+
+    <string name="condition_600_description">Light snow</string>
+    <string name="condition_601_description">Snow</string>
+    <string name="condition_602_description">Heavy snow</string>
+    <string name="condition_611_description">Sleet</string>
+    <string name="condition_612_description">Shower sleet</string>
+    <string name="condition_615_description">Light rain and snow</string>
+    <string name="condition_616_description">Rain and snow</string>
+    <string name="condition_620_description">Light shower snow</string>
+    <string name="condition_621_description">Shower snow</string>
+    <string name="condition_622_description">Heavy shower snow</string>
+
+    <string name="condition_701_description">Mist</string>
+    <string name="condition_711_description">Smoke</string>
+    <string name="condition_721_description">Haze</string>
+    <string name="condition_731_description">Sand, dust whirls</string>
+    <string name="condition_741_description">Fog</string>
+    <string name="condition_751_description">Sand</string>
+    <string name="condition_761_description">Dust</string>
+    <string name="condition_762_description">Volcanic ash</string>
+    <string name="condition_771_description">Squalls</string>
+    <string name="condition_781_description">Tornado</string>
+
+    <string name="condition_800_description">Clear sky</string>
+    <string name="condition_801_description">Few clouds</string>
+    <string name="condition_802_description">Scattered clouds</string>
+    <string name="condition_803_description">Broken clouds</string>
+    <string name="condition_804_description">Overcast clouds</string>
+
+    <string name="condition_900_description">Tornado</string>
+    <string name="condition_901_description">Tropical storm</string>
+    <string name="condition_902_description">Hurricane</string>
+    <string name="condition_903_description">Cold</string>
+    <string name="condition_904_description">Hot</string>
+    <string name="condition_905_description">Windy</string>
+    <string name="condition_906_description">Hail</string>
+
+    <string name="condition_951_description">Calm</string>
+    <string name="condition_952_description">Light breeze</string>
+    <string name="condition_953_description">Gentle breeze</string>
+    <string name="condition_954_description">Moderate breeze</string>
+    <string name="condition_955_description">Fresh breeze</string>
+    <string name="condition_956_description">Strong breeze</string>
+    <string name="condition_957_description">High wind, near gale</string>
+    <string name="condition_958_description">Gale</string>
+    <string name="condition_959_description">Severe gale</string>
+    <string name="condition_960_description">Storm</string>
+    <string name="condition_961_description">Violent storm</string>
+    <string name="condition_962_description">Hurricane</string>
+</resources>

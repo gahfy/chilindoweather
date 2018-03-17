@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="net.gahfy.chilindoweather.utils.StringUtils" />
+
+        <variable
+            name="weather"
+            type="net.gahfy.chilindoweather.model.weather.CurrentWeather" />
+
+        <variable
+            name="locale"
+            type="java.util.Locale" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/current_weather_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/weather_calculation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{weather.getCalculationTimestamp() == null ? @string/unknown_calculation_date : StringUtils.formatWeatherCalculationDate(@string/language, @string/calculation_date_format, weather.getCalculationTimestamp())}"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/weather_wind_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@{weather.getWindSpeed() == null ? @string/unknown_wind_speed : String.format(locale, @string/wind_speed, weather.getWindSpeed())}"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_calculation_date" />
+
+        <TextView
+            android:id="@+id/weather_direction_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wind_directon_label"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
+            app:layout_constraintTop_toBottomOf="@+id/weather_wind_speed" />
+
+        <TextView
+            android:id="@+id/weather_gust_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), context.getString(weather.getWindDirectionOrientation()))}"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
+            app:layout_constraintTop_toBottomOf="@+id/weather_direction_label" />
+
+        <TextView
+            android:id="@+id/weather_humidity_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="90dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/humidity_label"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
+            app:layout_constraintTop_toBottomOf="@+id/weather_gust_speed" />
+
+        <TextView
+            android:id="@+id/weather_humidity_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{weather.getHumidity() == null ? @string/unknown_humidity : String.format(locale, @string/humidity_value, weather.getHumidity())}"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_humidity_label"
+            app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
+            app:layout_constraintTop_toTopOf="@+id/weather_humidity_label" />
+
+        <TextView
+            android:id="@+id/weather_pressure_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pressure_label"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/weather_humidity_label"
+            app:layout_constraintTop_toBottomOf="@+id/weather_humidity_label" />
+
+        <TextView
+            android:id="@+id/weather_pressure_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{weather.getAtmosphericPressure() == null ? @string/unknown_pressure : String.format(locale, @string/pressure_value, weather.getAtmosphericPressure())}"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_pressure_label"
+            app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
+            app:layout_constraintTop_toTopOf="@+id/weather_pressure_label" />
+
+        <ImageView
+            android:id="@+id/weather_wind_direction_circle"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:contentDescription="@string/wind_direction_circle_content_description"
+            android:tint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_gust_speed"
+            app:layout_constraintStart_toStartOf="@+id/weather_humidity_label"
+            app:layout_constraintTop_toTopOf="@+id/weather_wind_speed"
+            app:srcCompat="@drawable/wind_direction_circle" />
+
+        <ImageView
+            android:id="@+id/weather_wind_direction_arrow"
+            android:layout_width="20dp"
+            android:layout_height="33dp"
+            android:contentDescription="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), context.getString(weather.getWindDirectionOrientation()))}"
+            android:rotation="@{weather.getWindDirection() == null ? 0 : weather.getWindDirection()+180}"
+            android:tint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_wind_direction_circle"
+            app:layout_constraintEnd_toEndOf="@+id/weather_wind_direction_circle"
+            app:layout_constraintStart_toStartOf="@+id/weather_wind_direction_circle"
+            app:layout_constraintTop_toTopOf="@+id/weather_wind_direction_circle"
+            app:srcCompat="@drawable/wind_direction_arrow" />
+
+        <TextView
+            android:id="@+id/weather_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{weather.getTemperature() == null ? @string/unknown_temperature : String.format(locale, @string/temperature_value, weather.getTemperature())}"
+            android:textColor="#fddf03"
+            android:textSize="53sp"
+            app:layout_constraintBottom_toBottomOf="@+id/weather_pressure_label"
+            app:layout_constraintStart_toStartOf="@+id/weather_calculation_date" />
+
+        <ImageView
+            android:id="@+id/weather_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@{weather.getConditionDescriptionResId()}"
+            android:src="@{weather.getIconResId()}"
+            app:layout_constraintBottom_toTopOf="@+id/weather_temperature"
+            app:layout_constraintEnd_toStartOf="@+id/weather_humidity_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weather_calculation_date" />
+    </android.support.constraint.ConstraintLayout>
+</layout>
