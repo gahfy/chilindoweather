@@ -19,4 +19,4 @@ after_success:
   - mv app/build/reports/jacoco/jacocoTestDebugUnitTestReport/createDebugUnitTestCoverageReport.xml app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml
   - mv app/build/reports/jacoco/createReleaseUnitTestCoverageReport app/build/reports/jacoco/jacocoTestReleaseUnitTestReport
   - mv app/build/reports/jacoco/jacocoTestReleaseUnitTestReport/createReleaseUnitTestCoverageReport.xml app/build/reports/jacoco/jacocoTestReleaseUnitTestReport/jacocoTestReleaseUnitTestReport.xml
-  - bash < (curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash)
