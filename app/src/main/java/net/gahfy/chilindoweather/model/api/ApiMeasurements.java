@@ -16,7 +16,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUR
 /**
  * Weather measurements as they are returned by the OpenWeatherMap API
  */
-public final class ApiMeasurements {
+public class ApiMeasurements {
     /**
      * Temperature in Kelvin
      */
@@ -72,7 +72,7 @@ public final class ApiMeasurements {
      * @return the temperature in Kelvin
      */
     @Nullable
-    public final Double getTemperature() {
+    public Double getTemperature() {
         return temperature;
     }
 
@@ -82,7 +82,7 @@ public final class ApiMeasurements {
      * @return the atmospheric pressure (sea level, if there is no sea or ground level data) in hPa
      */
     @Nullable
-    public final Double getPressure() {
+    public Double getPressure() {
         return pressure;
     }
 
@@ -92,7 +92,7 @@ public final class ApiMeasurements {
      * @return the humidity in percent
      */
     @Nullable
-    public final Integer getHumidity() {
+    public Integer getHumidity() {
         return humidity;
     }
 
@@ -102,7 +102,7 @@ public final class ApiMeasurements {
      * @return the minimum temperature in Kelvin at the moment (possible for large areas)
      */
     @Nullable
-    public final Double getMinimumTemperature() {
+    public Double getMinimumTemperature() {
         return minimumTemperature;
     }
 
@@ -112,7 +112,7 @@ public final class ApiMeasurements {
      * @return the maximum temperature in Kelvin at the moment (possible for large areas)
      */
     @Nullable
-    public final Double getMaximumTemperature() {
+    public Double getMaximumTemperature() {
         return maximumTemperature;
     }
 
@@ -122,7 +122,7 @@ public final class ApiMeasurements {
      * @return the atmospheric pressure on the sea level in hPa
      */
     @Nullable
-    public final Double getSeaLevelPressure() {
+    public Double getSeaLevelPressure() {
         return seaLevelPressure;
     }
 
@@ -132,7 +132,7 @@ public final class ApiMeasurements {
      * @return the atmospheric pressure on the ground level in hPa
      */
     @Nullable
-    public final Double getGroundLevelPressure() {
+    public Double getGroundLevelPressure() {
         return groundLevelPressure;
     }
 }

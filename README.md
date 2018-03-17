@@ -1,5 +1,9 @@
 # Chilindo OpenWeatherMap Application
 
+[![Build Status](https://travis-ci.org/gahfy/chilindoweather.svg?branch=master)](https://travis-ci.org/gahfy/chilindoweather) [![Codecov](https://codecov.io/github/gahfy/chilindoweather/coverage.svg?branch=master)](https://codecov.io/gh/gahfy/chilindoweather)
+
+A demo weather app for interview with Chilindo
+
 ## API Key and Keystore password
 
 It was written in specifications that *A complete project (Android Studio) which **BUILDS** and runs without errors, generating an

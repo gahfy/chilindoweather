@@ -14,7 +14,7 @@ env:
 
 # Emulator Management: Create, Start and Wait
 script:
-  - ./gradlew build jacocoTestReport assembleAndroidTest
+  - ./gradlew build createDebugUnitTestCoverageReport createReleaseUnitTestCoverageReport assembleAndroidTest
   - echo no | android create avd --force -n test -t android-17 --abi armeabi-v7a
   - emulator -avd test -engine classic -no-skin -no-audio -no-window &
   - android-wait-for-emulator

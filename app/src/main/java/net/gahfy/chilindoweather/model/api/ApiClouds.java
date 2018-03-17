@@ -10,7 +10,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CLOUDS
 /**
  * Clouds as it is returned by OpenWeatherMap API
  */
-public final class ApiClouds {
+public class ApiClouds {
     /**
      * Cloudiness in percent
      */
@@ -24,7 +24,7 @@ public final class ApiClouds {
      * @return the cloudiness in percent
      */
     @Nullable
-    public final Integer getCloudiness() {
+    public Integer getCloudiness() {
         return cloudiness;
     }
 }

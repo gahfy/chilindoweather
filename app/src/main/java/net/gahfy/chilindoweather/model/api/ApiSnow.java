@@ -9,7 +9,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SNOW_L
 /**
  * Snow as it is returned by the OpenWeatherMap API
  */
-public final class ApiSnow {
+public class ApiSnow {
     /**
      * Snow volume for the last 3 hours in mm
      */
@@ -23,7 +23,7 @@ public final class ApiSnow {
      * @return the snow volume for the last 3 hours in mm
      */
     @Nullable
-    public final Integer getLast3hoursVolume() {
+    public Integer getLast3hoursVolume() {
         return last3hoursVolume;
     }
 }

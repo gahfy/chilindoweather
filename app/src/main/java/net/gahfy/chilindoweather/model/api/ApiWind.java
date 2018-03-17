@@ -10,7 +10,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WIND_S
 /**
  * Wind as it is returned by the OpenWeatherMap API.
  */
-public final class ApiWind {
+public class ApiWind {
     /**
      * Wind speed in meter/sec
      */
@@ -31,7 +31,7 @@ public final class ApiWind {
      * @return the wind speed in meter/sec
      */
     @Nullable
-    public final Double getSpeed() {
+    public Double getSpeed() {
         return speed;
     }
 
@@ -41,7 +41,7 @@ public final class ApiWind {
      * @return the wind direction in degrees from the North
      */
     @Nullable
-    public final Double getDirection() {
+    public Double getDirection() {
         return direction;
     }
 }

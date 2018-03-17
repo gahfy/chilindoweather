@@ -12,7 +12,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CONDIT
 /**
  * Weather condition as it is returned by the OpenWeatherMap API
  */
-public final class ApiCondition {
+public class ApiCondition {
     /**
      * Unique identifier of the weather condition
      */
@@ -47,7 +47,7 @@ public final class ApiCondition {
      * @return the unique identifier of the weather condition
      */
     @Nullable
-    public final Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -57,7 +57,7 @@ public final class ApiCondition {
      * @return the name of the group of the weather parameters (Rain, Snow, Extreme, .)
      */
     @Nullable
-    public final String getGroupName() {
+    public String getGroupName() {
         return groupName;
     }
 
@@ -67,7 +67,7 @@ public final class ApiCondition {
      * @return the name of the weather condition within the group
      */
     @Nullable
-    public final String getConditionName() {
+    public String getConditionName() {
         return conditionName;
     }
 
@@ -77,7 +77,7 @@ public final class ApiCondition {
      * @return the unique identifier of the weather icon
      */
     @Nullable
-    public final String getIconId() {
+    public String getIconId() {
         return iconId;
     }
 }

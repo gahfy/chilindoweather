@@ -9,7 +9,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_RAIN_L
 /**
  * Rain as it is returned by the OpenWeatherMap API
  */
-public final class ApiRain {
+public class ApiRain {
     /**
      * Rain volume for the last 3 hours in mm
      */
@@ -23,7 +23,7 @@ public final class ApiRain {
      * @return the rain volume for the last 3 hours in mm
      */
     @Nullable
-    public final Double getLast3hoursVolume() {
+    public Double getLast3hoursVolume() {
         return last3hoursVolume;
     }
 }

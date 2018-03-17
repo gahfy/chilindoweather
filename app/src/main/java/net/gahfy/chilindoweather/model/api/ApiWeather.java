@@ -22,7 +22,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHE
 /**
  * Weather forecast as it is returned by the OpenWeatherMap API
  */
-public final class ApiWeather {
+public class ApiWeather {
     /**
      * GPS coordinates to which weather forecast applies
      */
@@ -127,7 +127,7 @@ public final class ApiWeather {
      * @return the GPS coordinates to which weather forecast applies
      */
     @Nullable
-    public final ApiGpsCoordinates getGpsCoordinates() {
+    public ApiGpsCoordinates getGpsCoordinates() {
         return gpsCoordinates;
     }
 
@@ -137,7 +137,7 @@ public final class ApiWeather {
      * @return the weather condition
      */
     @Nullable
-    public final ApiCondition[] getCondition() {
+    public ApiCondition[] getCondition() {
         return condition;
     }
 
@@ -147,7 +147,7 @@ public final class ApiWeather {
      * @return the API base value
      */
     @Nullable
-    public final String getBase() {
+    public String getBase() {
         return base;
     }
 
@@ -157,7 +157,7 @@ public final class ApiWeather {
      * @return the weather measurements
      */
     @Nullable
-    public final ApiMeasurements getMeasurements() {
+    public ApiMeasurements getMeasurements() {
         return measurements;
     }
 
@@ -167,7 +167,7 @@ public final class ApiWeather {
      * @return the wind data
      */
     @Nullable
-    public final ApiWind getWind() {
+    public ApiWind getWind() {
         return wind;
     }
 
@@ -177,7 +177,7 @@ public final class ApiWeather {
      * @return the cloudiness data
      */
     @Nullable
-    public final ApiClouds getClouds() {
+    public ApiClouds getClouds() {
         return clouds;
     }
 
@@ -187,7 +187,7 @@ public final class ApiWeather {
      * @return the rain data
      */
     @Nullable
-    public final ApiRain getRain() {
+    public ApiRain getRain() {
         return rain;
     }
 
@@ -197,7 +197,7 @@ public final class ApiWeather {
      * @return the snow data
      */
     @Nullable
-    public final ApiSnow getSnow() {
+    public ApiSnow getSnow() {
         return snow;
     }
 
@@ -207,7 +207,7 @@ public final class ApiWeather {
      * @return the timestamp when weather forecast has been calculated
      */
     @Nullable
-    public final Integer getCalculationTimestamp() {
+    public Integer getCalculationTimestamp() {
         return calculationTimestamp;
     }
 
@@ -217,7 +217,7 @@ public final class ApiWeather {
      * @return the system data
      */
     @Nullable
-    public final ApiSystem getSystem() {
+    public ApiSystem getSystem() {
         return system;
     }
 
@@ -227,7 +227,7 @@ public final class ApiWeather {
      * @return the unique identifier of the city
      */
     @Nullable
-    public final Integer getCityId() {
+    public Integer getCityId() {
         return cityId;
     }
 
@@ -237,7 +237,7 @@ public final class ApiWeather {
      * @return the name of the city
      */
     @Nullable
-    public final String getCityName() {
+    public String getCityName() {
         return cityName;
     }
 
@@ -247,7 +247,7 @@ public final class ApiWeather {
      * @return the HTTP code of the response
      */
     @Nullable
-    public final Integer getHttpCode() {
+    public Integer getHttpCode() {
         return httpCode;
     }
 
@@ -257,7 +257,7 @@ public final class ApiWeather {
      * @return the error message
      */
     @Nullable
-    public final String getErrorMessage() {
+    public String getErrorMessage() {
         return errorMessage;
     }
 }

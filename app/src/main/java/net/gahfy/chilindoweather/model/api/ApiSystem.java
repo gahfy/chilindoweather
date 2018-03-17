@@ -14,7 +14,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM
 /**
  * System parameters as it is returned by the OpenWeatherMap API
  */
-public final class ApiSystem {
+public class ApiSystem {
     /**
      * API type value
      */
@@ -63,7 +63,7 @@ public final class ApiSystem {
      * @return the API type value
      */
     @Nullable
-    public final Integer getType() {
+    public Integer getType() {
         return type;
     }
 
@@ -73,7 +73,7 @@ public final class ApiSystem {
      * @return the API id value
      */
     @Nullable
-    public final Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -83,7 +83,7 @@ public final class ApiSystem {
      * @return the API message value
      */
     @Nullable
-    public final Double getMessage() {
+    public Double getMessage() {
         return message;
     }
 
@@ -93,7 +93,7 @@ public final class ApiSystem {
      * @return the country code of the location of the weather
      */
     @Nullable
-    public final String getCountryCode() {
+    public String getCountryCode() {
         return countryCode;
     }
 
@@ -103,7 +103,7 @@ public final class ApiSystem {
      * @return the timestamp of sunrise at the location of the weather
      */
     @Nullable
-    public final Integer getSunriseTimestamp() {
+    public Integer getSunriseTimestamp() {
         return sunriseTimestamp;
     }
 
@@ -113,7 +113,7 @@ public final class ApiSystem {
      * @return the timestamp of sunset at the location of the weather
      */
     @Nullable
-    public final Integer getSunsetTimestamp() {
+    public Integer getSunsetTimestamp() {
         return sunsetTimestamp;
     }
 }

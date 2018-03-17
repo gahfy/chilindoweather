@@ -10,7 +10,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_GPS_CO
 /**
  * Gps coordinates as they are returned by OpenWeatherMap API
  */
-public final class ApiGpsCoordinates {
+public class ApiGpsCoordinates {
     /**
      * Latitude of the GPS coordinates
      */
@@ -31,7 +31,7 @@ public final class ApiGpsCoordinates {
      * @return the latitude of the GPS coordinates
      */
     @Nullable
-    public final Double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
@@ -41,7 +41,7 @@ public final class ApiGpsCoordinates {
      * @return the longitude of the GPS coordinates
      */
     @Nullable
-    public final Double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 }

@@ -72,38 +72,41 @@ public class CurrentWeather {
     @DrawableRes
     private static int getIconResId(@Nullable String icon) {
         if (icon != null) {
-            switch (icon) {
-                case "01d":
-                    return R.drawable.clear_sky_day;
-                case "01n":
-                    return R.drawable.clear_sky_night;
-                case "02d":
-                    return R.drawable.few_clouds_day;
-                case "02n":
-                    return R.drawable.few_clouds_night;
-                case "03d":
-                case "03n":
-                    return R.drawable.scattered_clouds;
-                case "04d":
-                case "04n":
-                    return R.drawable.broken_clouds;
-                case "09d":
-                case "09n":
-                    return R.drawable.shower_rain;
-                case "10d":
-                    return R.drawable.rain_day;
-                case "10n":
-                    return R.drawable.rain_night;
-                case "11d":
-                case "11n":
-                    return R.drawable.thunderstorm;
-                case "13d":
-                case "13n":
-                    return R.drawable.snow;
-                case "50d":
-                case "50n":
-                    return R.drawable.mist;
-
+            if(icon.equals("01d")){
+                return R.drawable.clear_sky_day;
+            }
+            else if(icon.equals("01n")){
+                return R.drawable.clear_sky_night;
+            }
+            else if(icon.equals("02d")){
+                return R.drawable.few_clouds_day;
+            }
+            else if(icon.equals("02n")){
+                return R.drawable.few_clouds_night;
+            }
+            else if(icon.equals("03d") || icon.equals("03n")){
+                return R.drawable.scattered_clouds;
+            }
+            else if(icon.equals("04d") || icon.equals("04n")){
+                return R.drawable.broken_clouds;
+            }
+            else if(icon.equals("09d") || icon.equals("09n")){
+                return R.drawable.shower_rain;
+            }
+            else if(icon.equals("10d")){
+                return R.drawable.rain_day;
+            }
+            else if(icon.equals("10n")){
+                return R.drawable.rain_night;
+            }
+            else if(icon.equals("11d") || icon.equals("11n")){
+                return R.drawable.thunderstorm;
+            }
+            else if(icon.equals("13d") || icon.equals("13n")){
+                return R.drawable.snow;
+            }
+            else if(icon.equals("50d") || icon.equals("50n")){
+                return R.drawable.mist;
             }
         }
         return 0;
