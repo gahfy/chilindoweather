@@ -93,7 +93,7 @@ public class LocationUtils {
         }
     }
 
-    public void addSingleLocationListener(SingleLocationListener singleLocationListener) {
+    public Void addSingleLocationListener(SingleLocationListener singleLocationListener) {
         singleLocationListeners.add(singleLocationListener);
         if (location == null) {
             if (!isGeolocating) {
@@ -102,6 +102,7 @@ public class LocationUtils {
         } else {
             singleLocationListener.onLocationFound(location);
         }
+        return null;
     }
 
     public void removeSingleLocationListener(SingleLocationListener singleLocationListener) {

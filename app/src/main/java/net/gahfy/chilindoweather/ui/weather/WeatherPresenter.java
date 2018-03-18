@@ -64,7 +64,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     }
 
     @Override
-    protected void onViewDestroyed() {
+    public void onViewDestroyed() {
         super.onViewDestroyed();
         if (disposable != null) {
             disposable.dispose();

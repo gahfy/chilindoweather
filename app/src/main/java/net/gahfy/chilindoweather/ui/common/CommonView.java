@@ -13,7 +13,7 @@ public interface CommonView extends BaseView {
 
     void hideGeolocationRationale();
 
-    void showGeolocationPermissionRationale(View.OnClickListener retryClickListener);
+    Void showGeolocationPermissionRationale(View.OnClickListener retryClickListener);
 
     void removeUserInfo();
 

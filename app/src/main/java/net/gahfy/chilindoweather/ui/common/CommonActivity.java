@@ -120,10 +120,11 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public void showGeolocationPermissionRationale(View.OnClickListener retryClickListener) {
+    public Void showGeolocationPermissionRationale(View.OnClickListener retryClickListener) {
         activitySnackbar = Snackbar.make(findViewById(android.R.id.content), R.string.geolocation_permission_rationale, Snackbar.LENGTH_INDEFINITE);
         activitySnackbar.setAction(R.string.geolocation_permission_grant, retryClickListener);
         activitySnackbar.show();
+        return null;
     }
 
     @Override

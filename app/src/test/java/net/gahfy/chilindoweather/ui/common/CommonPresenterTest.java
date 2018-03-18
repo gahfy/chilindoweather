@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
+import junit.framework.Assert;
+
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.ui.forecast.ForecastActivity;
 import net.gahfy.chilindoweather.ui.forecast.ForecastPresenter;
@@ -33,6 +35,8 @@ import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
 
 import java.util.concurrent.Executor;
 
@@ -48,6 +52,8 @@ public class CommonPresenterTest {
     private PermissionUtils permissionUtils = null;
     private GoogleSignInResult googleSignInResult = null;
     private boolean needGeolocation = false;
+    private LocationUtils locationUtils = null;
+    private int onLocationAvailableCounter;
     private Task<Void> googleSignOutTask = new Task<Void>() {
         @Override
         public boolean isComplete() {
@@ -155,7 +161,7 @@ public class CommonPresenterTest {
             @Nullable
             @Override
             protected LocationUtils getLocationUtils() {
-                return null;
+                return locationUtils;
             }
 
             protected boolean needGeolocationonStartup() {
@@ -163,6 +169,7 @@ public class CommonPresenterTest {
             }
 
             protected void onLocationAvailable(Location location) {
+                onLocationAvailableCounter++;
             }
         };
     }
@@ -205,6 +212,45 @@ public class CommonPresenterTest {
     }
 
     @Test
+    public void testViewCreatedGeolocate() {
+        needGeolocation = true;
+        permissionUtils = Mockito.mock(PermissionUtils.class);
+        Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(true);
+
+        locationUtils = Mockito.mock(LocationUtils.class);
+        Mockito.when(locationUtils.addSingleLocationListener(any(LocationUtils.SingleLocationListener.class))).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                LocationUtils.SingleLocationListener singleLocationListener = invocation.getArgument(0);
+                singleLocationListener.onLocationFound(Mockito.mock(Location.class));
+                return null;
+            }
+        });
+        commonPresenter.onViewCreated();
+        Assert.assertEquals(1, onLocationAvailableCounter);
+
+        Mockito.when(locationUtils.addSingleLocationListener(any(LocationUtils.SingleLocationListener.class))).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                LocationUtils.SingleLocationListener singleLocationListener = invocation.getArgument(0);
+                singleLocationListener.onProviderNotAvailableError();
+                return null;
+            }
+        });
+        commonPresenter.onViewCreated();
+        Mockito.verify(commonView, times(1)).showNoGeolocationAvailableError(any(View.OnClickListener.class));
+
+        Mockito.when(locationUtils.addSingleLocationListener(any(LocationUtils.SingleLocationListener.class))).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(false);
+                LocationUtils.SingleLocationListener singleLocationListener = invocation.getArgument(0);
+                singleLocationListener.onPermissionError();
+                return null;
+            }
+        });
+        commonPresenter.onViewCreated();
+        Mockito.verify(permissionUtils, times(1)).requestGeolocationPermission(anyInt());
+    }
+
+    @Test
     public void testViewCreatedGeolocationRequiredNoPermission() {
         needGeolocation = true;
         permissionUtils = Mockito.mock(PermissionUtils.class);
@@ -231,14 +277,26 @@ public class CommonPresenterTest {
 
     @Test
     public void testOnPermissionResult() {
+        permissionUtils = Mockito.mock(PermissionUtils.class);
+        Mockito.when(commonView.showGeolocationPermissionRationale(any(View.OnClickListener.class))).thenAnswer(new Answer() {
+            public Object answer(InvocationOnMock invocation) {
+                View.OnClickListener onClickListener = invocation.getArgument(0);
+                onClickListener.onClick(null);
+                return null;
+            }
+        });
+
         commonPresenter.onPermissionResult(10, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, new int[]{0});
         Mockito.verify(commonView, times(1)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+        Mockito.verify(permissionUtils, times(1)).requestGeolocationPermission(anyInt());
 
         commonPresenter.onPermissionResult(1, new String[0], new int[0]);
         Mockito.verify(commonView, times(2)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+        Mockito.verify(permissionUtils, times(2)).requestGeolocationPermission(anyInt());
 
         commonPresenter.onPermissionResult(1, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, new int[]{1});
         Mockito.verify(commonView, times(3)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+        Mockito.verify(permissionUtils, times(3)).requestGeolocationPermission(anyInt());
 
         commonPresenter.onPermissionResult(1, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, new int[]{0});
         Mockito.verify(commonView, times(1)).hideGeolocationRationale();
@@ -259,6 +317,11 @@ public class CommonPresenterTest {
 
         Mockito.when(googleSignInResult.isSuccess()).thenReturn(false);
         commonPresenter.onActivityResult(2, 0, new Intent());
+        Mockito.verify(commonView, times(1)).removeUserInfo();
+
+        Mockito.when(googleSignInResult.isSuccess()).thenReturn(true);
+        Mockito.when(googleSignInResult.getSignInAccount()).thenReturn(googleSignInAccount);
+        commonPresenter.onActivityResult(10, 0, new Intent());
         Mockito.verify(commonView, times(1)).removeUserInfo();
     }
 
@@ -286,6 +349,17 @@ public class CommonPresenterTest {
     }
 
     @Test
+    public void testOnViewDestroyed() {
+        locationUtils = null;
+        // Assume no Exception
+        commonPresenter.onViewDestroyed();
+
+        locationUtils = Mockito.mock(LocationUtils.class);
+        commonPresenter.onViewDestroyed();
+        verify(locationUtils, times(1)).removeSingleLocationListener(any(LocationUtils.SingleLocationListener.class));
+    }
+
+    @Test
     public void testNavigationListener() {
         WeatherView weatherView = Mockito.mock(WeatherView.class);
         ForecastView forecastView = Mockito.mock(ForecastView.class);
@@ -301,6 +375,8 @@ public class CommonPresenterTest {
         Mockito.when(settingsMenuItem.getItemId()).thenReturn(R.id.settings);
         MenuItem signOutMenuItem = Mockito.mock(MenuItem.class);
         Mockito.when(signOutMenuItem.getItemId()).thenReturn(R.id.sign_out);
+        MenuItem fantasyMenuItem = Mockito.mock(MenuItem.class);
+        Mockito.when(fantasyMenuItem.getItemId()).thenReturn(1000);
 
         WeatherPresenter weatherPresenter = new WeatherPresenter(weatherView);
         ForecastPresenter forecastPresenter = new ForecastPresenter(forecastView);
@@ -316,7 +392,7 @@ public class CommonPresenterTest {
         Mockito.verify(weatherView, times(1)).checkMenu(R.id.current_weather);
 
         commonNavigationListener.onNavigationItemSelected(signOutMenuItem);
-        Mockito.verify(commonView, times(1)).closeDrawers();
+        Mockito.verify(commonView, times(1)).removeUserInfo();
 
         weatherNavigationListener.onNavigationItemSelected(weatherMenuItem);
         Mockito.verify(weatherView, times(0)).finish();
@@ -335,5 +411,9 @@ public class CommonPresenterTest {
 
         settingsNavigationListener.onNavigationItemSelected(settingsMenuItem);
         Mockito.verify(settingsView, times(0)).startActivity(SettingsActivity.class);
+
+        settingsNavigationListener.onNavigationItemSelected(fantasyMenuItem);
+        Mockito.verify(settingsView, times(0)).startActivity(SettingsActivity.class);
+        Mockito.verify(settingsView, times(0)).startActivity(ForecastActivity.class);
     }
 }

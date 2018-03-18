@@ -152,7 +152,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
-    protected void onViewDestroyed() {
+    public void onViewDestroyed() {
         if (getLocationUtils() != null) {
             getLocationUtils().removeSingleLocationListener(locationListener);
         }
