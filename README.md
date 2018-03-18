@@ -4,7 +4,7 @@
 
 A demo weather app for interview with Chilindo
 
-[![Header](https://raw.githubusercontent.com/gahfy/chilindoweather/master/img/bheader.png)
+[![Header](https://github.com/gahfy/chilindoweather/raw/master/img/header.png)](https://github.com/gahfy/chilindoweather)
 
 ## Architecture
 
