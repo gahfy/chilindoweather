@@ -28,8 +28,6 @@ import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 
 import java.util.concurrent.Executor;
@@ -38,7 +36,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@RunWith(Parameterized.class)
 public class CommonPresenterTest {
     private CommonView commonView;
     private CommonPresenter<CommonView> commonPresenter;
