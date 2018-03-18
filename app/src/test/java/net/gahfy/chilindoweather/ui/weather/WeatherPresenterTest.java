@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 
 import static net.gahfy.chilindoweather.utils.ApiUtils.weatherMockPath;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -31,7 +32,7 @@ public class WeatherPresenterTest {
         weatherPresenter = new WeatherPresenter(weatherView);
         weatherMockPath = "weather.json";
         weatherPresenter.onLocationAvailable(location);
-        verify(weatherView, times(1)).showCurrentWeather(any(CurrentWeather.class));
+        verify(weatherView, times(1)).showCurrentWeather(any(CurrentWeather.class), anyInt(), anyInt());
     }
 
     @Test

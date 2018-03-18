@@ -6,6 +6,7 @@
     <color name="black">#000</color>
     <color name="window_background">#0060ac</color>
     <color name="white">#fff</color>
+    <color name="separator_color">#30FFFFFF</color>
 
     <color name="item_menu_color">@color/black</color>
     <color name="menu_background">@color/white</color>

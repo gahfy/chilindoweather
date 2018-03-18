@@ -6,6 +6,7 @@ import android.support.annotation.StringRes;
 
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiWeather;
+import net.gahfy.chilindoweather.utils.unit.UnitUtils;
 
 public class CurrentWeather {
     @Nullable
@@ -300,8 +301,16 @@ public class CurrentWeather {
     }
 
     @Nullable
-    public Integer getTemperature() {
-        return temperature != null ? temperature.intValue() : null;
+    public Integer getTemperature(int preferredTemperatureIndex) {
+        if (temperature == null) {
+            return null;
+        } else if (preferredTemperatureIndex == UnitUtils.CELSIUS_INDEX) {
+            return (int) (temperature - 273.15);
+        } else if (preferredTemperatureIndex == UnitUtils.FAHRENHEIT_INDEX) {
+            return (int) (temperature * (9.0 / 5.0) - 459.67);
+        } else {
+            return temperature.intValue();
+        }
     }
 
     @Nullable
@@ -332,8 +341,16 @@ public class CurrentWeather {
     }
 
     @Nullable
-    public Integer getWindSpeed() {
-        return windSpeed != null ? windSpeed.intValue() : null;
+    public Integer getWindSpeed(int preferredSpeedIndex) {
+        if (windSpeed == null) {
+            return null;
+        } else if (preferredSpeedIndex == UnitUtils.METERS_INDEX) {
+            return windSpeed.intValue();
+        } else if (preferredSpeedIndex == UnitUtils.MILES_INDEX) {
+            return (int) (windSpeed * 2.23694);
+        } else {
+            return windSpeed.intValue();
+        }
     }
 
     public Integer getHumidity() {

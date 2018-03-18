@@ -92,17 +92,22 @@ public class CurrentWeatherTest {
 
         Mockito.when(apiWeather.getWind()).thenReturn(null);
         CurrentWeather currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getWind() = null so currentWeather.getWindSpeed() = null", currentWeather.getWindSpeed(), null);
+        assertEquals("getWind() = null so currentWeather.getWindSpeed(0) = null", currentWeather.getWindSpeed(0), null);
 
         Mockito.when(apiWind.getSpeed()).thenReturn(null);
         Mockito.when(apiWeather.getWind()).thenReturn(apiWind);
         currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getWind().getSpeed() = null so currentWeather.getWindSpeed() = null", currentWeather.getWindSpeed(), null);
+        assertEquals("getWind().getSpeed() = null so currentWeather.getWindSpeed(0) = null", currentWeather.getWindSpeed(0), null);
 
         Mockito.when(apiWind.getSpeed()).thenReturn(3.999);
         Mockito.when(apiWeather.getWind()).thenReturn(apiWind);
         currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getWind().getSpeed() = 3.999 so currentWeather.getWindSpeed() = 3", currentWeather.getWindSpeed(), new Integer(3));
+        assertEquals("getWind().getSpeed() = 3.999 so currentWeather.getWindSpeed(0) = 3", currentWeather.getWindSpeed(0), new Integer(3));
+
+        Mockito.when(apiWind.getSpeed()).thenReturn(3.999);
+        Mockito.when(apiWeather.getWind()).thenReturn(apiWind);
+        currentWeather = new CurrentWeather(apiWeather);
+        assertEquals("getWind().getSpeed() = 3.999 so currentWeather.getWindSpeed(1) = 3", currentWeather.getWindSpeed(1), new Integer(8));
     }
 
     @Test
@@ -197,17 +202,22 @@ public class CurrentWeatherTest {
 
         Mockito.when(apiWeather.getMeasurements()).thenReturn(null);
         CurrentWeather currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getMeasurements() = null so currentWeather.getTemperature() = null", currentWeather.getTemperature(), null);
+        assertEquals("getMeasurements() = null so currentWeather.getTemperature(0) = null", currentWeather.getTemperature(0), null);
 
         Mockito.when(apiMeasurements.getTemperature()).thenReturn(null);
         Mockito.when(apiWeather.getMeasurements()).thenReturn(apiMeasurements);
         currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getMeasurements().getTemperature() = null so currentWeather.getTemperature() = null", currentWeather.getTemperature(), null);
+        assertEquals("getMeasurements().getTemperature() = null so currentWeather.getTemperature(0) = null", currentWeather.getTemperature(0), null);
 
-        Mockito.when(apiMeasurements.getTemperature()).thenReturn(3.999);
+        Mockito.when(apiMeasurements.getTemperature()).thenReturn(300.0);
         Mockito.when(apiWeather.getMeasurements()).thenReturn(apiMeasurements);
         currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getMeasurements().getTemperature() = 3.999 so currentWeather.getTemperature() = 3", currentWeather.getTemperature(), new Integer(3));
+        assertEquals("getMeasurements().getTemperature() = 300.0 so currentWeather.getTemperature(0) = 8", currentWeather.getTemperature(0), new Integer(26));
+
+        Mockito.when(apiMeasurements.getTemperature()).thenReturn(300.0);
+        Mockito.when(apiWeather.getMeasurements()).thenReturn(apiMeasurements);
+        currentWeather = new CurrentWeather(apiWeather);
+        assertEquals("getMeasurements().getTemperature() = 300.0 so currentWeather.getTemperature(1) = 8", currentWeather.getTemperature(1), new Integer(80));
     }
 
     @Test

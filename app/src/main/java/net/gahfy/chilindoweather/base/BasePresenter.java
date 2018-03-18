@@ -9,6 +9,7 @@ import net.gahfy.chilindoweather.injection.module.GoogleServicesModule;
 import net.gahfy.chilindoweather.injection.module.LocationModule;
 import net.gahfy.chilindoweather.injection.module.NetworkModule;
 import net.gahfy.chilindoweather.injection.module.PermissionModule;
+import net.gahfy.chilindoweather.injection.module.PreferencesModule;
 import net.gahfy.chilindoweather.ui.forecast.ForecastPresenter;
 import net.gahfy.chilindoweather.ui.settings.SettingsPresenter;
 import net.gahfy.chilindoweather.ui.weather.WeatherPresenter;
@@ -44,6 +45,7 @@ public abstract class BasePresenter<V extends BaseView> {
                 .permissionModule(PermissionModule.getInstance())
                 .locationModule(LocationModule.getInstance())
                 .googleServicesModule(GoogleServicesModule.getInstance())
+                .preferencesModule(PreferencesModule.getInstance())
                 .build();
 
         inject();

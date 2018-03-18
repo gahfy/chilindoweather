@@ -1,15 +1,19 @@
 package net.gahfy.chilindoweather.ui.common;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -32,6 +36,7 @@ import org.mockito.Mockito;
 
 import java.util.concurrent.Executor;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -41,6 +46,7 @@ public class CommonPresenterTest {
     private CommonPresenter<CommonView> commonPresenter;
     private GoogleSignInAccount googleSignInAccount = null;
     private PermissionUtils permissionUtils = null;
+    private GoogleSignInResult googleSignInResult = null;
     private boolean needGeolocation = false;
     private Task<Void> googleSignOutTask = new Task<Void>() {
         @Override
@@ -67,6 +73,13 @@ public class CommonPresenterTest {
         @Override
         public Exception getException() {
             return null;
+        }
+
+        @NonNull
+        @Override
+        public Task<Void> addOnCompleteListener(@NonNull OnCompleteListener<Void> onCompleteListener) {
+            onCompleteListener.onComplete(this);
+            return this;
         }
 
         @NonNull
@@ -120,6 +133,7 @@ public class CommonPresenterTest {
             protected GoogleSignInClient getGoogleSignInClient() {
                 GoogleSignInClient googleSignInClient = Mockito.mock(GoogleSignInClient.class);
                 Mockito.when(googleSignInClient.signOut()).thenReturn(googleSignOutTask);
+
                 return googleSignInClient;
             }
 
@@ -131,6 +145,11 @@ public class CommonPresenterTest {
             @Override
             protected GoogleSignInAccount getGoogleSignInAccount() {
                 return googleSignInAccount;
+            }
+
+            @Override
+            protected GoogleSignInResult getSignInResultFromIntent(Intent data) {
+                return googleSignInResult;
             }
 
             @Nullable
@@ -186,6 +205,64 @@ public class CommonPresenterTest {
     }
 
     @Test
+    public void testViewCreatedGeolocationRequiredNoPermission() {
+        needGeolocation = true;
+        permissionUtils = Mockito.mock(PermissionUtils.class);
+        Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(false);
+
+        Mockito.when(permissionUtils.shouldShowGeolocationRationale()).thenReturn(false);
+        commonPresenter.onViewCreated();
+        verify(permissionUtils, times(1)).requestGeolocationPermission(1);
+
+        Mockito.when(permissionUtils.shouldShowGeolocationRationale()).thenReturn(true);
+        commonPresenter.onViewCreated();
+        verify(commonView, times(1)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+    }
+
+    @Test
+    public void testViewCreatedGeolocationRequiredWithPermission() {
+        needGeolocation = true;
+        permissionUtils = Mockito.mock(PermissionUtils.class);
+        Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(true);
+
+        commonPresenter.onViewCreated();
+        verify(commonView, times(1)).hideGeolocationRationale();
+    }
+
+    @Test
+    public void testOnPermissionResult() {
+        commonPresenter.onPermissionResult(10, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, new int[]{0});
+        Mockito.verify(commonView, times(1)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+
+        commonPresenter.onPermissionResult(1, new String[0], new int[0]);
+        Mockito.verify(commonView, times(2)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+
+        commonPresenter.onPermissionResult(1, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, new int[]{1});
+        Mockito.verify(commonView, times(3)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
+
+        commonPresenter.onPermissionResult(1, new String[]{"android.permission.ACCESS_FINE_LOCATION"}, new int[]{0});
+        Mockito.verify(commonView, times(1)).hideGeolocationRationale();
+    }
+
+    @Test
+    public void testOnActivityResult() {
+        googleSignInAccount = Mockito.mock(GoogleSignInAccount.class);
+        Mockito.when(googleSignInAccount.getDisplayName()).thenReturn("Gaëtan HERFRAY");
+        Mockito.when(googleSignInAccount.getEmail()).thenReturn("gaetan.hfy@gmail.com");
+        Mockito.when(googleSignInAccount.getPhotoUrl()).thenReturn(Uri.parse("http://www.google.com/"));
+        googleSignInResult = Mockito.mock(GoogleSignInResult.class);
+
+        Mockito.when(googleSignInResult.isSuccess()).thenReturn(true);
+        Mockito.when(googleSignInResult.getSignInAccount()).thenReturn(googleSignInAccount);
+        commonPresenter.onActivityResult(2, 0, new Intent());
+        Mockito.verify(commonView, times(1)).showProfileInfo(Uri.parse("http://www.google.com"), "Gaëtan HERFRAY", "gaetan.hfy@gmail.com");
+
+        Mockito.when(googleSignInResult.isSuccess()).thenReturn(false);
+        commonPresenter.onActivityResult(2, 0, new Intent());
+        Mockito.verify(commonView, times(1)).removeUserInfo();
+    }
+
+    @Test
     public void testResumeViewMenuChecked() {
         WeatherView weatherView = Mockito.mock(WeatherView.class);
         ForecastView forecastView = Mockito.mock(ForecastView.class);
@@ -229,6 +306,7 @@ public class CommonPresenterTest {
         ForecastPresenter forecastPresenter = new ForecastPresenter(forecastView);
         SettingsPresenter settingsPresenter = new SettingsPresenter(settingsView);
 
+        NavigationView.OnNavigationItemSelectedListener commonNavigationListener = commonPresenter.getOnNavigationItemSelectedListener();
         NavigationView.OnNavigationItemSelectedListener weatherNavigationListener = weatherPresenter.getOnNavigationItemSelectedListener();
         NavigationView.OnNavigationItemSelectedListener forecastNavigationListener = forecastPresenter.getOnNavigationItemSelectedListener();
         NavigationView.OnNavigationItemSelectedListener settingsNavigationListener = settingsPresenter.getOnNavigationItemSelectedListener();
@@ -237,10 +315,8 @@ public class CommonPresenterTest {
         Mockito.verify(weatherView, times(1)).closeDrawers();
         Mockito.verify(weatherView, times(1)).checkMenu(R.id.current_weather);
 
-        // Unfortunately NPE => https://stackoverflow.com/questions/49343647/mockito-when-and-googlesigninclient-nullpointerexception
-        //weatherNavigationListener.onNavigationItemSelected(signOutMenuItem);
-        //Mockito.verify(weatherView, times(2)).closeDrawers();
-        //Mockito.verify(weatherView, times(2)).checkMenu(R.id.current_weather);
+        commonNavigationListener.onNavigationItemSelected(signOutMenuItem);
+        Mockito.verify(commonView, times(1)).closeDrawers();
 
         weatherNavigationListener.onNavigationItemSelected(weatherMenuItem);
         Mockito.verify(weatherView, times(0)).finish();

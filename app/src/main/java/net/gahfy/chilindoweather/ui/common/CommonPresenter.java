@@ -31,7 +31,6 @@ import net.gahfy.chilindoweather.utils.log.Logger;
 import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 
 public abstract class CommonPresenter<V extends CommonView> extends BasePresenter<V> {
-    private static final int UNHANDLED_REQUEST_CODE = 0;
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int GOOGLE_SIGN_IN_REQUEST_CODE = 2;
 
@@ -74,7 +73,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         super(view);
     }
 
-    void onViewCreated() {
+    public void onViewCreated() {
         if (needGeolocationonStartup()) {
             manageGeolocationPermission();
         }
@@ -104,9 +103,13 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            GoogleSignInResult result = getSignInResultFromIntent(data);
             onGoogleSignInResult(result);
         }
+    }
+
+    protected GoogleSignInResult getSignInResultFromIntent(Intent data) {
+        return Auth.GoogleSignInApi.getSignInResultFromIntent(data);
     }
 
     private void onSignInClick() {
@@ -177,6 +180,8 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
+    // Safe as it in use for unit tests
+    @SuppressWarnings("WeakerAccess")
     public NavigationView.OnNavigationItemSelectedListener getOnNavigationItemSelectedListener() {
         return new NavigationView.OnNavigationItemSelectedListener() {
             @Override

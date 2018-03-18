@@ -10,6 +10,14 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
         <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/window_background</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
     </style>
 
     <style name="MyActionBar" parent="Widget.AppCompat.ActionBar">

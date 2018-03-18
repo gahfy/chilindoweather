@@ -6,6 +6,7 @@ import net.gahfy.chilindoweather.injection.module.GoogleServicesModule;
 import net.gahfy.chilindoweather.injection.module.LocationModule;
 import net.gahfy.chilindoweather.injection.module.NetworkModule;
 import net.gahfy.chilindoweather.injection.module.PermissionModule;
+import net.gahfy.chilindoweather.injection.module.PreferencesModule;
 import net.gahfy.chilindoweather.ui.forecast.ForecastPresenter;
 import net.gahfy.chilindoweather.ui.settings.SettingsPresenter;
 import net.gahfy.chilindoweather.ui.weather.WeatherPresenter;
@@ -19,7 +20,7 @@ import dagger.Component;
  * Component providing inject() methods for presenters
  */
 @Singleton
-@Component(modules = {ContextModule.class, PermissionModule.class, NetworkModule.class, LocationModule.class, GoogleServicesModule.class})
+@Component(modules = {ContextModule.class, PermissionModule.class, NetworkModule.class, LocationModule.class, GoogleServicesModule.class, PreferencesModule.class})
 public interface PresenterInjector {
     /**
      * Injects required dependencies into the specified WeatherPresenter.
@@ -63,6 +64,8 @@ public interface PresenterInjector {
         Builder locationModule(LocationModule locationModule);
 
         Builder googleServicesModule(GoogleServicesModule googleServicesModule);
+
+        Builder preferencesModule(PreferencesModule preferencesModule);
 
         /**
          * Sets the specified ContextModule to the component.

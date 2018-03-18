@@ -6,7 +6,7 @@ import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
 import net.gahfy.chilindoweather.R;
-import net.gahfy.chilindoweather.databinding.WidgetCurrentWeatherBinding;
+import net.gahfy.chilindoweather.databinding.ActivityCurrentWeatherBinding;
 import net.gahfy.chilindoweather.model.weather.CurrentWeather;
 import net.gahfy.chilindoweather.ui.common.CommonActivity;
 
@@ -14,18 +14,20 @@ import java.util.Locale;
 
 
 public class WeatherActivity extends CommonActivity<WeatherPresenter> implements WeatherView {
-    WidgetCurrentWeatherBinding binding;
+    ActivityCurrentWeatherBinding binding;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.widget_current_weather, (ViewGroup) findViewById(R.id.content_container), true);
+        binding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.activity_current_weather, (ViewGroup) findViewById(R.id.content_container), true);
     }
 
     @Override
-    public void showCurrentWeather(CurrentWeather currentWeather) {
+    public void showCurrentWeather(CurrentWeather currentWeather, int preferredTemperatureIndex, int preferredSpeedIndex) {
         binding.setWeather(currentWeather);
         binding.setLocale(new Locale(getString(R.string.language)));
+        binding.setPreferredTemperatureIndex(preferredTemperatureIndex);
+        binding.setPreferredSoeedIndex(preferredSpeedIndex);
     }
 
     @Override

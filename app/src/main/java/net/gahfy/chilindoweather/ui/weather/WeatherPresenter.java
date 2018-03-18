@@ -15,6 +15,7 @@ import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
 import net.gahfy.chilindoweather.ui.common.CommonPresenter;
 import net.gahfy.chilindoweather.utils.location.LocationUtils;
 import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
+import net.gahfy.chilindoweather.utils.preferences.PreferencesUtils;
 import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
 
 import javax.inject.Inject;
@@ -23,38 +24,34 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 public final class WeatherPresenter extends CommonPresenter<WeatherView> {
-
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
     @SuppressWarnings("NullableProblems")
     OpenWeatherMapApi openWeatherMapApi;
-
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
     @SuppressWarnings("NullableProblems")
     PermissionUtils permissionUtils;
-
     @Inject
     LocationUtils locationUtils;
-
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
     @SuppressWarnings("NullableProblems")
     GoogleApiClient googleApiClient;
-
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
     @SuppressWarnings("NullableProblems")
     GoogleSignInClient googleSignInClient;
-
     @Inject
     @Nullable
     GoogleSignInAccount googleSignInAccount;
-
+    @Inject
+    PreferencesUtils preferencesUtils;
+    private CurrentWeather currentWeather = null;
     private Disposable disposable = null;
 
     /**
@@ -71,6 +68,14 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
         super.onViewDestroyed();
         if (disposable != null) {
             disposable.dispose();
+        }
+    }
+
+    @Override
+    public void onResumeView() {
+        super.onResumeView();
+        if (currentWeather != null) {
+            view.showCurrentWeather(currentWeather, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
         }
     }
 
@@ -110,13 +115,14 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
                 .subscribe(new Consumer<ApiWeather>() {
                     @Override
                     public void accept(ApiWeather apiWeather) throws Exception {
-                        CurrentWeather currentWeather = new CurrentWeather((apiWeather));
-                        view.showCurrentWeather(currentWeather);
+                        currentWeather = new CurrentWeather((apiWeather));
+                        view.showCurrentWeather(currentWeather, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
                         view.showTitle(currentWeather.getCity());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        throwable.printStackTrace();
                         Log.e("gahfy", Log.getStackTraceString(throwable));
                     }
                 });
