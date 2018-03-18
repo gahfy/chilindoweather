@@ -4,11 +4,19 @@
 
 A demo weather app for interview with Chilindo
 
+[![Header](https://raw.githubusercontent.com/gahfy/chilindoweather/master/img/bheader.png)
+
 ## Architecture
 
 The project has been developed using an MVP architecture. This has been made because the project is not complex enough to take advantage of an MVVM or clean architecture.
 
 It is the same about not using architecture components. As there is no storage strategy but the shared preferences, including Architecture Components in order to use only LiveData was not relevant.
+
+More information about how the architecture has been made can be found on a Medium article I recently published: [MVP Architecture with Kotlin — Dagger 2, Retrofit, RxAndroid and DataBinding](https://proandroiddev.com/mvp-architecture-with-kotlin-dagger-2-retrofit-rxandroid-and-databinding-17bffe27393d)
+
+This article made me confident about the fact that this architecture is a good one. Because a lot of people commented the post in order to improve it, and as there is no more comments about improvements on this architecture.
+
+This architecture is relevant as components are separated so anybody is able to work on specific task and a task is not depending on other one.
 
 ### Continuous Integration
 
@@ -32,9 +40,9 @@ It allows also to display result of build on a pull request, so it is more easy 
 
 Codecov receives the code coverage report from Travis, and allows to display it nicely for the project.
 
-<p style="text-align:center;">
-    <img src="https://codecov.io/gh/gahfy/chilindoweather/branch/master/graphs/sunburst.svg" alt><br /><em>Code coverage sunburst</em>
-</p>
+[![Codecov Sunburst](https://codecov.io/gh/gahfy/chilindoweather/branch/master/graphs/sunburst.svg)](https://codecov.io/gh/gahfy/chilindoweather)
+
+*Code coverage sunburst*
 
 It allows also to display difference of code coverage when a pull request is made, so it is more easy to detect if there is a lack of unit tests.
 
