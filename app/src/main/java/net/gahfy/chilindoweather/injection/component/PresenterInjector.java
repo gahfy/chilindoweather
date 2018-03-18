@@ -1,6 +1,6 @@
 package net.gahfy.chilindoweather.injection.component;
 
-import net.gahfy.chilindoweather.base.BaseView;
+import net.gahfy.chilindoweather.ui.base.BaseView;
 import net.gahfy.chilindoweather.injection.module.ContextModule;
 import net.gahfy.chilindoweather.injection.module.GoogleServicesModule;
 import net.gahfy.chilindoweather.injection.module.LocationModule;

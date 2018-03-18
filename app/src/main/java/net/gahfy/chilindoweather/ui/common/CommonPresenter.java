@@ -20,7 +20,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import net.gahfy.chilindoweather.R;
-import net.gahfy.chilindoweather.base.BasePresenter;
+import net.gahfy.chilindoweather.ui.base.BasePresenter;
 import net.gahfy.chilindoweather.ui.forecast.ForecastActivity;
 import net.gahfy.chilindoweather.ui.forecast.ForecastPresenter;
 import net.gahfy.chilindoweather.ui.settings.SettingsActivity;

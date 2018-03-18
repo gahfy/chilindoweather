@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import net.gahfy.chilindoweather.base.BaseView;
+import net.gahfy.chilindoweather.ui.base.BaseView;
 
 import dagger.Module;
 import dagger.Provides;

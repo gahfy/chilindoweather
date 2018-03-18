@@ -4,7 +4,7 @@ import android.content.DialogInterface;
 import android.net.Uri;
 import android.view.View;
 
-import net.gahfy.chilindoweather.base.BaseView;
+import net.gahfy.chilindoweather.ui.base.BaseView;
 
 public interface CommonView extends BaseView {
     void showProfileInfo(Uri imageUrl, String userName, String userEmail);

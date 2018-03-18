@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.base;
+package net.gahfy.chilindoweather.ui.base;
 
 import android.content.Context;
 import android.content.Intent;

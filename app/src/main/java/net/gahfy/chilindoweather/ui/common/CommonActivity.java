@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import net.gahfy.chilindoweather.R;
-import net.gahfy.chilindoweather.base.BaseActivity;
+import net.gahfy.chilindoweather.ui.base.BaseActivity;
 
 public abstract class CommonActivity<P extends CommonPresenter> extends BaseActivity<P> implements CommonView {
     private boolean destroyed = true;
