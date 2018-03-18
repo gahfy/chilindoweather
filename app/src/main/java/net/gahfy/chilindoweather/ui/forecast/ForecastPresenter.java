@@ -27,7 +27,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     @Inject
     LocationUtils locationUtils;
 
-    ForecastPresenter(@NonNull ForecastView view) {
+    public ForecastPresenter(@NonNull ForecastView view) {
         super(view);
     }
 

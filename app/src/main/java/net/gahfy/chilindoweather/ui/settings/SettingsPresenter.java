@@ -23,7 +23,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
     @Inject
     GoogleSignInClient googleSignInClient;
 
-    SettingsPresenter(@NonNull SettingsView view) {
+    public SettingsPresenter(@NonNull SettingsView view) {
         super(view);
     }
 

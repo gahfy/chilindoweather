@@ -62,7 +62,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
      *
      * @param view the view associated to the presenter to set
      */
-    WeatherPresenter(@NonNull WeatherView view) {
+    public WeatherPresenter(@NonNull WeatherView view) {
         super(view);
     }
 

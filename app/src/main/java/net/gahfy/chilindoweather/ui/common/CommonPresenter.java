@@ -74,7 +74,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         super(view);
     }
 
-    public void onViewCreated() {
+    void onViewCreated() {
         if (needGeolocationonStartup()) {
             manageGeolocationPermission();
         }
@@ -82,7 +82,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         presentAccount(getGoogleSignInAccount());
     }
 
-    void onResumeView() {
+    public void onResumeView() {
         checkRelevantMenu();
     }
 
@@ -177,7 +177,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
-    NavigationView.OnNavigationItemSelectedListener getOnNavigationItemSelectedListener() {
+    public NavigationView.OnNavigationItemSelectedListener getOnNavigationItemSelectedListener() {
         return new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
