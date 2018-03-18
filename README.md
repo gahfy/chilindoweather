@@ -33,7 +33,7 @@ It allows also to display result of build on a pull request, so it is more easy 
 Codecov receives the code coverage report from Travis, and allows to display it nicely for the project.
 
 <p style="text-align:center;">
-    <img src="https://codecov.io/gh/gahfy/chilindoweather/branch/master/graphs/sunburst.svg" alt><br /><em>image_caption</em>
+    <img src="https://codecov.io/gh/gahfy/chilindoweather/branch/master/graphs/sunburst.svg" alt><br /><em>Code coverage sunburst</em>
 </p>
 
 It allows also to display difference of code coverage when a pull request is made, so it is more easy to detect if there is a lack of unit tests.
