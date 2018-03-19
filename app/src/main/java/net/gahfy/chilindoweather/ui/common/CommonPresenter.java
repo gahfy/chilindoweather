@@ -80,6 +80,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     }
 
     public void onResumeView() {
+        inject();
         checkRelevantMenu();
         presentAccount(getGoogleSignInAccount());
     }

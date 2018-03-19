@@ -175,21 +175,21 @@ public class CommonPresenterTest {
     }
 
     @Test
-    public void testViewCreatedWithExistingAccount() throws Exception {
+    public void testViewResumeWithExistingAccount() throws Exception {
         googleSignInAccount = Mockito.mock(GoogleSignInAccount.class);
         Mockito.when(googleSignInAccount.getDisplayName()).thenReturn("Gaëtan HERFRAY");
         Mockito.when(googleSignInAccount.getEmail()).thenReturn("gaetan.hfy@gmail.com");
         Mockito.when(googleSignInAccount.getPhotoUrl()).thenReturn(Uri.parse("http://www.google.com/"));
-        commonPresenter.onViewCreated();
+        commonPresenter.onResumeView();
         verify(commonView, times(1)).showProfileInfo(Uri.parse("http://www.google.com"), "Gaëtan HERFRAY", "gaetan.hfy@gmail.com");
         verify(commonView, times(1)).setMenuVisibility(R.id.sign_in, false);
         verify(commonView, times(1)).setMenuVisibility(R.id.sign_out, true);
     }
 
     @Test
-    public void testViewCreatedWithoutExistingAccount() throws Exception {
+    public void testViewResumeWithoutExistingAccount() throws Exception {
         googleSignInAccount = null;
-        commonPresenter.onViewCreated();
+        commonPresenter.onResumeView();
         verify(commonView, times(1)).removeUserInfo();
         verify(commonView, times(1)).setMenuVisibility(R.id.sign_in, true);
         verify(commonView, times(1)).setMenuVisibility(R.id.sign_out, false);

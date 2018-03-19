@@ -54,7 +54,7 @@ public abstract class BasePresenter<V extends BaseView> {
     /**
      * Injects the required dependencies
      */
-    private void inject() {
+    protected void inject() {
         if (this instanceof WeatherPresenter) {
             injector.inject((WeatherPresenter) this);
         } else if (this instanceof ForecastPresenter) {
