@@ -37,7 +37,13 @@ The UI Architecture of the application (Activities, Views and Presenters) consis
 It was written in specifications that *A complete project (Android Studio) which **BUILDS** and runs without errors, generating an
 application binary.*
 
-This constraint forced me not to add the keystore folder in `.gitignore`. Without that constraint, the keystore directory would have been added to `.gitignore` and all security data would have been set in the **user** `gradle.properties` file instead of the app one.
+This constraint forced me not to add the keystore folder in `.gitignore`. Without that constraint, the keystore directory would have been added to `.gitignore` and all security data (the below lines of `./app/gradle.properties`)would have been set in the `~/gradle.properties` file.
+
+```gradle
+open_weather_api_key="e609c501379535db475226cd8aad73fd"
+key_store_password=chilindo
+release_password=chilindorelease
+```
 
 ## Continuous Integration
 
