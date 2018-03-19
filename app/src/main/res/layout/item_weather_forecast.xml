@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="net.gahfy.chilindoweather.utils.StringUtils" />
+
+        <variable
+            name="preferredTemperatureIndex"
+            type="int" />
+
+        <variable
+            name="preferredSpeedIndex"
+            type="int" />
+
+        <variable
+            name="forecast"
+            type="net.gahfy.chilindoweather.model.weather.InstantWeatherForecast" />
+
+        <variable
+            name="locale"
+            type="java.util.Locale" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/forecast_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="@{forecast.getCalculationTimestamp() == null ? @string/unknown_calculation_date : StringUtils.formatDate(@string/language, @string/forecast_time_format, safeUnbox(forecast.getCalculationTimestamp()))}"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="88 AM" />
+
+            <ImageView
+                android:id="@+id/condition_image"
+                android:layout_width="@dimen/forecast_image_width"
+                android:layout_height="40dp"
+                android:layout_marginStart="55dp"
+                android:contentDescription="@{forecast.getConditionDescription()}"
+                android:foregroundGravity="center_horizontal"
+                android:src="@{forecast.getConditionIcon()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/forecast_time"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/rain_day" />
+
+            <TextView
+                android:id="@+id/forecast_min_temperature"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/forecast_element_margin"
+                android:gravity="center_horizontal"
+                android:text="@{forecast.getTemperature(preferredTemperatureIndex) == null ? @string/unknown_temperature : String.format(locale, @string/temperature_value, forecast.getTemperature(preferredTemperatureIndex))}"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/condition_image"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="888°" />
+
+            <ImageView
+                android:id="@+id/weather_wind_direction_circle"
+                android:layout_width="29dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="@dimen/forecast_element_margin"
+                android:contentDescription="@string/wind_direction_circle_content_description"
+                android:src="@{@drawable/wind_direction_circle}"
+                android:tint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/forecast_min_temperature"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/weather_wind_direction_arrow"
+                android:layout_width="17dp"
+                android:layout_height="16.5dp"
+                android:contentDescription="@{forecast.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, forecast.getWindDirectionNormalized(), context.getString(forecast.getWindDirectionOrientation()))}"
+                android:rotation="@{forecast.getWindDirection() == null ? 0 : safeUnbox(forecast.getWindDirection())+180}"
+                android:src="@{@drawable/wind_direction_arrow}"
+                android:tint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/weather_wind_direction_circle"
+                app:layout_constraintEnd_toEndOf="@+id/weather_wind_direction_circle"
+                app:layout_constraintStart_toStartOf="@+id/weather_wind_direction_circle"
+                app:layout_constraintTop_toTopOf="@+id/weather_wind_direction_circle" />
+
+            <TextView
+                android:id="@+id/weather_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/forecast_element_margin"
+                android:text="@{forecast.getWindSpeed(preferredSpeedIndex) == null ? @string/unknown_wind_speed : String.format(locale, preferredSpeedIndex == 0 ? @string/wind_speed_metric : @string/wind_speed_imperial, forecast.getWindSpeed(preferredSpeedIndex))}"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/weather_wind_direction_circle"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="888m/s" />
+        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -12,6 +12,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUR
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_PRESSURE;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_SEA_LEVEL_PRESSURE;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_TEMPERATURE;
+import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_TEMP_KF;
 
 /**
  * Weather measurements as they are returned by the OpenWeatherMap API
@@ -65,6 +66,13 @@ public class ApiMeasurements {
     @Json(name = JSON_MEASUREMENTS_GROUND_LEVEL_PRESSURE)
     @Nullable
     private Double groundLevelPressure;
+
+    /**
+     * The temp_kf value
+     */
+    @Json(name = JSON_MEASUREMENTS_TEMP_KF)
+    @Nullable
+    private Double tempKf;
 
     /**
      * Returns the temperature in Kelvin.
@@ -134,5 +142,15 @@ public class ApiMeasurements {
     @Nullable
     public Double getGroundLevelPressure() {
         return groundLevelPressure;
+    }
+
+    /**
+     * Returns the temp_kf value.
+     *
+     * @return the temp_kf value
+     */
+    @Nullable
+    public Double getTempKf() {
+        return tempKf;
     }
 }

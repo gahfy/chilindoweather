@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import net.gahfy.chilindoweather.BuildConfig;
+import net.gahfy.chilindoweather.model.api.ApiForecast;
 import net.gahfy.chilindoweather.model.api.ApiWeather;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
 import net.gahfy.chilindoweather.utils.ApiUtils;
@@ -27,6 +28,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
+import static net.gahfy.chilindoweather.utils.ApiUtils.forecastMockPath;
 import static net.gahfy.chilindoweather.utils.ApiUtils.weatherMockPath;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.BASE_URL;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.QUERY_API_KEY;
@@ -58,6 +60,16 @@ public class NetworkModule {
                     @Override
                     public ApiWeather call() throws Exception {
                         return ApiUtils.getUrl(weatherMockPath, ApiWeather.class);
+                    }
+                });
+            }
+
+            @Override
+            public Observable<ApiForecast> getForecast(double gpsLatitude, double gpsLongitude) {
+                return Observable.fromCallable(new Callable<ApiForecast>() {
+                    @Override
+                    public ApiForecast call() throws Exception {
+                        return ApiUtils.getUrl(forecastMockPath, ApiForecast.class);
                     }
                 });
             }

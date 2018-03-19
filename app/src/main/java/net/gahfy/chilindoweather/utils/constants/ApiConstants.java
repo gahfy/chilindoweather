@@ -80,6 +80,77 @@ public final class ApiConstants {
     public static final String JSON_WEATHER_ERROR_MESSAGE = "message";
 
     /**
+     * The name of the JSON field for the HTTP code of the response
+     */
+    public static final String JSON_FORECAST_HTTP_CODE = "cod";
+    /**
+     * The name of the JSON field for the error message
+     */
+    public static final String JSON_FORECAST_ERROR_MESSAGE = "message";
+    /**
+     * The name of the JSON field for the number of items
+     */
+    public static final String JSON_FORECAST_ITEM_COUNT = "cnt";
+    /**
+     * The name of the JSON field for the list of weather forecast
+     */
+    public static final String JSON_FORECAST_FORECAST_LIST = "list";
+    /**
+     * The name of the JSON field for the city
+     */
+    public static final String JSON_FORECAST_CITY = "city";
+
+    /**
+     * The name of the JSON field for the calculation timestamp
+     */
+    public static final String JSON_FORECAST_ITEM_CALCULATION_TIMESTAMP = "dt";
+    /**
+     * The name of the JSON field for the measurements
+     */
+    public static final String JSON_FORECAST_ITEM_MEASUREMENTS = "main";
+    /**
+     * The name of the JSON field for the condition
+     */
+    public static final String JSON_FORECAST_ITEM_CONDITION = "weather";
+    /**
+     * The name of the JSON field for the cloudiness
+     */
+    public static final String JSON_FORECAST_ITEM_CLOUDINESS = "clouds";
+    /**
+     * The name of the JSON field for the wind
+     */
+    public static final String JSON_FORECAST_ITEM_WIND = "wind";
+    /**
+     * The name of the JSON field for the rain
+     */
+    public static final String JSON_FORECAST_ITEM_RAIN = "rain";
+    /**
+     * The name of the JSON field for the snow
+     */
+    public static final String JSON_FORECAST_ITEM_SNOW = "snow";
+    /**
+     * The name of the JSON field for the calculation datetime
+     */
+    public static final String JSON_FORECAST_ITEM_CALCULATION_DATETIME = "dt_txt";
+
+    /**
+     * The name of the JSON field for the unique identifier of the city
+     */
+    public static final String JSON_CITY_ID = "id";
+    /**
+     * The name of the JSON field for the name of the city
+     */
+    public static final String JSON_CITY_NAME = "name";
+    /**
+     * The name of the JSON field for the gps coordinates of the city
+     */
+    public static final String JSON_CITY_GPS_COORDINATES = "coord";
+    /**
+     * The name of the JSON field for the country code of the city
+     */
+    public static final String JSON_CITY_COUNTRY = "country";
+
+    /**
      * The name of the JSON field for latitude of GPS coordinates
      */
     public static final String JSON_GPS_COORDINATES_LATITUDE = "lat";
@@ -133,6 +204,10 @@ public final class ApiConstants {
      * The name of the JSON field for the atmospheric pressure on the ground level
      */
     public static final String JSON_MEASUREMENTS_GROUND_LEVEL_PRESSURE = "grnd_level";
+    /**
+     * The name of the JSON field for the temp_kf value
+     */
+    public static final String JSON_MEASUREMENTS_TEMP_KF = "temp_kf";
 
     /**
      * The name of the JSON field for the wind speed

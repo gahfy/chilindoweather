@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 
 public class ApiUtils {
     public static String weatherMockPath = "";
+    public static String forecastMockPath = "";
 
     public static <T> T getUrl(@NonNull String jsonPath, Class<T> expectedType) throws Exception {
         final StringBuilder buf = new StringBuilder();

@@ -1,5 +1,6 @@
 package net.gahfy.chilindoweather.network;
 
+import net.gahfy.chilindoweather.model.api.ApiForecast;
 import net.gahfy.chilindoweather.model.api.ApiWeather;
 
 import io.reactivex.Observable;
@@ -22,6 +23,12 @@ public interface OpenWeatherMapApi {
      */
     @GET("/data/2.5/weather")
     Observable<ApiWeather> getWeather(
+            @Query(QUERY_GPS_LATITUDE) double gpsLatitude,
+            @Query(QUERY_GPS_LONGITUDE) double gpsLongitude
+    );
+
+    @GET("/data/2.5/forecast")
+    Observable<ApiForecast> getForecast(
             @Query(QUERY_GPS_LATITUDE) double gpsLatitude,
             @Query(QUERY_GPS_LONGITUDE) double gpsLongitude
     );

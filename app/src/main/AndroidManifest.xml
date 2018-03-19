@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
+        android:name=".ChilindoWeatherApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_scheme"
         android:icon="@mipmap/ic_launcher"
@@ -20,8 +21,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.forecast.ForecastActivity" />
-        <activity
-            android:name=".ui.settings.SettingsActivity"
-            android:noHistory="true" />
+        <activity android:name=".ui.settings.SettingsActivity" />
     </application>
 </manifest>

@@ -25,6 +25,7 @@ import net.gahfy.chilindoweather.ui.forecast.ForecastActivity;
 import net.gahfy.chilindoweather.ui.forecast.ForecastPresenter;
 import net.gahfy.chilindoweather.ui.settings.SettingsActivity;
 import net.gahfy.chilindoweather.ui.settings.SettingsPresenter;
+import net.gahfy.chilindoweather.ui.weather.WeatherActivity;
 import net.gahfy.chilindoweather.ui.weather.WeatherPresenter;
 import net.gahfy.chilindoweather.utils.location.LocationUtils;
 import net.gahfy.chilindoweather.utils.log.Logger;
@@ -195,22 +196,18 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
                         onSignOutClick();
                         break;
                     case R.id.current_weather:
-                        if (!(CommonPresenter.this instanceof WeatherPresenter)) {
-                            view.finish();
-                        }
+                        view.startActivity(WeatherActivity.class);
                         break;
                     case R.id.weather_forecast:
-                        if (!(CommonPresenter.this instanceof ForecastPresenter)) {
-                            view.startActivity(ForecastActivity.class);
-                        }
+                        view.startActivity(ForecastActivity.class);
                         break;
                     case R.id.settings:
-                        if (!(CommonPresenter.this instanceof SettingsPresenter)) {
-                            view.startActivity(SettingsActivity.class);
-                        }
+                        view.startActivity(SettingsActivity.class);
                         break;
                 }
-
+                if (menuItem.getItemId() != R.id.settings && CommonPresenter.this instanceof SettingsPresenter) {
+                    view.finish();
+                }
                 return true;
             }
         };

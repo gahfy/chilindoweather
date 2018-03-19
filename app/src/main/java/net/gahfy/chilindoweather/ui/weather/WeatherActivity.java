@@ -27,7 +27,7 @@ public class WeatherActivity extends CommonActivity<WeatherPresenter> implements
         binding.setWeather(currentWeather);
         binding.setLocale(new Locale(getString(R.string.language)));
         binding.setPreferredTemperatureIndex(preferredTemperatureIndex);
-        binding.setPreferredSoeedIndex(preferredSpeedIndex);
+        binding.setPreferredSpeedIndex(preferredSpeedIndex);
     }
 
     @Override

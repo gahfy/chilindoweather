@@ -8,6 +8,8 @@ A demo weather app for interview with Chilindo
 
 ## Architecture
 
+The project has been developed with Java as it was required by the specification.
+
 The project has been developed using an MVP architecture. This has been made because the project is not complex enough to take advantage of an MVVM or clean architecture.
 
 It is the same about not using architecture components. As there is no storage strategy but the shared preferences, including Architecture Components in order to use only LiveData was not relevant.

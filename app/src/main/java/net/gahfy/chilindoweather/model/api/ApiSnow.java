@@ -15,7 +15,7 @@ public class ApiSnow {
      */
     @Json(name = JSON_SNOW_LAST_3_HOURS_VOLUME)
     @Nullable
-    private Integer last3hoursVolume;
+    private Double last3hoursVolume;
 
     /**
      * Returns the snow volume for the last 3 hours in mm.
@@ -23,7 +23,7 @@ public class ApiSnow {
      * @return the snow volume for the last 3 hours in mm
      */
     @Nullable
-    public Integer getLast3hoursVolume() {
+    public Double getLast3hoursVolume() {
         return last3hoursVolume;
     }
 }

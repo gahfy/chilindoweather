@@ -20,8 +20,11 @@ import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 
 public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     @Inject
@@ -110,12 +113,18 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     @Override
     protected void onLocationAvailable(Location location) {
         disposable = openWeatherMapApi.getWeather(location.getLatitude(), location.getLongitude())
+                .flatMap(new Function<ApiWeather, ObservableSource<CurrentWeather>>() {
+                    @Override
+                    public ObservableSource<CurrentWeather> apply(ApiWeather apiWeather) throws Exception {
+                        return Observable.just(new CurrentWeather(apiWeather));
+                    }
+                })
                 .observeOn(Schedulers.androidThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<ApiWeather>() {
+                .subscribe(new Consumer<CurrentWeather>() {
                     @Override
-                    public void accept(ApiWeather apiWeather) throws Exception {
-                        currentWeather = new CurrentWeather((apiWeather));
+                    public void accept(CurrentWeather currentWeather) throws Exception {
+                        WeatherPresenter.this.currentWeather = currentWeather;
                         view.showCurrentWeather(currentWeather, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
                         view.showTitle(currentWeather.getCity());
                     }

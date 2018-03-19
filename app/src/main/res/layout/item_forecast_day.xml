@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="net.gahfy.chilindoweather.utils.StringUtils" />
+
+        <variable
+            name="dateTimestamp"
+            type="Integer" />
+
+    </data>
+
+    <TextView
+        android:id="@+id/forecast_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_dark"
+        android:paddingBottom="6dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="6dp"
+        android:text="@{dateTimestamp == null ? @string/unknown_calculation_date : StringUtils.formatDateWithLongWeekDay(@string/language, @string/date_format_forecast, safeUnbox(dateTimestamp), @stringArray/week_days, @stringArray/months)}"
+        android:textSize="16sp" />
+</layout>

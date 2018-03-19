@@ -360,7 +360,7 @@ public class CommonPresenterTest {
     }
 
     @Test
-    public void testNavigationListener() {
+    public void testNavigationListener() throws Exception {
         WeatherView weatherView = Mockito.mock(WeatherView.class);
         ForecastView forecastView = Mockito.mock(ForecastView.class);
         SettingsView settingsView = Mockito.mock(SettingsView.class);
@@ -403,17 +403,14 @@ public class CommonPresenterTest {
         weatherNavigationListener.onNavigationItemSelected(settingsMenuItem);
         Mockito.verify(weatherView, times(1)).startActivity(SettingsActivity.class);
 
-        forecastNavigationListener.onNavigationItemSelected(weatherMenuItem);
-        Mockito.verify(forecastView, times(1)).finish();
-
         forecastNavigationListener.onNavigationItemSelected(forecastMenuItem);
-        Mockito.verify(forecastView, times(0)).startActivity(ForecastActivity.class);
+        Mockito.verify(forecastView, times(1)).startActivity(ForecastActivity.class);
 
         settingsNavigationListener.onNavigationItemSelected(settingsMenuItem);
-        Mockito.verify(settingsView, times(0)).startActivity(SettingsActivity.class);
+        Mockito.verify(settingsView, times(1)).startActivity(SettingsActivity.class);
 
         settingsNavigationListener.onNavigationItemSelected(fantasyMenuItem);
-        Mockito.verify(settingsView, times(0)).startActivity(SettingsActivity.class);
+        Mockito.verify(settingsView, times(1)).startActivity(SettingsActivity.class);
         Mockito.verify(settingsView, times(0)).startActivity(ForecastActivity.class);
     }
 }

@@ -22,8 +22,8 @@ public class UnitUtils {
         Locale defaultLocale = Locale.getDefault();
         // Miles is the default distance unit for United States, Liberia and Myanmar
         if (defaultLocale.getCountry().equals("US") || defaultLocale.getCountry().equals("LR") || defaultLocale.getCountry().equals("MM")) {
-            return FAHRENHEIT_INDEX;
+            return MILES_INDEX;
         }
-        return CELSIUS_INDEX;
+        return METERS_INDEX;
     }
 }
