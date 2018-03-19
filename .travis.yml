@@ -17,4 +17,7 @@ after_success:
   # Renaming folder and files of reports so codecov.io can find it
   - mv app/build/reports/jacoco/createDebugUnitTestCoverageReport app/build/reports/jacoco/jacocoTestDebugUnitTestReport
   - mv app/build/reports/jacoco/jacocoTestDebugUnitTestReport/createDebugUnitTestCoverageReport.xml app/build/reports/jacoco/jacocoTestDebugUnitTestReport/jacocoTestDebugUnitTestReport.xml
+  # Codecov.io
   - bash <(curl -s https://codecov.io/bash)
+  # Sonarcloud
+  - gradlew sonarqube -Dsonar.organization=gahfy-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=1c6764f4192f90bf97c604df1a644db97eaaaafe

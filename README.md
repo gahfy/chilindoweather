@@ -46,6 +46,10 @@ Codecov receives the code coverage report from Travis, and allows to display it 
 
 It allows also to display difference of code coverage when a pull request is made, so it is more easy to detect if there is a lack of unit tests.
 
+#### SonarQube
+
+SonarQube measures code quality and provide issue tracking.
+
 ### Libraries
 
 #### Application libraries
