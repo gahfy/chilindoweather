@@ -39,7 +39,7 @@ application binary.*
 
 This constraint forced me not to add the keystore folder in `.gitignore`. Without that constraint, the keystore directory would have been added to `.gitignore` and all security data (the below lines of `./app/gradle.properties`)would have been set in the `~/gradle.properties` file.
 
-```gradle
+```groovy
 open_weather_api_key="e609c501379535db475226cd8aad73fd"
 key_store_password=chilindo
 release_password=chilindorelease
