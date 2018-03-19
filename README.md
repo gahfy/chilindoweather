@@ -30,7 +30,7 @@ The UI Architecture of the application (Activities, Views and Presenters) consis
 
 * **Final UI classes** Those classes are final UI displayed to the user (Weather, Forecast and Settings screens).
 
-<p align="center"><img src="https://github.com/gahfy/chilindoweather/raw/master/img/UIDiagram.png" /><</p>
+<p align="center"><img src="https://github.com/gahfy/chilindoweather/raw/master/img/UIDiagram.png" /></p>
 
 ### Continuous Integration
 
@@ -54,7 +54,7 @@ It allows also to display result of build on a pull request, so it is more easy 
 
 Codecov receives the code coverage report from Travis, and allows to display it nicely for the project.
 
-<p align="center"><a href="https://codecov.io/gh/gahfy/chilindoweather"><img src="https://codecov.io/gh/gahfy/chilindoweather/branch/master/graphs/sunburst.svg" /></p>
+<p align="center"><a href="https://codecov.io/gh/gahfy/chilindoweather"><img src="https://codecov.io/gh/gahfy/chilindoweather/branch/master/graphs/sunburst.svg" /></a></p>
 
 <p align="center"><i>Code coverage sunburst</i></p>
 
