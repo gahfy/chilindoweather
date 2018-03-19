@@ -20,6 +20,18 @@ This article made me confident about the fact that this architecture is a good o
 
 This architecture is relevant as components are separated so anybody is able to work on specific task and a task is not depending on other one.
 
+### UI Architecture
+
+The UI Architecture of the application (Activities, Views and Presenters) consists in three layers:
+
+* **Base** This layer contains useful methods that may be used by any Activity of any application. This layer allows us to add UI with a completely different strategy
+
+* **Common** This layer contains useful methods about project specific features, things like Google Sign-In, Location Management, Unit management, ...
+
+* **Final UI classes** Those classes are final UI displayed to the user (Weather, Forecast and Settings screens).
+
+[![Header](https://github.com/gahfy/chilindoweather/raw/master/img/UIDiagram.png)](https://github.com/gahfy/chilindoweather)
+
 ### Continuous Integration
 
 #### Travis
