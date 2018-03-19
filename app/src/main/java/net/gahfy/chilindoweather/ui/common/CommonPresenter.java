@@ -77,12 +77,11 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         if (needGeolocationonStartup()) {
             manageGeolocationPermission();
         }
-
-        presentAccount(getGoogleSignInAccount());
     }
 
     public void onResumeView() {
         checkRelevantMenu();
+        presentAccount(getGoogleSignInAccount());
     }
 
     private void manageGeolocationPermission() {
