@@ -3,6 +3,7 @@ package net.gahfy.chilindoweather.ui.base;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 
 /**
  * Base view any view must implement
@@ -16,6 +17,9 @@ public interface BaseView {
     @NonNull
     Context getContext();
 
+    void setTitle(@StringRes int titleResId, String... formatString);
+
+    void setTitle(String title);
 
     void startActivity(Class<? extends BaseActivity> activityClass);
 

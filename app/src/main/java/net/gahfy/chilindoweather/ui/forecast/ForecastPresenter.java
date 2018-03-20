@@ -4,10 +4,12 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
+import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiForecast;
 import net.gahfy.chilindoweather.model.weather.DayWeatherForecast;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
@@ -24,6 +26,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
@@ -84,8 +87,15 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     @Override
     public void onResumeView() {
         super.onResumeView();
-        if (dayWeatherForecastList != null) {
+        if (dayWeatherForecastList != null && dayWeatherForecastList.size() > 0) {
             updateDayWeatherForecastList(dayWeatherForecastList);
+            view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
+            view.hideLoading();
+        } else {
+            view.setTitle(R.string.forecast_title);
+            if (locationUtils.hasLocationAvailable()) {
+                view.showLoading(R.string.loading_network);
+            }
         }
     }
 
@@ -116,7 +126,8 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    protected void onLocationAvailable(Location location) {
+    protected void onLocationAvailable(final Location location) {
+        view.showLoading(R.string.loading_network);
         disposable = openWeatherMapApi.getForecast(location.getLatitude(), location.getLongitude())
                 .flatMap(new Function<ApiForecast, ObservableSource<ArrayList<DayWeatherForecast>>>() {
                     @Override
@@ -126,20 +137,34 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                 })
                 .observeOn(Schedulers.androidThread())
                 .subscribeOn(Schedulers.io())
+                .doOnTerminate(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        view.hideLoading();
+                    }
+                })
                 .subscribe(new Consumer<ArrayList<DayWeatherForecast>>() {
                     @Override
                     public void accept(ArrayList<DayWeatherForecast> dayWeatherForecastList) throws Exception {
                         updateDayWeatherForecastList(dayWeatherForecastList);
+                        view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        throwable.printStackTrace();
+                        view.hideContent();
+                        view.showNetworkError(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                onLocationAvailable(location);
+                            }
+                        });
                     }
                 });
     }
 
     private void updateDayWeatherForecastList(ArrayList<DayWeatherForecast> dayWeatherForecastList) {
+        view.showContent();
         this.dayWeatherForecastList = dayWeatherForecastList;
         view.setDayWeatherForecastList(dayWeatherForecastList, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
     }

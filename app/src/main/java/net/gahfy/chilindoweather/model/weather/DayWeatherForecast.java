@@ -26,11 +26,13 @@ public class DayWeatherForecast implements Parcelable {
         }
     };
     private Integer dayTimestamp;
+    private String city;
     private List<InstantWeatherForecast> forecastList;
 
-    public DayWeatherForecast(Integer dayTimestamp, List<InstantWeatherForecast> forecastList) {
+    public DayWeatherForecast(Integer dayTimestamp, List<InstantWeatherForecast> forecastList, String city) {
         this.dayTimestamp = dayTimestamp;
         this.forecastList = forecastList;
+        this.city = city;
     }
 
     protected DayWeatherForecast(Parcel in) {
@@ -39,10 +41,16 @@ public class DayWeatherForecast implements Parcelable {
         } else {
             dayTimestamp = in.readInt();
         }
+        if (in.readByte() == 0) {
+            city = null;
+        } else {
+            city = in.readString();
+        }
         forecastList = in.createTypedArrayList(InstantWeatherForecast.CREATOR);
     }
 
     public static ArrayList<DayWeatherForecast> getDayWeatherForecastList(ApiForecast apiForecast) {
+        String city = apiForecast.getCity() == null ? null : apiForecast.getCity().getName();
         ArrayList<DayWeatherForecast> dayWeatherForecasts = new ArrayList<>();
         if (apiForecast.getForecastItemList() != null) {
             for (ApiForecastItem apiForecastItem : apiForecast.getForecastItemList()) {
@@ -71,7 +79,7 @@ public class DayWeatherForecast implements Parcelable {
                 if (!found) {
                     List<InstantWeatherForecast> forecastList = new ArrayList<>();
                     forecastList.add(instantWeatherForecast);
-                    DayWeatherForecast dayWeatherForecast = new DayWeatherForecast(midnightTimestamp, forecastList);
+                    DayWeatherForecast dayWeatherForecast = new DayWeatherForecast(midnightTimestamp, forecastList, city);
                     dayWeatherForecasts.add(dayWeatherForecast);
                 }
             }
@@ -120,6 +128,12 @@ public class DayWeatherForecast implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(dayTimestamp);
         }
+        if (city == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeString(city);
+        }
         dest.writeTypedList(forecastList);
     }
 
@@ -134,5 +148,9 @@ public class DayWeatherForecast implements Parcelable {
 
     public List<InstantWeatherForecast> getForecastList() {
         return forecastList;
+    }
+
+    public String getCity() {
+        return city;
     }
 }

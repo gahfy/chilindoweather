@@ -40,6 +40,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     private final View.OnClickListener RationaleRetryClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            view.showGeolocationPermissionRationale(this);
             getPermissionUtils().requestGeolocationPermission(PERMISSION_REQUEST_CODE);
         }
     };
@@ -52,10 +53,16 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
 
         @Override
+        public void onGeolocationStarted() {
+            view.hideNoGeolocationAvailableError();
+        }
+
+        @Override
         public void onProviderNotAvailableError() {
             view.showNoGeolocationAvailableError(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    onProviderNotAvailableError();
                     view.startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 0);
                 }
             });
@@ -77,9 +84,6 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     }
 
     public void onViewCreated(Bundle savedInstanceState) {
-        if (needGeolocationonStartup()) {
-            manageGeolocationPermission();
-        }
     }
 
     public Bundle saveInstanceState(Bundle outState) {
@@ -90,16 +94,22 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         inject();
         checkRelevantMenu();
         presentAccount(getGoogleSignInAccount());
+        if (needGeolocationonStartup()) {
+            manageGeolocationPermission();
+        }
     }
 
     private void manageGeolocationPermission() {
         if (getPermissionUtils().hasFineLocationPermission()) {
             view.hideGeolocationRationale();
+            view.showLoading(R.string.loading_location);
             geolocate();
         } else {
             if (getPermissionUtils().shouldShowGeolocationRationale()) {
+                view.showLoading(R.string.loading_permission);
                 view.showGeolocationPermissionRationale(RationaleRetryClickListener);
             } else {
+                view.showLoading(R.string.loading_permission);
                 getPermissionUtils().requestGeolocationPermission(PERMISSION_REQUEST_CODE);
             }
         }
@@ -154,6 +164,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     // Safe as Geolocate is only called when permission is granted
     @SuppressLint("MissingPermission")
     private void geolocate() {
+        view.showLoading(R.string.loading_location);
         if (getLocationUtils() != null) {
             getLocationUtils().addSingleLocationListener(locationListener);
         }

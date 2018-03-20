@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -128,11 +129,33 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
+    public void hideNoGeolocationAvailableError() {
+        hideSnackbar();
+    }
+
+    @Override
     public Void showGeolocationPermissionRationale(View.OnClickListener retryClickListener) {
         activitySnackbar = Snackbar.make(findViewById(android.R.id.content), R.string.geolocation_permission_rationale, Snackbar.LENGTH_INDEFINITE);
         activitySnackbar.setAction(R.string.geolocation_permission_grant, retryClickListener);
         activitySnackbar.show();
         return null;
+    }
+
+    @Override
+    public void showNetworkError(View.OnClickListener onClickListener) {
+        activitySnackbar = Snackbar.make(findViewById(android.R.id.content), R.string.network_error_message, Snackbar.LENGTH_INDEFINITE);
+        activitySnackbar.setAction(R.string.retry, onClickListener);
+        activitySnackbar.show();
+    }
+
+    @Override
+    public void showContent() {
+        findViewById(R.id.content_container).setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideContent() {
+        findViewById(R.id.content_container).setVisibility(View.GONE);
     }
 
     @Override
@@ -170,6 +193,15 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     @Override
     public void closeDrawers() {
         drawerLayout.closeDrawers();
+    }
+
+    public void showLoading(@StringRes int loadingMessageResId) {
+        findViewById(R.id.loading_layout).setVisibility(View.VISIBLE);
+        ((TextView) findViewById(R.id.loading_message)).setText(loadingMessageResId);
+    }
+
+    public void hideLoading() {
+        findViewById(R.id.loading_layout).setVisibility(View.GONE);
     }
 
     @Override

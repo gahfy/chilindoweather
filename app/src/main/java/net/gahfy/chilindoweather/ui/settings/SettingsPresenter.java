@@ -40,6 +40,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
         int windSpeedUnit = getWindSpeedUnitResId(preferencesUtils.getWindSpeedIndex());
         view.showTemperatureUnit(temperatureUnit);
         view.showWindSpeedUnit(windSpeedUnit);
+        view.setTitle(R.string.settings);
     }
 
     void onTemperatureClick() {

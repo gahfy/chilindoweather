@@ -30,11 +30,6 @@ public class WeatherActivity extends CommonActivity<WeatherPresenter> implements
         binding.setPreferredSpeedIndex(preferredSpeedIndex);
     }
 
-    @Override
-    public void showTitle(String title) {
-        setTitle(title);
-    }
-
     @NonNull
     @Override
     protected WeatherPresenter instantiatePresenter() {

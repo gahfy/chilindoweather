@@ -4,12 +4,13 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiWeather;
 import net.gahfy.chilindoweather.model.weather.CurrentWeather;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
@@ -24,6 +25,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
@@ -96,6 +98,14 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
         super.onResumeView();
         if (currentWeather != null) {
             view.showCurrentWeather(currentWeather, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
+            view.showContent();
+            view.setTitle(R.string.weather_at_title, currentWeather.getCity());
+            view.hideLoading();
+        } else {
+            view.setTitle(R.string.weather_title);
+            if (locationUtils.hasLocationAvailable()) {
+                view.showLoading(R.string.loading_network);
+            }
         }
     }
 
@@ -128,7 +138,8 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     }
 
     @Override
-    protected void onLocationAvailable(Location location) {
+    protected void onLocationAvailable(final Location location) {
+        view.showLoading(R.string.loading_network);
         disposable = openWeatherMapApi.getWeather(location.getLatitude(), location.getLongitude())
                 .flatMap(new Function<ApiWeather, ObservableSource<CurrentWeather>>() {
                     @Override
@@ -138,18 +149,30 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
                 })
                 .observeOn(Schedulers.androidThread())
                 .subscribeOn(Schedulers.io())
+                .doOnTerminate(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        view.hideLoading();
+                    }
+                })
                 .subscribe(new Consumer<CurrentWeather>() {
                     @Override
                     public void accept(CurrentWeather currentWeather) throws Exception {
                         WeatherPresenter.this.currentWeather = currentWeather;
+                        view.showContent();
                         view.showCurrentWeather(currentWeather, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
-                        view.showTitle(currentWeather.getCity());
+                        view.setTitle(R.string.weather_at_title, currentWeather.getCity());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        throwable.printStackTrace();
-                        Log.e("gahfy", Log.getStackTraceString(throwable));
+                        view.hideContent();
+                        view.showNetworkError(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                onLocationAvailable(location);
+                            }
+                        });
                     }
                 });
     }

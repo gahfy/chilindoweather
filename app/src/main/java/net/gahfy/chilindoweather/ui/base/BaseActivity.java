@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 
 import net.gahfy.chilindoweather.ChilindoWeatherApplication;
@@ -79,5 +80,15 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
+    }
+
+    @Override
+    public void setTitle(@StringRes int titleResId, String... formatString) {
+        super.setTitle(getString(titleResId, (Object[]) formatString));
+    }
+
+    @Override
+    public void setTitle(String title) {
+        super.setTitle(title);
     }
 }

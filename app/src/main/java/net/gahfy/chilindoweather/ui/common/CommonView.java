@@ -2,6 +2,7 @@ package net.gahfy.chilindoweather.ui.common;
 
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.support.annotation.StringRes;
 import android.view.View;
 
 import net.gahfy.chilindoweather.ui.base.BaseView;
@@ -17,6 +18,8 @@ public interface CommonView extends BaseView {
 
     void removeUserInfo();
 
+    void hideNoGeolocationAvailableError();
+
     void showNoGeolocationAvailableError(View.OnClickListener settingsClickListener);
 
     void showGoogleSignInError(DialogInterface.OnClickListener retryClickListener);
@@ -24,4 +27,14 @@ public interface CommonView extends BaseView {
     void closeDrawers();
 
     void checkMenu(int menuResId);
+
+    void showLoading(@StringRes int loadingMessageResId);
+
+    void hideLoading();
+
+    void showNetworkError(View.OnClickListener onClickListener);
+
+    void showContent();
+
+    void hideContent();
 }

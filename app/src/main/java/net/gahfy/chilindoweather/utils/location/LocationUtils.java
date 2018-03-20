@@ -12,8 +12,11 @@ import android.support.annotation.Nullable;
 import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class LocationUtils {
+    private static final long RELOCATION_DELAY = 3600000;
+
     private static LocationUtils ourInstance;
 
     @Nullable
@@ -25,18 +28,24 @@ public class LocationUtils {
     private boolean isGeolocating = false;
 
     private Location location = null;
+    private long lastLocationTimestamp = 0;
+    private boolean geolocationSent = false;
 
     private ArrayList<SingleLocationListener> singleLocationListeners = new ArrayList<>();
 
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
-            LocationUtils.this.location = location;
             if (locationManager != null) {
                 locationManager.removeUpdates(locationListener);
-                isGeolocating = false;
             }
-            for (SingleLocationListener singleLocationListener : singleLocationListeners) {
-                singleLocationListener.onLocationFound(location);
+            isGeolocating = false;
+            if (!geolocationSent) {
+                geolocationSent = true;
+                LocationUtils.this.location = location;
+                lastLocationTimestamp = new Date().getTime();
+                for (SingleLocationListener singleLocationListener : singleLocationListeners) {
+                    singleLocationListener.onLocationFound(location);
+                }
             }
         }
 
@@ -72,6 +81,9 @@ public class LocationUtils {
                             locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)
             )) {
                 isGeolocating = true;
+                for (SingleLocationListener singleLocationListener : singleLocationListeners) {
+                    singleLocationListener.onGeolocationStarted();
+                }
                 if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
                 }
@@ -93,9 +105,15 @@ public class LocationUtils {
         }
     }
 
+    public boolean hasLocationAvailable() {
+        return location != null;
+    }
+
     public Void addSingleLocationListener(SingleLocationListener singleLocationListener) {
         singleLocationListeners.add(singleLocationListener);
-        if (location == null) {
+        if (location == null || new Date().getTime() - RELOCATION_DELAY > lastLocationTimestamp) {
+            location = null;
+            geolocationSent = false;
             if (!isGeolocating) {
                 getLocation();
             }
@@ -110,6 +128,8 @@ public class LocationUtils {
     }
 
     public interface SingleLocationListener {
+        void onGeolocationStarted();
+
         void onLocationFound(Location location);
 
         void onProviderNotAvailableError();

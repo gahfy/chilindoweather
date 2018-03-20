@@ -6,6 +6,33 @@ A demo weather app for interview with Chilindo
 
 [![Header](https://github.com/gahfy/chilindoweather/raw/master/img/header.png)](https://github.com/gahfy/chilindoweather)
 
+## The worst technical test ever :-)
+
+*You asked me the worst technical test ever. Asking a weather application to a french guy who wants to live in Bangkok also for the climate is a torture. Just take a look at the picture!!! 0°C in Paris. And this screenshot has been taken from real live data!!! And I was always thinking in the meanwhile about you, the reader, who is complaining about the coldness of your 25°C nights. :-)*
+
+## Features
+
+### Assumptions
+
+#### Location
+
+Finding the location may be something painful for the user. So as long as the user does not kill the application, there is no update of location before 60 minutes.
+This assumption has been made as when discussing it with friends, a long distance trip takes usually at least one hour, and there is no need to check the weather of the current location while traveling.
+
+#### Weather update
+
+I discussed with many friends, and each one has a different point of view on refresh strategy.
+
+*Some of the points of view*
+
+* When I am in the subway or in poor connectivity strategy, it would be nice to have last weather instead of an error
+* I would find it weird to have previous location for a small time, then the updated one when opening the application
+* I would find it weird to have a loading time and then have old weather data if there is no network
+
+So the best would have been to have a service that would try to update the weather each 30 minutes. But I gave the application to many friends in order to let them test it and report bugs, and there is a limit of number of calls with OpenWeatherMap free plan.
+
+Because of that, I had to decide by myself, so I decided to make what is the most easy for a developer, so the weather is refreshed each time an Activity is created if there is no `savedInstanceState` with weather.
+
 ## Architecture
 
 The project has been developed with Java as it was required by the specification.

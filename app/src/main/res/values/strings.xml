@@ -4,6 +4,21 @@
     <string name="language">en</string>
     <string name="empty" />
 
+    <string name="settings">Settings</string>
+    <string name="weather_title">Weather</string>
+    <string name="weather_at_title">Weather at %s</string>
+    <string name="forecast_title">Forecast</string>
+    <string name="forecast_for_title">Forecast for %s</string>
+
+    <string name="retry">Retry</string>
+    <string name="cancel">Cancel</string>
+    <string name="network_error_title">Network Error</string>
+    <string name="network_error_message">An issue occurred while retrieving weather data.</string>
+
+    <string name="loading_location">Retrieving your current location</string>
+    <string name="loading_network">Retrieving weather data</string>
+    <string name="loading_permission">Waiting for location permission</string>
+
     <string name="wind_speed_metric" formatted="false">%d m/s</string>
     <string name="wind_speed_imperial" formatted="false">%d mi/h</string>
     <string name="unknown_wind_speed">&#8230; km/h</string>
