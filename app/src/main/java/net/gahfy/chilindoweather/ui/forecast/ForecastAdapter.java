@@ -44,6 +44,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     }
 
     public void setDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList, int temperatureIndex, int speedIndex) {
+        itemWrapper.clear();
         for (DayWeatherForecast dayWeatherForecast : dayWeatherForecastList) {
             itemWrapper.add(dayWeatherForecast.getDayTimestamp());
             itemWrapper.addAll(dayWeatherForecast.getForecastList());
