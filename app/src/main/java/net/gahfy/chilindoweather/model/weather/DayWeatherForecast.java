@@ -1,5 +1,8 @@
 package net.gahfy.chilindoweather.model.weather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import net.gahfy.chilindoweather.model.api.ApiForecast;
 import net.gahfy.chilindoweather.model.api.ApiForecastItem;
 import net.gahfy.chilindoweather.utils.DateUtils;
@@ -10,7 +13,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class DayWeatherForecast {
+public class DayWeatherForecast implements Parcelable {
+    public static final Creator<DayWeatherForecast> CREATOR = new Creator<DayWeatherForecast>() {
+        @Override
+        public DayWeatherForecast createFromParcel(Parcel in) {
+            return new DayWeatherForecast(in);
+        }
+
+        @Override
+        public DayWeatherForecast[] newArray(int size) {
+            return new DayWeatherForecast[size];
+        }
+    };
     private Integer dayTimestamp;
     private List<InstantWeatherForecast> forecastList;
 
@@ -19,7 +33,16 @@ public class DayWeatherForecast {
         this.forecastList = forecastList;
     }
 
-    public static List<DayWeatherForecast> getDayWeatherForecastList(ApiForecast apiForecast) {
+    protected DayWeatherForecast(Parcel in) {
+        if (in.readByte() == 0) {
+            dayTimestamp = null;
+        } else {
+            dayTimestamp = in.readInt();
+        }
+        forecastList = in.createTypedArrayList(InstantWeatherForecast.CREATOR);
+    }
+
+    public static ArrayList<DayWeatherForecast> getDayWeatherForecastList(ApiForecast apiForecast) {
         ArrayList<DayWeatherForecast> dayWeatherForecasts = new ArrayList<>();
         if (apiForecast.getForecastItemList() != null) {
             for (ApiForecastItem apiForecastItem : apiForecast.getForecastItemList()) {
@@ -87,6 +110,22 @@ public class DayWeatherForecast {
         }
 
         return dayWeatherForecasts;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (dayTimestamp == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(dayTimestamp);
+        }
+        dest.writeTypedList(forecastList);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public Integer getDayTimestamp() {

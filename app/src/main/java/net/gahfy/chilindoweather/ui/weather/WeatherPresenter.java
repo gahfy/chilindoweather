@@ -1,6 +1,7 @@
 package net.gahfy.chilindoweather.ui.weather;
 
 import android.location.Location;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -27,6 +28,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 public final class WeatherPresenter extends CommonPresenter<WeatherView> {
+    private static final String CURRENT_WEATHER_KEY = "currentWeather";
+
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
@@ -64,6 +67,20 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
      */
     public WeatherPresenter(@NonNull WeatherView view) {
         super(view);
+    }
+
+    @Override
+    public void onViewCreated(Bundle savedInstanceState) {
+        super.onViewCreated(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.containsKey(CURRENT_WEATHER_KEY)) {
+            currentWeather = savedInstanceState.getParcelable(CURRENT_WEATHER_KEY);
+        }
+    }
+
+    @Override
+    public Bundle saveInstanceState(Bundle outState) {
+        outState.putParcelable(CURRENT_WEATHER_KEY, currentWeather);
+        return outState;
     }
 
     @Override

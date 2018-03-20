@@ -147,7 +147,7 @@ public class CurrentWeatherTest {
         Mockito.when(apiWind.getDirection()).thenReturn(389.99);
         Mockito.when(apiWeather.getWind()).thenReturn(apiWind);
         currentWeather = new CurrentWeather(apiWeather);
-        assertEquals("getWind().getDirection() = 389.99 so currentWeather.getWindDirectionOrientation() = 0", currentWeather.getWindDirectionOrientation(), 0);
+        assertEquals("getWind().getDirection() = 389.99 so currentWeather.getWindDirectionOrientation() = 0", currentWeather.getWindDirectionOrientation(), R.string.north_abbr);
     }
 
     @Test

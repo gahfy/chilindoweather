@@ -30,12 +30,14 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     private View navigationHeader;
     private Menu navigationMenu;
     private Snackbar activitySnackbar;
+    private Bundle savedInstanceState;
 
     @Override
-    public void onCreate(Bundle saveInstanceState) {
-        super.onCreate(saveInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_common);
+        this.savedInstanceState = savedInstanceState;
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
@@ -61,8 +63,14 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
         super.onStart();
         if (destroyed) {
             destroyed = false;
-            presenter.onViewCreated();
+            presenter.onViewCreated(savedInstanceState);
         }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState = presenter.saveInstanceState(outState);
+        super.onSaveInstanceState(outState);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -27,6 +28,7 @@ import net.gahfy.chilindoweather.ui.settings.SettingsActivity;
 import net.gahfy.chilindoweather.ui.settings.SettingsPresenter;
 import net.gahfy.chilindoweather.ui.weather.WeatherActivity;
 import net.gahfy.chilindoweather.ui.weather.WeatherPresenter;
+import net.gahfy.chilindoweather.utils.HandlerUtils;
 import net.gahfy.chilindoweather.utils.location.LocationUtils;
 import net.gahfy.chilindoweather.utils.log.Logger;
 import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
@@ -74,10 +76,14 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         super(view);
     }
 
-    public void onViewCreated() {
+    public void onViewCreated(Bundle savedInstanceState) {
         if (needGeolocationonStartup()) {
             manageGeolocationPermission();
         }
+    }
+
+    public Bundle saveInstanceState(Bundle outState) {
+        return outState;
     }
 
     public void onResumeView() {
@@ -188,23 +194,31 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 view.closeDrawers();
-                switch (menuItem.getItemId()) {
-                    case R.id.sign_in:
-                        onSignInClick();
-                        break;
-                    case R.id.sign_out:
-                        onSignOutClick();
-                        break;
-                    case R.id.current_weather:
-                        view.startActivity(WeatherActivity.class);
-                        break;
-                    case R.id.weather_forecast:
-                        view.startActivity(ForecastActivity.class);
-                        break;
-                    case R.id.settings:
-                        view.startActivity(SettingsActivity.class);
-                        break;
-                }
+
+                HandlerUtils.postDelayed(new MenuItemRunnable(menuItem) {
+                    @Override
+                    public void run() {
+                        switch (this.menuItem.getItemId()) {
+                            case R.id.sign_in:
+                                onSignInClick();
+                                break;
+                            case R.id.sign_out:
+                                onSignOutClick();
+                                break;
+                            case R.id.current_weather:
+                                view.startActivity(WeatherActivity.class);
+                                break;
+                            case R.id.weather_forecast:
+                                view.startActivity(ForecastActivity.class);
+                                break;
+                            case R.id.settings:
+                                view.startActivity(SettingsActivity.class);
+                                break;
+                        }
+                    }
+                }, 250);
+
+
                 if (menuItem.getItemId() != R.id.settings && CommonPresenter.this instanceof SettingsPresenter) {
                     view.finish();
                 }
@@ -247,5 +261,14 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     }
 
     protected void onLocationAvailable(Location location) {
+    }
+
+    private abstract static class MenuItemRunnable implements Runnable {
+        MenuItem menuItem;
+
+        public MenuItemRunnable(MenuItem menuItem) {
+            super();
+            this.menuItem = menuItem;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package net.gahfy.chilindoweather.model.weather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -7,15 +9,23 @@ import android.support.annotation.StringRes;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.utils.unit.UnitUtils;
 
-public class InstantWeatherForecast {
-    private Integer calculationTimestamp;
+public class InstantWeatherForecast implements Parcelable {
+    public static final Creator<InstantWeatherForecast> CREATOR = new Creator<InstantWeatherForecast>() {
+        @Override
+        public InstantWeatherForecast createFromParcel(Parcel in) {
+            return new InstantWeatherForecast(in);
+        }
 
+        @Override
+        public InstantWeatherForecast[] newArray(int size) {
+            return new InstantWeatherForecast[size];
+        }
+    };
+    private Integer calculationTimestamp;
     @DrawableRes
     private int conditionIcon;
-
     @DrawableRes
     private int conditionDescription;
-
     private Double temperature;
     private Integer windDirection;
     private Double windSpeed;
@@ -27,6 +37,66 @@ public class InstantWeatherForecast {
         this.windDirection = windDirection;
         this.windSpeed = windSpeed;
         this.temperature = temperature;
+    }
+
+    protected InstantWeatherForecast(Parcel in) {
+        if (in.readByte() == 0) {
+            calculationTimestamp = null;
+        } else {
+            calculationTimestamp = in.readInt();
+        }
+        conditionIcon = in.readInt();
+        conditionDescription = in.readInt();
+        if (in.readByte() == 0) {
+            temperature = null;
+        } else {
+            temperature = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            windDirection = null;
+        } else {
+            windDirection = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            windSpeed = null;
+        } else {
+            windSpeed = in.readDouble();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (calculationTimestamp == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(calculationTimestamp);
+        }
+        dest.writeInt(conditionIcon);
+        dest.writeInt(conditionDescription);
+        if (temperature == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(temperature);
+        }
+        if (windDirection == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(windDirection);
+        }
+        if (windSpeed == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(windSpeed);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public Integer getCalculationTimestamp() {

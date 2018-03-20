@@ -1,6 +1,7 @@
 package net.gahfy.chilindoweather.ui.settings;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -33,8 +34,8 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
         super(view);
     }
 
-    public void onViewCreated() {
-        super.onViewCreated();
+    public void onViewCreated(Bundle savedInstanceState) {
+        super.onViewCreated(savedInstanceState);
         int temperatureUnit = getTemperatureUnitResId(preferencesUtils.getTemperatureIndex());
         int windSpeedUnit = getWindSpeedUnitResId(preferencesUtils.getWindSpeedIndex());
         view.showTemperatureUnit(temperatureUnit);
