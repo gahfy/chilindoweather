@@ -2,6 +2,7 @@
     <string name="app_name">Chilindo Weather</string>
 
     <string name="language">en</string>
+    <string name="empty" />
 
     <string name="wind_speed_metric" formatted="false">%d m/s</string>
     <string name="wind_speed_imperial" formatted="false">%d mi/h</string>

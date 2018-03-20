@@ -67,7 +67,7 @@ public class InstantWeatherForecast {
     @StringRes
     public int getWindDirectionOrientation() {
         if (windDirection != null) {
-            switch (windDirection / 90) {
+            switch ((windDirection / 90) % 4) {
                 case 0:
                     return R.string.north_abbr;
                 case 1:

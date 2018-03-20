@@ -90,7 +90,7 @@
                 android:id="@+id/weather_wind_direction_arrow"
                 android:layout_width="17dp"
                 android:layout_height="16.5dp"
-                android:contentDescription="@{forecast.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, forecast.getWindDirectionNormalized(), context.getString(forecast.getWindDirectionOrientation()))}"
+                android:contentDescription="@{forecast.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, forecast.getWindDirectionNormalized(), forecast.getWindDirectionOrientation() == 0 ? @string/empty : context.getString(forecast.getWindDirectionOrientation()))}"
                 android:rotation="@{forecast.getWindDirection() == null ? 0 : safeUnbox(forecast.getWindDirection())+180}"
                 android:src="@{@drawable/wind_direction_arrow}"
                 android:tint="#FFFFFF"

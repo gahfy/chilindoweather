@@ -67,7 +67,7 @@
             android:id="@+id/weather_gust_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), context.getString(weather.getWindDirectionOrientation()))}"
+            android:text="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), weather.getWindDirectionOrientation() == 0 ? @string/empty : context.getString(weather.getWindDirectionOrientation()))}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
             app:layout_constraintTop_toBottomOf="@+id/weather_direction_label" />
@@ -127,7 +127,7 @@
             android:id="@+id/weather_wind_direction_arrow"
             android:layout_width="20dp"
             android:layout_height="33dp"
-            android:contentDescription="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), context.getString(weather.getWindDirectionOrientation()))}"
+            android:contentDescription="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), weather.getWindDirectionOrientation() == 0 ? @string/empty : context.getString(weather.getWindDirectionOrientation()))}"
             android:rotation="@{weather.getWindDirection() == null ? 0 : safeUnbox(weather.getWindDirection())+180}"
             android:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/weather_wind_direction_circle"
