@@ -196,23 +196,23 @@ public class CommonPresenterTest {
     }
 
     @Test
-    public void testViewCreatedGeolocationNotRequired() {
+    public void testViewResumeGeolocationNotRequired() {
         needGeolocation = false;
         permissionUtils = Mockito.mock(PermissionUtils.class);
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         verify(permissionUtils, times(0)).hasFineLocationPermission();
     }
 
     @Test
-    public void testViewCreatedGeolocationRequired() {
+    public void testViewResumeGeolocationRequired() {
         needGeolocation = true;
         permissionUtils = Mockito.mock(PermissionUtils.class);
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         verify(permissionUtils, times(1)).hasFineLocationPermission();
     }
 
     @Test
-    public void testViewCreatedGeolocate() {
+    public void testViewResumeGeolocate() {
         needGeolocation = true;
         permissionUtils = Mockito.mock(PermissionUtils.class);
         Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(true);
@@ -225,7 +225,7 @@ public class CommonPresenterTest {
                 return null;
             }
         });
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         Assert.assertEquals(1, onLocationAvailableCounter);
 
         Mockito.when(locationUtils.addSingleLocationListener(any(LocationUtils.SingleLocationListener.class))).thenAnswer(new Answer() {
@@ -235,7 +235,7 @@ public class CommonPresenterTest {
                 return null;
             }
         });
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         Mockito.verify(commonView, times(1)).showNoGeolocationAvailableError(any(View.OnClickListener.class));
 
         Mockito.when(locationUtils.addSingleLocationListener(any(LocationUtils.SingleLocationListener.class))).thenAnswer(new Answer() {
@@ -246,32 +246,32 @@ public class CommonPresenterTest {
                 return null;
             }
         });
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         Mockito.verify(permissionUtils, times(1)).requestGeolocationPermission(anyInt());
     }
 
     @Test
-    public void testViewCreatedGeolocationRequiredNoPermission() {
+    public void testViewResumeGeolocationRequiredNoPermission() {
         needGeolocation = true;
         permissionUtils = Mockito.mock(PermissionUtils.class);
         Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(false);
 
         Mockito.when(permissionUtils.shouldShowGeolocationRationale()).thenReturn(false);
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         verify(permissionUtils, times(1)).requestGeolocationPermission(1);
 
         Mockito.when(permissionUtils.shouldShowGeolocationRationale()).thenReturn(true);
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         verify(commonView, times(1)).showGeolocationPermissionRationale(any(View.OnClickListener.class));
     }
 
     @Test
-    public void testViewCreatedGeolocationRequiredWithPermission() {
+    public void testViewResumeGeolocationRequiredWithPermission() {
         needGeolocation = true;
         permissionUtils = Mockito.mock(PermissionUtils.class);
         Mockito.when(permissionUtils.hasFineLocationPermission()).thenReturn(true);
 
-        commonPresenter.onViewCreated(null);
+        commonPresenter.onResumeView();
         verify(commonView, times(1)).hideGeolocationRationale();
     }
 
