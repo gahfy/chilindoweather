@@ -56,8 +56,8 @@ public final class ApiCity {
      * @return the unique identifier of the city
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getId() {
         return id;
     }
@@ -67,8 +67,8 @@ public final class ApiCity {
      * @return the name of the city
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getName() {
         return name;
     }
@@ -78,8 +78,8 @@ public final class ApiCity {
      * @return the GPS coordinates of the city
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiGpsCoordinates getGpsCoordinates() {
         return gpsCoordinates;
     }
@@ -89,8 +89,8 @@ public final class ApiCity {
      * @return the country ISO code of the city
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getCountry() {
         return country;
     }

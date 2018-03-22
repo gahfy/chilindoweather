@@ -26,8 +26,8 @@ public final class ApiRain {
      * @return the rain volume for the last 3 hours in mm
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getLast3hoursVolume() {
         return last3hoursVolume;
     }

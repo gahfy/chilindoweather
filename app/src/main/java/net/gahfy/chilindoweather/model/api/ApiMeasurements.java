@@ -97,8 +97,8 @@ public final class ApiMeasurements {
      * @return the temperature in Kelvin
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getTemperature() {
         return temperature;
     }
@@ -109,8 +109,8 @@ public final class ApiMeasurements {
      * @return the atmospheric pressure (sea level, if there is no sea or ground level data) in hPa
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getPressure() {
         return pressure;
     }
@@ -121,8 +121,8 @@ public final class ApiMeasurements {
      * @return the humidity in percent
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getHumidity() {
         return humidity;
     }
@@ -133,8 +133,8 @@ public final class ApiMeasurements {
      * @return the minimum temperature in Kelvin at the moment (possible for large areas)
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getMinimumTemperature() {
         return minimumTemperature;
     }
@@ -145,8 +145,8 @@ public final class ApiMeasurements {
      * @return the maximum temperature in Kelvin at the moment (possible for large areas)
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getMaximumTemperature() {
         return maximumTemperature;
     }
@@ -157,8 +157,8 @@ public final class ApiMeasurements {
      * @return the atmospheric pressure on the sea level in hPa
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getSeaLevelPressure() {
         return seaLevelPressure;
     }
@@ -169,8 +169,8 @@ public final class ApiMeasurements {
      * @return the atmospheric pressure on the ground level in hPa
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getGroundLevelPressure() {
         return groundLevelPressure;
     }
@@ -181,8 +181,8 @@ public final class ApiMeasurements {
      * @return the temp_kf value
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getTempKf() {
         return tempKf;
     }

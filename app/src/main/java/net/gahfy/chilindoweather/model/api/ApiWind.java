@@ -36,8 +36,8 @@ public final class ApiWind {
      * @return the wind speed in meter/sec
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getSpeed() {
         return speed;
     }
@@ -48,8 +48,8 @@ public final class ApiWind {
      * @return the wind direction in degrees from the North
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getDirection() {
         return direction;
     }

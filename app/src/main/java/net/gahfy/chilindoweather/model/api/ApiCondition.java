@@ -56,8 +56,8 @@ public final class ApiCondition {
      * @return the unique identifier of the weather condition
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getId() {
         return id;
     }
@@ -68,8 +68,8 @@ public final class ApiCondition {
      * @return the name of the group of the weather parameters (Rain, Snow, Extreme, .)
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getGroupName() {
         return groupName;
     }
@@ -80,8 +80,8 @@ public final class ApiCondition {
      * @return the name of the weather condition within the group
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getConditionName() {
         return conditionName;
     }
@@ -92,8 +92,8 @@ public final class ApiCondition {
      * @return the unique identifier of the weather icon
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getIconId() {
         return iconId;
     }

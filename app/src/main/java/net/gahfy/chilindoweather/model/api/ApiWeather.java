@@ -156,8 +156,8 @@ public final class ApiWeather {
      * @return the GPS coordinates to which weather forecast applies
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiGpsCoordinates getGpsCoordinates() {
         return gpsCoordinates;
     }
@@ -168,8 +168,8 @@ public final class ApiWeather {
      * @return the weather condition
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiCondition[] getCondition() {
         return condition;
     }
@@ -180,8 +180,8 @@ public final class ApiWeather {
      * @return the API base value
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getBase() {
         return base;
     }
@@ -192,8 +192,8 @@ public final class ApiWeather {
      * @return the weather measurements
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiMeasurements getMeasurements() {
         return measurements;
     }
@@ -204,8 +204,8 @@ public final class ApiWeather {
      * @return the wind data
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiWind getWind() {
         return wind;
     }
@@ -216,8 +216,8 @@ public final class ApiWeather {
      * @return the cloudiness data
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiClouds getClouds() {
         return clouds;
     }
@@ -228,8 +228,8 @@ public final class ApiWeather {
      * @return the rain data
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiRain getRain() {
         return rain;
     }
@@ -240,8 +240,8 @@ public final class ApiWeather {
      * @return the snow data
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiSnow getSnow() {
         return snow;
     }
@@ -252,8 +252,8 @@ public final class ApiWeather {
      * @return the timestamp when weather forecast has been calculated
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getCalculationTimestamp() {
         return calculationTimestamp;
     }
@@ -264,8 +264,8 @@ public final class ApiWeather {
      * @return the system data
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiSystem getSystem() {
         return system;
     }
@@ -276,8 +276,8 @@ public final class ApiWeather {
      * @return the unique identifier of the city
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getCityId() {
         return cityId;
     }
@@ -288,8 +288,8 @@ public final class ApiWeather {
      * @return the name of the city
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getCityName() {
         return cityName;
     }
@@ -300,8 +300,8 @@ public final class ApiWeather {
      * @return the HTTP code of the response
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getHttpCode() {
         return httpCode;
     }
@@ -312,8 +312,8 @@ public final class ApiWeather {
      * @return the error message
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getErrorMessage() {
         return errorMessage;
     }

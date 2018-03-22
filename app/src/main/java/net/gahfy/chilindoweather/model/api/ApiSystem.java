@@ -76,8 +76,8 @@ public final class ApiSystem {
      * @return the API type value
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public Integer getType() {
         return type;
     }
@@ -88,8 +88,8 @@ public final class ApiSystem {
      * @return the API id value
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getId() {
         return id;
     }
@@ -100,8 +100,8 @@ public final class ApiSystem {
      * @return the API message value
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getMessage() {
         return message;
     }
@@ -112,8 +112,8 @@ public final class ApiSystem {
      * @return the country code of the location of the weather
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getCountryCode() {
         return countryCode;
     }
@@ -124,8 +124,8 @@ public final class ApiSystem {
      * @return the timestamp of sunrise at the location of the weather
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getSunriseTimestamp() {
         return sunriseTimestamp;
     }
@@ -136,8 +136,8 @@ public final class ApiSystem {
      * @return the timestamp of sunset at the location of the weather
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getSunsetTimestamp() {
         return sunsetTimestamp;
     }

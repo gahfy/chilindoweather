@@ -27,8 +27,8 @@ public final class ApiClouds {
      * @return the cloudiness in percent
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getCloudiness() {
         return cloudiness;
     }

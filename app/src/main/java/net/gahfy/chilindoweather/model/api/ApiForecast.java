@@ -66,8 +66,8 @@ public final class ApiForecast {
      * @return the number of weather forecasts in the response
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getItemCount() {
         return itemCount;
     }
@@ -77,8 +77,8 @@ public final class ApiForecast {
      * @return the HTTP code of the response
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Integer getHttpCode() {
         return httpCode;
     }
@@ -88,8 +88,8 @@ public final class ApiForecast {
      * @return the error message
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getErrorMessage() {
         return errorMessage;
     }
@@ -99,8 +99,8 @@ public final class ApiForecast {
      * @return the city to which the forecasts apply
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiCity getCity() {
         return city;
     }
@@ -110,8 +110,8 @@ public final class ApiForecast {
      * @return the list of weather forecasts
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiForecastItem[] getForecastItemList() {
         return forecastItemList;
     }

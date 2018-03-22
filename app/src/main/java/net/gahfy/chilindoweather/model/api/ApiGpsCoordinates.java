@@ -36,8 +36,8 @@ public final class ApiGpsCoordinates {
      * @return the latitude of the GPS coordinates
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getLatitude() {
         return latitude;
     }
@@ -48,8 +48,8 @@ public final class ApiGpsCoordinates {
      * @return the longitude of the GPS coordinates
      */
     @Nullable
-    // Safe as we want to provide all getters for POJOs
-    @SuppressWarnings("unused")
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
     public final Double getLongitude() {
         return longitude;
     }
