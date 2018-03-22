@@ -9,13 +9,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_GPS_CO
 
 /**
  * Gps coordinates as they are returned by OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiGpsCoordinates {
+public final class ApiGpsCoordinates {
     /**
      * Latitude of the GPS coordinates
      */
     @Json(name = JSON_GPS_COORDINATES_LATITUDE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double latitude;
 
     /**
@@ -23,6 +26,8 @@ public class ApiGpsCoordinates {
      */
     @Json(name = JSON_GPS_COORDINATES_LONGITUDE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double longitude;
 
     /**
@@ -31,7 +36,9 @@ public class ApiGpsCoordinates {
      * @return the latitude of the GPS coordinates
      */
     @Nullable
-    public Double getLatitude() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getLatitude() {
         return latitude;
     }
 
@@ -41,7 +48,9 @@ public class ApiGpsCoordinates {
      * @return the longitude of the GPS coordinates
      */
     @Nullable
-    public Double getLongitude() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getLongitude() {
         return longitude;
     }
 }

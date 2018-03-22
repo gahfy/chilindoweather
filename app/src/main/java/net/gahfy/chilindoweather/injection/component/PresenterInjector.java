@@ -1,12 +1,14 @@
 package net.gahfy.chilindoweather.injection.component;
 
-import net.gahfy.chilindoweather.ui.base.BaseView;
+import android.support.annotation.NonNull;
+
 import net.gahfy.chilindoweather.injection.module.ContextModule;
 import net.gahfy.chilindoweather.injection.module.GoogleServicesModule;
 import net.gahfy.chilindoweather.injection.module.LocationModule;
 import net.gahfy.chilindoweather.injection.module.NetworkModule;
 import net.gahfy.chilindoweather.injection.module.PermissionModule;
 import net.gahfy.chilindoweather.injection.module.PreferencesModule;
+import net.gahfy.chilindoweather.ui.base.BaseView;
 import net.gahfy.chilindoweather.ui.forecast.ForecastPresenter;
 import net.gahfy.chilindoweather.ui.settings.SettingsPresenter;
 import net.gahfy.chilindoweather.ui.weather.WeatherPresenter;
@@ -27,11 +29,11 @@ public interface PresenterInjector {
      *
      * @param weatherPresenter the WeatherPresenter in which to inject the dependencies
      */
-    void inject(WeatherPresenter weatherPresenter);
+    void inject(@NonNull WeatherPresenter weatherPresenter);
 
-    void inject(SettingsPresenter settingsPresenter);
+    void inject(@NonNull SettingsPresenter settingsPresenter);
 
-    void inject(ForecastPresenter forecastPresenter);
+    void inject(@NonNull ForecastPresenter forecastPresenter);
 
     /**
      * The builder to instantiate the component.
@@ -51,7 +53,7 @@ public interface PresenterInjector {
          * @param networkModule the NetworkModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder networkModule(NetworkModule networkModule);
+        Builder networkModule(@NonNull NetworkModule networkModule);
 
         /**
          * Sets the specified PermissionModule to the component.
@@ -59,13 +61,31 @@ public interface PresenterInjector {
          * @param presenterModule the PermissionModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder permissionModule(PermissionModule presenterModule);
+        Builder permissionModule(@NonNull PermissionModule presenterModule);
 
-        Builder locationModule(LocationModule locationModule);
+        /**
+         * Sets the specified LocationModule to the component.
+         *
+         * @param locationModule the LocationModule to set to the component
+         * @return the current instance of PresenterInjector.Builder
+         */
+        Builder locationModule(@NonNull LocationModule locationModule);
 
-        Builder googleServicesModule(GoogleServicesModule googleServicesModule);
+        /**
+         * Sets the GoogleServicesModule to the component.
+         *
+         * @param googleServicesModule the GoogleServicesModule to set to the component
+         * @return the current instance of PresenterInjector.Builder
+         */
+        Builder googleServicesModule(@NonNull GoogleServicesModule googleServicesModule);
 
-        Builder preferencesModule(PreferencesModule preferencesModule);
+        /**
+         * Sets the PreferencesModule to the component.
+         *
+         * @param preferencesModule the PreferencesModule to set to the component
+         * @return the current instance of PresenterInjector.Builder
+         */
+        Builder preferencesModule(@NonNull PreferencesModule preferencesModule);
 
         /**
          * Sets the specified ContextModule to the component.
@@ -73,7 +93,7 @@ public interface PresenterInjector {
          * @param contextModule the ContextModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder contextModule(ContextModule contextModule);
+        Builder contextModule(@NonNull ContextModule contextModule);
 
         /**
          * Sets the specified BaseView to the component.
@@ -82,6 +102,6 @@ public interface PresenterInjector {
          * @return the current instance of PresenterInjector.Builder
          */
         @BindsInstance
-        Builder baseView(BaseView baseView);
+        Builder baseView(@NonNull BaseView baseView);
     }
 }

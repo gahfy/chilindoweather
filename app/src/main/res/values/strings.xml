@@ -70,42 +70,30 @@
     <string name="settings_wind_speed_m">m/s</string>
     <string name="settings_wind_speed_mi">mi/h</string>
 
-    <string-array name="settings_temperature_units">
-        <item>@string/settings_temperature_celsius</item>
-        <item>@string/settings_temperature_fahrenheit</item>
-    </string-array>
-
-    <string-array name="settings_wind_speed_unit">
-        <item>@string/settings_wind_speed_m</item>
-        <item>@string/settings_wind_speed_mi</item>
-    </string-array>
-
     <!-- {wd} for week-days full letters, {mn} for month name full letters -->
     <string name="date_format_forecast">{wd}, {mn} d, yyyy</string>
     <string name="forecast_time_format">hh a</string>
-    <string-array name="week_days">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-        <item>Sunday</item>
-    </string-array>
-    <string-array name="months">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
+
+    <string name="day_monday">Monday</string>
+    <string name="day_tuesday">Tuesday</string>
+    <string name="day_wednesday">Wednesday</string>
+    <string name="day_thursday">Thursday</string>
+    <string name="day_friday">Friday</string>
+    <string name="day_saturday">Saturday</string>
+    <string name="day_sunday">Sunday</string>
+
+    <string name="month_january">January</string>
+    <string name="month_february">February</string>
+    <string name="month_march">March</string>
+    <string name="month_april">April</string>
+    <string name="month_may">May</string>
+    <string name="month_june">June</string>
+    <string name="month_july">July</string>
+    <string name="month_august">August</string>
+    <string name="month_september">September</string>
+    <string name="month_october">October</string>
+    <string name="month_november">November</string>
+    <string name="month_december">December</string>
 
     <string name="north_abbr">N</string>
     <string name="west_abbr">W</string>
@@ -196,4 +184,38 @@
     <string name="condition_960_description">Storm</string>
     <string name="condition_961_description">Violent storm</string>
     <string name="condition_962_description">Hurricane</string>
+
+
+    <string-array name="settings_temperature_units">
+        <item>@string/settings_temperature_celsius</item>
+        <item>@string/settings_temperature_fahrenheit</item>
+    </string-array>
+
+    <string-array name="settings_wind_speed_unit">
+        <item>@string/settings_wind_speed_m</item>
+        <item>@string/settings_wind_speed_mi</item>
+    </string-array>
+    <string-array name="week_days">
+        <item>@string/day_monday</item>
+        <item>@string/day_tuesday</item>
+        <item>@string/day_wednesday</item>
+        <item>@string/day_thursday</item>
+        <item>@string/day_friday</item>
+        <item>@string/day_saturday</item>
+        <item>@string/day_sunday</item>
+    </string-array>
+    <string-array name="months">
+        <item>@string/month_january</item>
+        <item>@string/month_february</item>
+        <item>@string/month_march</item>
+        <item>@string/month_april</item>
+        <item>@string/month_may</item>
+        <item>@string/month_june</item>
+        <item>@string/month_july</item>
+        <item>@string/month_august</item>
+        <item>@string/month_september</item>
+        <item>@string/month_october</item>
+        <item>@string/month_november</item>
+        <item>@string/month_december</item>
+    </string-array>
 </resources>

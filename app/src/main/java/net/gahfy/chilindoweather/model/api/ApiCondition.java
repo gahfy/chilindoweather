@@ -11,13 +11,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CONDIT
 
 /**
  * Weather condition as it is returned by the OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiCondition {
+public final class ApiCondition {
     /**
      * Unique identifier of the weather condition
      */
     @Json(name = JSON_CONDITION_ID)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer id;
 
     /**
@@ -25,6 +28,8 @@ public class ApiCondition {
      */
     @Json(name = JSON_CONDITION_GROUP_NAME)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String groupName;
 
     /**
@@ -32,6 +37,8 @@ public class ApiCondition {
      */
     @Json(name = JSON_CONDITION_CONDITION_NAME)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String conditionName;
 
     /**
@@ -39,6 +46,8 @@ public class ApiCondition {
      */
     @Json(name = JSON_CONDITION_ICON_ID)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String iconId;
 
     /**
@@ -47,7 +56,9 @@ public class ApiCondition {
      * @return the unique identifier of the weather condition
      */
     @Nullable
-    public Integer getId() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getId() {
         return id;
     }
 
@@ -57,7 +68,9 @@ public class ApiCondition {
      * @return the name of the group of the weather parameters (Rain, Snow, Extreme, .)
      */
     @Nullable
-    public String getGroupName() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getGroupName() {
         return groupName;
     }
 
@@ -67,7 +80,9 @@ public class ApiCondition {
      * @return the name of the weather condition within the group
      */
     @Nullable
-    public String getConditionName() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getConditionName() {
         return conditionName;
     }
 
@@ -77,7 +92,9 @@ public class ApiCondition {
      * @return the unique identifier of the weather icon
      */
     @Nullable
-    public String getIconId() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getIconId() {
         return iconId;
     }
 }

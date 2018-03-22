@@ -8,13 +8,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_RAIN_L
 
 /**
  * Rain as it is returned by the OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiRain {
+public final class ApiRain {
     /**
      * Rain volume for the last 3 hours in mm
      */
     @Json(name = JSON_RAIN_LAST_3_HOURS_VOLUME)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double last3hoursVolume;
 
     /**
@@ -23,7 +26,9 @@ public class ApiRain {
      * @return the rain volume for the last 3 hours in mm
      */
     @Nullable
-    public Double getLast3hoursVolume() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getLast3hoursVolume() {
         return last3hoursVolume;
     }
 }

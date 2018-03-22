@@ -9,13 +9,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WIND_S
 
 /**
  * Wind as it is returned by the OpenWeatherMap API.
+ * @version 2.5
  */
-public class ApiWind {
+public final class ApiWind {
     /**
      * Wind speed in meter/sec
      */
     @Json(name = JSON_WIND_SPEED)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double speed;
 
     /**
@@ -23,6 +26,8 @@ public class ApiWind {
      */
     @Json(name = JSON_WIND_DIRECTION)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double direction;
 
     /**
@@ -31,7 +36,9 @@ public class ApiWind {
      * @return the wind speed in meter/sec
      */
     @Nullable
-    public Double getSpeed() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getSpeed() {
         return speed;
     }
 
@@ -41,7 +48,9 @@ public class ApiWind {
      * @return the wind direction in degrees from the North
      */
     @Nullable
-    public Double getDirection() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getDirection() {
         return direction;
     }
 }

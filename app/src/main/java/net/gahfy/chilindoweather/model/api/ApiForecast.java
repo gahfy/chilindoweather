@@ -1,6 +1,5 @@
 package net.gahfy.chilindoweather.model.api;
 
-
 import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
@@ -11,49 +10,109 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECA
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_HTTP_CODE;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_COUNT;
 
-public class ApiForecast {
+/**
+ * List of weather forecasts as it is returned by OpenWeatherMap API
+ *
+ * @version 2.5
+ */
+public final class ApiForecast {
+    /**
+     * Number of weather forecast in the response
+     */
     @Json(name = JSON_FORECAST_ITEM_COUNT)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer itemCount;
 
+    /**
+     * HTTP code of the response
+     */
     @Json(name = JSON_FORECAST_HTTP_CODE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer httpCode;
 
+    /**
+     * Error message
+     */
     @Json(name = JSON_FORECAST_ERROR_MESSAGE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String errorMessage;
 
+    /**
+     * City to which forecasts apply
+     */
     @Json(name = JSON_FORECAST_CITY)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiCity city;
 
+    /**
+     * List of weather forecast
+     */
     @Json(name = JSON_FORECAST_FORECAST_LIST)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiForecastItem[] forecastItemList;
 
+    /**
+     * Returns the number of weather forecasts in the response.
+     * @return the number of weather forecasts in the response
+     */
     @Nullable
-    public Integer getItemCount() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getItemCount() {
         return itemCount;
     }
 
+    /**
+     * Returns the HTTP code of the response.
+     * @return the HTTP code of the response
+     */
     @Nullable
-    public Integer getHttpCode() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getHttpCode() {
         return httpCode;
     }
 
+    /**
+     * Returns the error message.
+     * @return the error message
+     */
     @Nullable
-    public String getErrorMessage() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getErrorMessage() {
         return errorMessage;
     }
 
+    /**
+     * Returns the city to which the forecasts apply.
+     * @return the city to which the forecasts apply
+     */
     @Nullable
-    public ApiCity getCity() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiCity getCity() {
         return city;
     }
 
+    /**
+     * Returns the list of weather forecasts.
+     * @return the list of weather forecasts
+     */
     @Nullable
-    public ApiForecastItem[] getForecastItemList() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiForecastItem[] getForecastItemList() {
         return forecastItemList;
     }
 }

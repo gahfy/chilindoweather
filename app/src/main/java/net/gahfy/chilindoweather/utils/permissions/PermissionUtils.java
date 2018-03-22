@@ -7,8 +7,6 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import net.gahfy.chilindoweather.exceptions.DeveloperException;
-
 public class PermissionUtils {
     private Context context;
 
@@ -37,7 +35,7 @@ public class PermissionUtils {
             return ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
                     permission);
         } else {
-            throw new DeveloperException("Provided context must be an instance of Activity");
+            throw new RuntimeException("Provided context must be an instance of Activity");
         }
     }
 
@@ -47,7 +45,7 @@ public class PermissionUtils {
                     permissions,
                     requestCode);
         } else {
-            throw new DeveloperException("Provided context must be an instance of Activity");
+            throw new RuntimeException("Provided context must be an instance of Activity");
         }
     }
 }

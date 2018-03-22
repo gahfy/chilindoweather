@@ -13,76 +13,169 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECA
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_SNOW;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_WIND;
 
-public class ApiForecastItem {
-    @Nullable
+/**
+ * Weather forecast as it is returned by OpenWeatherMap API.
+ *
+ * @version 2.5
+ */
+public final class ApiForecastItem {
+    /**
+     * Timestamp for which the weather forecast has been calculated
+     */
     @Json(name = JSON_FORECAST_ITEM_CALCULATION_TIMESTAMP)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer calculationTimestamp;
 
-    @Nullable
+    /**
+     * Measurements of the weather forecast
+     */
     @Json(name = JSON_FORECAST_ITEM_MEASUREMENTS)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiMeasurements measurements;
 
-    @Nullable
+    /**
+     * Condition of the weather forecast
+     */
     @Json(name = JSON_FORECAST_ITEM_CONDITION)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiCondition[] condition;
 
-    @Nullable
+    /**
+     * Cloudiness data of the weather forecast
+     */
     @Json(name = JSON_FORECAST_ITEM_CLOUDINESS)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiClouds cloudiness;
 
-    @Nullable
+    /**
+     * Wind data of the weather forecast
+     */
     @Json(name = JSON_FORECAST_ITEM_WIND)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiWind wind;
 
-    @Nullable
+    /**
+     * Rain data of the weather forecast
+     */
     @Json(name = JSON_FORECAST_ITEM_RAIN)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiRain rain;
 
-    @Nullable
+    /**
+     * Snow data of the weather forecast
+     */
     @Json(name = JSON_FORECAST_ITEM_SNOW)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiSnow snow;
 
-    @Nullable
+    /**
+     * Date and time for which the weather forecast has been calculated
+     */
     @Json(name = JSON_FORECAST_ITEM_CALCULATION_DATETIME)
+    // Safe as the variable is assigned by Moshi
+    @Nullable
+    @SuppressWarnings({"UnusedDeclaration"})
     private String calculationDatetime;
 
+    /**
+     * Returns the timestamp for which the forecast has been calculated.
+     * @return the timestamp for which the forecast has been calculated
+     */
     @Nullable
-    public Integer getCalculationTimestamp() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getCalculationTimestamp() {
         return calculationTimestamp;
     }
 
+    /**
+     * Returns the measurements of the weather forecast.
+     * @return the measurements of the weather forecast
+     */
     @Nullable
-    public ApiMeasurements getMeasurements() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiMeasurements getMeasurements() {
         return measurements;
     }
 
+    /**
+     * Returns the condition of the weather forecast.
+     * @return the condition of the weather forecast
+     */
     @Nullable
-    public ApiCondition getCondition() {
-        return condition == null ? null : (condition.length == 0 ? null : condition[0]);
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiCondition[] getCondition() {
+        return condition;
     }
 
+    /**
+     * Returns the cloudiness of the weather forecast.
+     * @return the cloudiness of the weather forecast
+     */
     @Nullable
-    public ApiClouds getCloudiness() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiClouds getCloudiness() {
         return cloudiness;
     }
 
+    /**
+     * Returns the wind data of the weather forecast.
+     * @return the wind data of the weather forecast
+     */
     @Nullable
-    public ApiWind getWind() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiWind getWind() {
         return wind;
     }
 
+    /**
+     * Returns the rain data of the weather forecast.
+     * @return the rain data of the weather forecast
+     */
     @Nullable
-    public ApiRain getRain() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiRain getRain() {
         return rain;
     }
 
+    /**
+     * Returns the snow data of the weather forecast.
+     * @return the snow data of the weather forecast
+     */
     @Nullable
-    public ApiSnow getSnow() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiSnow getSnow() {
         return snow;
     }
 
+    /**
+     * Returns the date and time for which the weather forecast has been calculated.
+     * @return the date and time for which the weather forecast has been calculated
+     */
     @Nullable
-    public String getCalculationDatetime() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getCalculationDatetime() {
         return calculationDatetime;
     }
 }

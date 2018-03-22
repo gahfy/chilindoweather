@@ -20,14 +20,17 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHE
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_WIND;
 
 /**
- * Weather forecast as it is returned by the OpenWeatherMap API
+ * Weather as it is returned by the OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiWeather {
+public final class ApiWeather {
     /**
      * GPS coordinates to which weather forecast applies
      */
     @Json(name = JSON_WEATHER_GPS_COORDINATES)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiGpsCoordinates gpsCoordinates;
 
     /**
@@ -35,6 +38,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_CONDITION)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiCondition[] condition;
 
     /**
@@ -42,6 +47,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_BASE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String base;
 
     /**
@@ -49,6 +56,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_MEASUREMENTS)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiMeasurements measurements;
 
     /**
@@ -56,6 +65,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_WIND)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiWind wind;
 
     /**
@@ -63,6 +74,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_CLOUDS)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiClouds clouds;
 
     /**
@@ -70,6 +83,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_RAIN)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiRain rain;
 
     /**
@@ -77,6 +92,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_SNOW)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiSnow snow;
 
     /**
@@ -84,6 +101,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_CALCULATION_TIMESTAMP)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer calculationTimestamp;
 
     /**
@@ -91,6 +110,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_SYSTEM)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private ApiSystem system;
 
     /**
@@ -98,6 +119,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_CITY_ID)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer cityId;
 
     /**
@@ -105,6 +128,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_CITY_NAME)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String cityName;
 
     /**
@@ -112,6 +137,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_HTTP_CODE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer httpCode;
 
     /**
@@ -119,6 +146,8 @@ public class ApiWeather {
      */
     @Json(name = JSON_WEATHER_ERROR_MESSAGE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String errorMessage;
 
     /**
@@ -127,7 +156,9 @@ public class ApiWeather {
      * @return the GPS coordinates to which weather forecast applies
      */
     @Nullable
-    public ApiGpsCoordinates getGpsCoordinates() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiGpsCoordinates getGpsCoordinates() {
         return gpsCoordinates;
     }
 
@@ -137,7 +168,9 @@ public class ApiWeather {
      * @return the weather condition
      */
     @Nullable
-    public ApiCondition[] getCondition() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiCondition[] getCondition() {
         return condition;
     }
 
@@ -147,7 +180,9 @@ public class ApiWeather {
      * @return the API base value
      */
     @Nullable
-    public String getBase() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getBase() {
         return base;
     }
 
@@ -157,7 +192,9 @@ public class ApiWeather {
      * @return the weather measurements
      */
     @Nullable
-    public ApiMeasurements getMeasurements() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiMeasurements getMeasurements() {
         return measurements;
     }
 
@@ -167,7 +204,9 @@ public class ApiWeather {
      * @return the wind data
      */
     @Nullable
-    public ApiWind getWind() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiWind getWind() {
         return wind;
     }
 
@@ -177,7 +216,9 @@ public class ApiWeather {
      * @return the cloudiness data
      */
     @Nullable
-    public ApiClouds getClouds() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiClouds getClouds() {
         return clouds;
     }
 
@@ -187,7 +228,9 @@ public class ApiWeather {
      * @return the rain data
      */
     @Nullable
-    public ApiRain getRain() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiRain getRain() {
         return rain;
     }
 
@@ -197,7 +240,9 @@ public class ApiWeather {
      * @return the snow data
      */
     @Nullable
-    public ApiSnow getSnow() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiSnow getSnow() {
         return snow;
     }
 
@@ -207,7 +252,9 @@ public class ApiWeather {
      * @return the timestamp when weather forecast has been calculated
      */
     @Nullable
-    public Integer getCalculationTimestamp() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getCalculationTimestamp() {
         return calculationTimestamp;
     }
 
@@ -217,7 +264,9 @@ public class ApiWeather {
      * @return the system data
      */
     @Nullable
-    public ApiSystem getSystem() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final ApiSystem getSystem() {
         return system;
     }
 
@@ -227,7 +276,9 @@ public class ApiWeather {
      * @return the unique identifier of the city
      */
     @Nullable
-    public Integer getCityId() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getCityId() {
         return cityId;
     }
 
@@ -237,7 +288,9 @@ public class ApiWeather {
      * @return the name of the city
      */
     @Nullable
-    public String getCityName() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getCityName() {
         return cityName;
     }
 
@@ -247,7 +300,9 @@ public class ApiWeather {
      * @return the HTTP code of the response
      */
     @Nullable
-    public Integer getHttpCode() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getHttpCode() {
         return httpCode;
     }
 
@@ -257,7 +312,9 @@ public class ApiWeather {
      * @return the error message
      */
     @Nullable
-    public String getErrorMessage() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getErrorMessage() {
         return errorMessage;
     }
 }

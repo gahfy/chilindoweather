@@ -1,7 +1,6 @@
 package net.gahfy.chilindoweather.injection.module;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import net.gahfy.chilindoweather.BuildConfig;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
@@ -70,6 +69,7 @@ public class NetworkModule {
     /**
      * Provides the Retrofit instance.
      *
+     * @param okHttpClient The HTTP client
      * @return the Retrofit instance
      */
     @Provides
@@ -84,6 +84,12 @@ public class NetworkModule {
                 .build();
     }
 
+    /**
+     * Provides the HTTP client for Retrofit.
+     *
+     * @param interceptor the interceptor which is added to the client in order to put the API key.
+     * @return the HTTP client for Retrofit
+     */
     @Provides
     @Reusable
     @NonNull
@@ -93,6 +99,10 @@ public class NetworkModule {
                 .build();
     }
 
+    /**
+     * Provides the Interceptor for HTTP client, which adds the API key property to each request.
+     * @return the Interceptor for HTTP client, which adds the API key property to each request
+     */
     @Provides
     @Reusable
     @Named("get_param_injector")
@@ -108,9 +118,6 @@ public class NetworkModule {
                         .addQueryParameter(QUERY_API_KEY, BuildConfig.OPENWEATHERMAP_API_KEY)
                         .build();
 
-                Log.e("gahfy", url.toString());
-
-                // Request customization: add request headers
                 Request.Builder requestBuilder = original.newBuilder()
                         .url(url);
 

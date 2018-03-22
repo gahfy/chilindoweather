@@ -55,8 +55,8 @@ public class DayWeatherForecast implements Parcelable {
         if (apiForecast.getForecastItemList() != null) {
             for (ApiForecastItem apiForecastItem : apiForecast.getForecastItemList()) {
                 Integer calculationTimestamp = apiForecastItem.getCalculationTimestamp();
-                int iconResId = WeatherUtils.getIconResId(apiForecastItem.getCondition() == null ? null : apiForecastItem.getCondition().getIconId());
-                int conditionDescription = WeatherUtils.getConditionDescriptionResId(apiForecastItem.getCondition() == null ? null : apiForecastItem.getCondition().getId());
+                int iconResId = WeatherUtils.getIconResId(apiForecastItem.getCondition() == null || apiForecastItem.getCondition().length == 0 || apiForecastItem.getCondition()[0] == null ? null : apiForecastItem.getCondition()[0].getIconId());
+                int conditionDescription = WeatherUtils.getConditionDescriptionResId(apiForecastItem.getCondition() == null || apiForecastItem.getCondition().length == 0 || apiForecastItem.getCondition()[0] == null ? null : apiForecastItem.getCondition()[0].getId());
                 Integer windDirection = apiForecastItem.getWind() == null ? null : (apiForecastItem.getWind().getDirection() == null ? null : apiForecastItem.getWind().getDirection().intValue());
                 Double windSpeed = apiForecastItem.getWind() == null ? null : apiForecastItem.getWind().getSpeed();
                 Double temperature = apiForecastItem.getMeasurements() == null ? null : apiForecastItem.getMeasurements().getTemperature();

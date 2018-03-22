@@ -13,13 +13,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM
 
 /**
  * System parameters as it is returned by the OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiSystem {
+public final class ApiSystem {
     /**
      * API type value
      */
     @Json(name = JSON_SYSTEM_TYPE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer type;
 
     /**
@@ -27,6 +30,8 @@ public class ApiSystem {
      */
     @Json(name = JSON_SYSTEM_ID)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer id;
 
     /**
@@ -34,6 +39,8 @@ public class ApiSystem {
      */
     @Json(name = JSON_SYSTEM_MESSAGE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double message;
 
     /**
@@ -41,6 +48,8 @@ public class ApiSystem {
      */
     @Json(name = JSON_SYSTEM_COUNTRY_CODE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private String countryCode;
 
     /**
@@ -48,6 +57,8 @@ public class ApiSystem {
      */
     @Json(name = JSON_SYSTEM_SUNRISE_TIMESTAMP)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer sunriseTimestamp;
 
     /**
@@ -55,6 +66,8 @@ public class ApiSystem {
      */
     @Json(name = JSON_SYSTEM_SUNSET_TIMESTAMP)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer sunsetTimestamp;
 
     /**
@@ -63,6 +76,8 @@ public class ApiSystem {
      * @return the API type value
      */
     @Nullable
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
     public Integer getType() {
         return type;
     }
@@ -73,7 +88,9 @@ public class ApiSystem {
      * @return the API id value
      */
     @Nullable
-    public Integer getId() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getId() {
         return id;
     }
 
@@ -83,7 +100,9 @@ public class ApiSystem {
      * @return the API message value
      */
     @Nullable
-    public Double getMessage() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getMessage() {
         return message;
     }
 
@@ -93,7 +112,9 @@ public class ApiSystem {
      * @return the country code of the location of the weather
      */
     @Nullable
-    public String getCountryCode() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final String getCountryCode() {
         return countryCode;
     }
 
@@ -103,7 +124,9 @@ public class ApiSystem {
      * @return the timestamp of sunrise at the location of the weather
      */
     @Nullable
-    public Integer getSunriseTimestamp() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getSunriseTimestamp() {
         return sunriseTimestamp;
     }
 
@@ -113,7 +136,9 @@ public class ApiSystem {
      * @return the timestamp of sunset at the location of the weather
      */
     @Nullable
-    public Integer getSunsetTimestamp() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getSunsetTimestamp() {
         return sunsetTimestamp;
     }
 }

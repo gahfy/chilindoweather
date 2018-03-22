@@ -1,10 +1,9 @@
 package net.gahfy.chilindoweather.injection.module;
 
-
-import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import net.gahfy.chilindoweather.ChilindoWeatherApplication;
 import net.gahfy.chilindoweather.ui.base.BaseView;
 
 import dagger.Module;
@@ -62,7 +61,7 @@ public final class ContextModule {
     @NonNull
     // Safe here as it is a module provider
     @SuppressWarnings("unused")
-    static Application provideApplication(@NonNull Context context) {
-        return (Application) context.getApplicationContext();
+    static ChilindoWeatherApplication provideApplication(@NonNull Context context) {
+        return (ChilindoWeatherApplication) context.getApplicationContext();
     }
 }

@@ -23,6 +23,7 @@ public class CurrentWeather implements Parcelable {
             return new CurrentWeather[size];
         }
     };
+
     @Nullable
     private Integer calculationTimestamp;
     @DrawableRes

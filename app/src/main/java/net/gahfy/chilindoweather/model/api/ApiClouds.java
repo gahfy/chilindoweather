@@ -9,13 +9,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CLOUDS
 
 /**
  * Clouds as it is returned by OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiClouds {
+public final class ApiClouds {
     /**
      * Cloudiness in percent
      */
     @Json(name = JSON_CLOUDS_CLOUDINESS)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer cloudiness;
 
     /**
@@ -24,7 +27,9 @@ public class ApiClouds {
      * @return the cloudiness in percent
      */
     @Nullable
-    public Integer getCloudiness() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getCloudiness() {
         return cloudiness;
     }
 }

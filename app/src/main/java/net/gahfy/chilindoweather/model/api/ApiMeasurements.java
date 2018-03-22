@@ -16,13 +16,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUR
 
 /**
  * Weather measurements as they are returned by the OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiMeasurements {
+public final class ApiMeasurements {
     /**
      * Temperature in Kelvin
      */
     @Json(name = JSON_MEASUREMENTS_TEMPERATURE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double temperature;
 
     /**
@@ -30,6 +33,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_PRESSURE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double pressure;
 
     /**
@@ -37,6 +42,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_HUMIDITY)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Integer humidity;
 
     /**
@@ -44,6 +51,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_MINIMUM_TEMPERATURE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double minimumTemperature;
 
     /**
@@ -51,6 +60,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_MAXIMUM_TEMPERATURE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double maximumTemperature;
 
     /**
@@ -58,6 +69,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_SEA_LEVEL_PRESSURE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double seaLevelPressure;
 
     /**
@@ -65,6 +78,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_GROUND_LEVEL_PRESSURE)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double groundLevelPressure;
 
     /**
@@ -72,6 +87,8 @@ public class ApiMeasurements {
      */
     @Json(name = JSON_MEASUREMENTS_TEMP_KF)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double tempKf;
 
     /**
@@ -80,7 +97,9 @@ public class ApiMeasurements {
      * @return the temperature in Kelvin
      */
     @Nullable
-    public Double getTemperature() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getTemperature() {
         return temperature;
     }
 
@@ -90,7 +109,9 @@ public class ApiMeasurements {
      * @return the atmospheric pressure (sea level, if there is no sea or ground level data) in hPa
      */
     @Nullable
-    public Double getPressure() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getPressure() {
         return pressure;
     }
 
@@ -100,7 +121,9 @@ public class ApiMeasurements {
      * @return the humidity in percent
      */
     @Nullable
-    public Integer getHumidity() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Integer getHumidity() {
         return humidity;
     }
 
@@ -110,7 +133,9 @@ public class ApiMeasurements {
      * @return the minimum temperature in Kelvin at the moment (possible for large areas)
      */
     @Nullable
-    public Double getMinimumTemperature() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getMinimumTemperature() {
         return minimumTemperature;
     }
 
@@ -120,7 +145,9 @@ public class ApiMeasurements {
      * @return the maximum temperature in Kelvin at the moment (possible for large areas)
      */
     @Nullable
-    public Double getMaximumTemperature() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getMaximumTemperature() {
         return maximumTemperature;
     }
 
@@ -130,7 +157,9 @@ public class ApiMeasurements {
      * @return the atmospheric pressure on the sea level in hPa
      */
     @Nullable
-    public Double getSeaLevelPressure() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getSeaLevelPressure() {
         return seaLevelPressure;
     }
 
@@ -140,7 +169,9 @@ public class ApiMeasurements {
      * @return the atmospheric pressure on the ground level in hPa
      */
     @Nullable
-    public Double getGroundLevelPressure() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getGroundLevelPressure() {
         return groundLevelPressure;
     }
 
@@ -150,7 +181,9 @@ public class ApiMeasurements {
      * @return the temp_kf value
      */
     @Nullable
-    public Double getTempKf() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getTempKf() {
         return tempKf;
     }
 }

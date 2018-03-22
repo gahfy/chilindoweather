@@ -8,13 +8,16 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SNOW_L
 
 /**
  * Snow as it is returned by the OpenWeatherMap API
+ * @version 2.5
  */
-public class ApiSnow {
+public final class ApiSnow {
     /**
      * Snow volume for the last 3 hours in mm
      */
     @Json(name = JSON_SNOW_LAST_3_HOURS_VOLUME)
     @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
     private Double last3hoursVolume;
 
     /**
@@ -23,7 +26,9 @@ public class ApiSnow {
      * @return the snow volume for the last 3 hours in mm
      */
     @Nullable
-    public Double getLast3hoursVolume() {
+    // Safe as we want to provide all getters for POJOs
+    @SuppressWarnings("unused")
+    public final Double getLast3hoursVolume() {
         return last3hoursVolume;
     }
 }

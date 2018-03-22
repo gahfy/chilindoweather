@@ -8,6 +8,9 @@ import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ * Module which provides all required dependencies about permissions.
+ */
 @Module(includes = {ContextModule.class})
 public class PermissionModule {
     /**
@@ -34,10 +37,10 @@ public class PermissionModule {
     }
 
     /**
-     * Provides the PermissionUtils.
+     * Provides the permission utils.
      *
      * @param context Context in which the application is running
-     * @return the PermissionUtils
+     * @return the permission utils
      */
     @Provides
     @NonNull
