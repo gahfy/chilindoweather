@@ -132,6 +132,15 @@ public final class ApiConstants {
      * The name of the JSON field for the calculation datetime
      */
     public static final String JSON_FORECAST_ITEM_CALCULATION_DATETIME = "dt_txt";
+    /**
+     * The name of the JSON field for API sys value
+     */
+    public static final String JSON_FORECAST_ITEM_SYSTEM = "sys";
+
+    /**
+     * The name of the JSON field for API pod value
+     */
+    public static final String JSON_FORECAST_ITEM_SYSTEM_POD = "pod";
 
     /**
      * The name of the JSON field for the unique identifier of the city

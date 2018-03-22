@@ -11,6 +11,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECA
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_MEASUREMENTS;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_RAIN;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_SNOW;
+import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_SYSTEM;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_WIND;
 
 /**
@@ -90,6 +91,15 @@ public final class ApiForecastItem {
     @Nullable
     @SuppressWarnings({"UnusedDeclaration"})
     private String calculationDatetime;
+
+    /**
+     * API sys value
+     */
+    @Json(name = JSON_FORECAST_ITEM_SYSTEM)
+    // Safe as the variable is assigned by Moshi
+    @Nullable
+    @SuppressWarnings({"UnusedDeclaration"})
+    private ApiForecastItemSystem system;
 
     /**
      * Returns the timestamp for which the forecast has been calculated.
@@ -177,5 +187,17 @@ public final class ApiForecastItem {
     @SuppressWarnings({"unused", "WeakerAccess"})
     public final String getCalculationDatetime() {
         return calculationDatetime;
+    }
+
+    /**
+     * Returns the API sys value.
+     *
+     * @return the API sys value
+     */
+    @Nullable
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
+    public final ApiForecastItemSystem getSystem() {
+        return system;
     }
 }
