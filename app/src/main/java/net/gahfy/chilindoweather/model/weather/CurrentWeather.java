@@ -14,13 +14,12 @@ import net.gahfy.chilindoweather.model.api.ApiWeather;
 import net.gahfy.chilindoweather.model.api.ApiWind;
 import net.gahfy.chilindoweather.utils.ContextUtils;
 import net.gahfy.chilindoweather.utils.StringUtils;
-import net.gahfy.chilindoweather.utils.unit.UnitUtils;
+import net.gahfy.chilindoweather.utils.log.Logger;
 import net.gahfy.chilindoweather.utils.weather.ApiConditionUtils;
 import net.gahfy.chilindoweather.utils.weather.MeasurementsUtils;
 import net.gahfy.chilindoweather.utils.weather.WindUtils;
 
 import static net.gahfy.chilindoweather.utils.unit.UnitUtils.METERS_INDEX;
-import static net.gahfy.chilindoweather.utils.unit.UnitUtils.MILES_INDEX;
 import static net.gahfy.chilindoweather.utils.weather.WindUtils.WIND_TO_FROM_DIFFERENCE;
 
 /**
@@ -42,6 +41,10 @@ public final class CurrentWeather implements Parcelable {
             return new CurrentWeather[size];
         }
     };
+    /**
+     * Tag to be used for logging
+     */
+    private static final String TAG = "CurrentWeather";
     /**
      * Timestamp when the weather has been calculated
      */
@@ -228,14 +231,17 @@ public final class CurrentWeather implements Parcelable {
      */
     @NonNull
     public final String getWindSpeed(@NonNull final Context context, int preferredSpeedIndex) {
-        final Integer userWindSpeed = WindUtils.getWindSpeed(windSpeed, preferredSpeedIndex);
+        try {
+            final Integer userWindSpeed = WindUtils.getWindSpeed(windSpeed, preferredSpeedIndex);
 
-        if (userWindSpeed != null &&
-                (preferredSpeedIndex == METERS_INDEX || preferredSpeedIndex == MILES_INDEX)) {
-            return context.getString(
-                    preferredSpeedIndex == METERS_INDEX ? R.string.wind_speed_metric : R.string.wind_speed_imperial,
-                    userWindSpeed
-            );
+            if (userWindSpeed != null) {
+                return context.getString(
+                        preferredSpeedIndex == METERS_INDEX ? R.string.wind_speed_metric : R.string.wind_speed_imperial,
+                        userWindSpeed
+                );
+            }
+        } catch (IllegalArgumentException e) {
+            Logger.e(TAG, e);
         }
         return context.getString(R.string.unknown_wind_speed);
     }
@@ -318,12 +324,15 @@ public final class CurrentWeather implements Parcelable {
      */
     @NonNull
     public final String getTemperature(@NonNull final Context context, int preferredIndex) {
-        if (temperature != null &&
-                (preferredIndex == UnitUtils.CELSIUS_INDEX || preferredIndex == UnitUtils.FAHRENHEIT_INDEX)) {
-            return context.getString(
-                    R.string.temperature_value,
-                    MeasurementsUtils.getTemperature(temperature, preferredIndex)
-            );
+        try {
+            if (temperature != null) {
+                return context.getString(
+                        R.string.temperature_value,
+                        MeasurementsUtils.getTemperature(temperature, preferredIndex)
+                );
+            }
+        } catch (IllegalArgumentException e) {
+            Logger.e(TAG, e);
         }
         return context.getString(R.string.unknown_temperature);
     }

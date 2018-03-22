@@ -3,7 +3,9 @@ package net.gahfy.chilindoweather.utils.weather;
 import android.support.annotation.Nullable;
 
 import net.gahfy.chilindoweather.model.api.ApiMeasurements;
-import net.gahfy.chilindoweather.utils.unit.UnitUtils;
+
+import static net.gahfy.chilindoweather.utils.unit.UnitUtils.CELSIUS_INDEX;
+import static net.gahfy.chilindoweather.utils.unit.UnitUtils.FAHRENHEIT_INDEX;
 
 public final class MeasurementsUtils {
     private static final double KELVIN_TO_CELSIUS_DIFFERENCE = 273.15;
@@ -39,11 +41,14 @@ public final class MeasurementsUtils {
 
 
     @Nullable
-    public static Integer getTemperature(@Nullable final Double temperature, final int preferredTemperatureIndex) {
+    public static Integer getTemperature(@Nullable final Double temperature, final int preferredTemperatureIndex) throws IllegalArgumentException {
+        if (preferredTemperatureIndex != CELSIUS_INDEX && preferredTemperatureIndex != FAHRENHEIT_INDEX) {
+            throw new IllegalArgumentException("preferredTemperatureIndex must be one of CELSIUS_INDEX or FAHRENHEIT_INDEX.");
+        }
         if (temperature != null) {
-            if (preferredTemperatureIndex == UnitUtils.CELSIUS_INDEX) {
+            if (preferredTemperatureIndex == CELSIUS_INDEX) {
                 return (int) (temperature - KELVIN_TO_CELSIUS_DIFFERENCE);
-            } else if (preferredTemperatureIndex == UnitUtils.FAHRENHEIT_INDEX) {
+            } else {
                 return (int) (temperature * KELVIN_TO_FAHRENHEIT_MULTIPLIER - KELVIN_TO_FAHRENHEIT_DIFFERENCE);
             }
         }

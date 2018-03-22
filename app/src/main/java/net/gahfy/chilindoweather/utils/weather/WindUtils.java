@@ -5,7 +5,9 @@ import android.support.annotation.StringRes;
 
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiWind;
-import net.gahfy.chilindoweather.utils.unit.UnitUtils;
+
+import static net.gahfy.chilindoweather.utils.unit.UnitUtils.METERS_INDEX;
+import static net.gahfy.chilindoweather.utils.unit.UnitUtils.MILES_INDEX;
 
 public final class WindUtils {
     public static final int WIND_TO_FROM_DIFFERENCE = 180;
@@ -54,11 +56,14 @@ public final class WindUtils {
     }
 
     @Nullable
-    public static Integer getWindSpeed(@Nullable final Double windSpeed, final int preferredSpeedIndex) {
+    public static Integer getWindSpeed(@Nullable final Double windSpeed, final int preferredSpeedIndex) throws IllegalArgumentException {
+        if (preferredSpeedIndex != METERS_INDEX && preferredSpeedIndex != MILES_INDEX) {
+            throw new IllegalArgumentException("preferredSpeedIndex must be one of METERS_INDEX or MILES_INDEX.");
+        }
         if (windSpeed != null) {
-            if (preferredSpeedIndex == UnitUtils.METERS_INDEX) {
+            if (preferredSpeedIndex == METERS_INDEX) {
                 return windSpeed.intValue();
-            } else if (preferredSpeedIndex == UnitUtils.MILES_INDEX) {
+            } else {
                 return (int) (windSpeed * METERS_SECOND_TO_MPH_MULTIPLIER);
             }
         }
