@@ -7,15 +7,17 @@ import java.util.Date;
 import java.util.Locale;
 
 public class StringUtils {
+    private static final long JAVA_TIMESTAMP_MULTIPLIER = 1000L;
+
     @NonNull
-    public static String formatDate(String language, String dateFormatString, int timestamp) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString, new Locale(language));
-        Date dateInstance = new Date(1000L * ((long) timestamp));
+    public static String formatDate(@NonNull final Locale locale, @NonNull final String dateFormatString, @NonNull final int timestamp) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString, locale);
+        Date dateInstance = new Date(JAVA_TIMESTAMP_MULTIPLIER * ((long) timestamp));
         return dateFormat.format(dateInstance);
     }
 
     @NonNull
-    public static String formatDateWithLongWeekDay(String language, String dateFormatString, int timestamp, String[] weekDays, String[] months) {
+    public static String formatDateWithLongWeekDay(Locale locale, String dateFormatString, int timestamp, String[] weekDays, String[] months) {
         SimpleDateFormat dataDateFormat = new SimpleDateFormat("u/M", Locale.US);
         Date dateInstance = new Date(1000L * ((long) timestamp));
         String[] dateData = dataDateFormat.format(dateInstance).split("/");
@@ -23,6 +25,6 @@ public class StringUtils {
         int month = Integer.parseInt(dateData[1]) - 1;
         dateFormatString = dateFormatString.replaceAll("\\{wd\\}", "'".concat(weekDays[weekDay]).concat("'"));
         dateFormatString = dateFormatString.replaceAll("\\{mn\\}", "'".concat(months[month]).concat("'"));
-        return formatDate(language, dateFormatString, timestamp);
+        return formatDate(locale, dateFormatString, timestamp);
     }
 }

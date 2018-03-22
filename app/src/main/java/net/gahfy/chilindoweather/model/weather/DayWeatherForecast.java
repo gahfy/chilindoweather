@@ -1,12 +1,16 @@
 package net.gahfy.chilindoweather.model.weather;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiForecast;
 import net.gahfy.chilindoweather.model.api.ApiForecastItem;
 import net.gahfy.chilindoweather.utils.DateUtils;
-import net.gahfy.chilindoweather.utils.WeatherUtils;
+import net.gahfy.chilindoweather.utils.StringUtils;
+import net.gahfy.chilindoweather.utils.weather.ApiConditionUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,8 +59,8 @@ public class DayWeatherForecast implements Parcelable {
         if (apiForecast.getForecastItemList() != null) {
             for (ApiForecastItem apiForecastItem : apiForecast.getForecastItemList()) {
                 Integer calculationTimestamp = apiForecastItem.getCalculationTimestamp();
-                int iconResId = WeatherUtils.getIconResId(apiForecastItem.getCondition() == null || apiForecastItem.getCondition().length == 0 || apiForecastItem.getCondition()[0] == null ? null : apiForecastItem.getCondition()[0].getIconId());
-                int conditionDescription = WeatherUtils.getConditionDescriptionResId(apiForecastItem.getCondition() == null || apiForecastItem.getCondition().length == 0 || apiForecastItem.getCondition()[0] == null ? null : apiForecastItem.getCondition()[0].getId());
+                int iconResId = ApiConditionUtils.getIconResId(apiForecastItem.getCondition());
+                int conditionDescription = ApiConditionUtils.getDescriptionResId(apiForecastItem.getCondition());
                 Integer windDirection = apiForecastItem.getWind() == null ? null : (apiForecastItem.getWind().getDirection() == null ? null : apiForecastItem.getWind().getDirection().intValue());
                 Double windSpeed = apiForecastItem.getWind() == null ? null : apiForecastItem.getWind().getSpeed();
                 Double temperature = apiForecastItem.getMeasurements() == null ? null : apiForecastItem.getMeasurements().getTemperature();
@@ -152,5 +156,19 @@ public class DayWeatherForecast implements Parcelable {
 
     public String getCity() {
         return city;
+    }
+
+    @NonNull
+    public String getCalculationDateTime(@NonNull final Context context) {
+        if (dayTimestamp != null) {
+            return StringUtils.formatDateWithLongWeekDay(
+                    context.getResources().getConfiguration().locale,
+                    context.getString(R.string.date_format_forecast),
+                    dayTimestamp,
+                    context.getResources().getStringArray(R.array.week_days),
+                    context.getResources().getStringArray(R.array.months)
+            );
+        }
+        return context.getString(R.string.empty);
     }
 }

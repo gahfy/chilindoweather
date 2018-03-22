@@ -46,7 +46,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     public void setDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList, int temperatureIndex, int speedIndex) {
         itemWrapper.clear();
         for (DayWeatherForecast dayWeatherForecast : dayWeatherForecastList) {
-            itemWrapper.add(dayWeatherForecast.getDayTimestamp());
+            itemWrapper.add(dayWeatherForecast);
             itemWrapper.addAll(dayWeatherForecast.getForecastList());
         }
         this.temperatureIndex = temperatureIndex;
@@ -57,7 +57,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     @Override
     public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
         if (getItemViewType(position) == VIEW_TYPE_DAY) {
-            holder.bind((Integer) itemWrapper.get(position));
+            holder.bind((DayWeatherForecast) itemWrapper.get(position));
         } else {
             holder.bind((InstantWeatherForecast) itemWrapper.get(position), this.temperatureIndex, this.speedIndex);
         }
@@ -65,7 +65,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
 
     @Override
     public int getItemViewType(int position) {
-        return (itemWrapper.get(position) instanceof Integer) ? VIEW_TYPE_DAY : VIEW_TYPE_FORECAST;
+        return (itemWrapper.get(position) instanceof DayWeatherForecast) ? VIEW_TYPE_DAY : VIEW_TYPE_FORECAST;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
             super(binding.getRoot());
         }
 
-        void bind(Integer dayTimestamp) {
+        void bind(DayWeatherForecast dayWeatherForecast) {
         }
 
         void bind(InstantWeatherForecast instantWeatherForecast, int temperatureIndex, int speedIndex) {
@@ -94,8 +94,8 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         }
 
         @Override
-        public void bind(Integer dayTimestamp) {
-            itemForecastDayBinding.setDateTimestamp(dayTimestamp);
+        public void bind(DayWeatherForecast dayWeatherForecast) {
+            itemForecastDayBinding.setDayWeatherForecast(dayWeatherForecast);
         }
     }
 

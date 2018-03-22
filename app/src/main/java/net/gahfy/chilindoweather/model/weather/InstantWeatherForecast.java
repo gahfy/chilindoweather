@@ -1,12 +1,15 @@
 package net.gahfy.chilindoweather.model.weather;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
 import net.gahfy.chilindoweather.R;
+import net.gahfy.chilindoweather.utils.StringUtils;
 import net.gahfy.chilindoweather.utils.unit.UnitUtils;
 
 public class InstantWeatherForecast implements Parcelable {
@@ -162,5 +165,18 @@ public class InstantWeatherForecast implements Parcelable {
         } else {
             return windSpeed.intValue();
         }
+    }
+
+
+    @NonNull
+    public String getCalculationTime(@NonNull final Context context) {
+        if (calculationTimestamp != null) {
+            return StringUtils.formatDate(
+                    context.getResources().getConfiguration().locale,
+                    context.getString(R.string.forecast_time_format),
+                    calculationTimestamp
+            );
+        }
+        return context.getString(R.string.empty);
     }
 }

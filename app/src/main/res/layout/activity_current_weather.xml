@@ -39,20 +39,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
-            android:text="@{weather.getCalculationTimestamp() == null ? @string/unknown_calculation_date : StringUtils.formatDate(@string/language, @string/calculation_date_format, safeUnbox(weather.getCalculationTimestamp()))}"
+            android:text="@{weather.getCalculationDateTime(context)}"
             android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="03-22-2018 08:30 PM" />
 
         <TextView
             android:id="@+id/weather_wind_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="0dp"
-            android:text="@{weather.getWindSpeed(preferredSpeedIndex) == null ? @string/unknown_wind_speed : String.format(locale, preferredSpeedIndex == 0 ? @string/wind_speed_metric : @string/wind_speed_imperial, weather.getWindSpeed(preferredSpeedIndex))}"
+            android:text="@{weather.getWindSpeed(context, preferredSpeedIndex)}"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weather_calculation_date" />
+            app:layout_constraintTop_toBottomOf="@+id/weather_calculation_date"
+            tools:text="215 mph" />
 
         <TextView
             android:id="@+id/weather_direction_label"
@@ -67,10 +69,11 @@
             android:id="@+id/weather_gust_speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), weather.getWindDirectionOrientation() == 0 ? @string/empty : context.getString(weather.getWindDirectionOrientation()))}"
+            android:text="@{weather.getWindDirection(context)}"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
-            app:layout_constraintTop_toBottomOf="@+id/weather_direction_label" />
+            app:layout_constraintTop_toBottomOf="@+id/weather_direction_label"
+            tools:text="35°N" />
 
         <TextView
             android:id="@+id/weather_humidity_label"
@@ -87,11 +90,12 @@
             android:id="@+id/weather_humidity_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.getHumidity() == null ? @string/unknown_humidity : String.format(locale, @string/humidity_value, weather.getHumidity())}"
+            android:text="@{weather.getHumidity(context)}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/weather_humidity_label"
             app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
-            app:layout_constraintTop_toTopOf="@+id/weather_humidity_label" />
+            app:layout_constraintTop_toTopOf="@+id/weather_humidity_label"
+            tools:text="100 %" />
 
         <TextView
             android:id="@+id/weather_pressure_label"
@@ -106,11 +110,12 @@
             android:id="@+id/weather_pressure_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.getAtmosphericPressure() == null ? @string/unknown_pressure : String.format(locale, @string/pressure_value, weather.getAtmosphericPressure())}"
+            android:text="@{weather.getAtmosphericPressure(context)}"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/weather_pressure_label"
             app:layout_constraintEnd_toEndOf="@+id/weather_wind_speed"
-            app:layout_constraintTop_toTopOf="@+id/weather_pressure_label" />
+            app:layout_constraintTop_toTopOf="@+id/weather_pressure_label"
+            tools:text="1015hPa" />
 
         <ImageView
             android:id="@+id/weather_wind_direction_circle"
@@ -127,8 +132,8 @@
             android:id="@+id/weather_wind_direction_arrow"
             android:layout_width="20dp"
             android:layout_height="33dp"
-            android:contentDescription="@{weather.getWindDirectionNormalized() == null ? @string/unknown_wind_direction : String.format(locale, @string/wind_direction_value, weather.getWindDirectionNormalized(), weather.getWindDirectionOrientation() == 0 ? @string/empty : context.getString(weather.getWindDirectionOrientation()))}"
-            android:rotation="@{weather.getWindDirection() == null ? 0 : safeUnbox(weather.getWindDirection())+180}"
+            android:contentDescription="@{weather.getWindDirection(context)}"
+            android:rotation="@{weather.getWindDirectionAngle()}"
             android:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@+id/weather_wind_direction_circle"
             app:layout_constraintEnd_toEndOf="@+id/weather_wind_direction_circle"
@@ -140,11 +145,12 @@
             android:id="@+id/weather_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{weather.getTemperature(preferredTemperatureIndex) == null ? @string/unknown_temperature : String.format(locale, @string/temperature_value, weather.getTemperature(preferredTemperatureIndex))}"
+            android:text="@{weather.getTemperature(context, preferredTemperatureIndex)}"
             android:textColor="@color/colorPrimary"
             android:textSize="53sp"
             app:layout_constraintBottom_toBottomOf="@+id/weather_pressure_label"
-            app:layout_constraintStart_toStartOf="@+id/weather_calculation_date" />
+            app:layout_constraintStart_toStartOf="@+id/weather_calculation_date"
+            tools:text="130°" />
 
         <ImageView
             android:id="@+id/weather_icon"

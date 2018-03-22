@@ -19,16 +19,16 @@
     <string name="loading_network">Retrieving weather data</string>
     <string name="loading_permission">Waiting for location permission</string>
 
-    <string name="wind_speed_metric" formatted="false">%d m/s</string>
-    <string name="wind_speed_imperial" formatted="false">%d mi/h</string>
+    <string name="wind_speed_metric" formatted="true">%1$d m/s</string>
+    <string name="wind_speed_imperial" formatted="true">%1$d mph</string>
     <string name="unknown_wind_speed">&#8230; km/h</string>
 
     <string name="wind_directon_label">Direction:</string>
-    <string name="wind_direction_value" formatted="false">%d°%s</string>
+    <string name="wind_direction_value" formatted="true">%1$d°%2$s</string>
     <string name="unknown_wind_direction">&#8230;</string>
 
     <string name="humidity_label">Humidity:</string>
-    <string name="humidity_value" formatted="false">%d %%</string>
+    <string name="humidity_value" formatted="true">%1$d %%</string>
     <string name="unknown_humidity">&#8230; %%</string>
 
     <string name="pressure_label">Pressure:</string>
@@ -39,7 +39,7 @@
     <string name="rain_value" formatted="false">%d mm</string>
     <string name="unknown_rain">&#8230; mm</string>
 
-    <string name="temperature_value" formatted="false">%d°</string>
+    <string name="temperature_value" formatted="true">%1$d°</string>
     <string name="unknown_temperature">&#8230;°</string>
 
     <string name="calculation_date_format">MM-dd-yyyy hh:mm a</string>
