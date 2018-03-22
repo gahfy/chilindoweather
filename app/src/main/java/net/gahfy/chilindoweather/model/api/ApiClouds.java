@@ -11,6 +11,8 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CLOUDS
  * Clouds as it is returned by OpenWeatherMap API
  * @version 2.5
  */
+// Safe as we want API POJOs to be specific (in case API changes) instead of using inheritance
+@SuppressWarnings("common-java:DuplicatedBlocks")
 public final class ApiClouds {
     /**
      * Cloudiness in percent
