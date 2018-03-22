@@ -114,6 +114,14 @@ project.afterEvaluate {
     }
 }
 
+sonarqube {
+    properties {
+        property 'sonar.jacoco.reportPaths', ["$buildDir/jacoco/testDebugUnitTest.exec"]
+        property 'sonar.java.junit.reportsPath', "$buildDir/test-results/testDebugUnitTest"
+        property 'sonar.tests', "$buildDir/intermediates/classes/test"
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.android.support:appcompat-v7:27.1.0"
@@ -155,14 +163,6 @@ dependencies {
     // Leak Canary
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
-}
-
-sonarRunner {
-    sonarProperties {
-        property 'sonar.jacoco.reportPath', 'D:\\projname\\build\\jacoco\\test.exec'
-        property 'sonar.junit.reportsPath','$buildDir/test-results'
-        property 'sonar.tests', "$buildDir/classes/test"
-    }
 }
 
 apply plugin: 'com.google.gms.google-services'
