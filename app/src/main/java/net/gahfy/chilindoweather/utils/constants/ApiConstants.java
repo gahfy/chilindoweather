@@ -39,6 +39,10 @@ public final class ApiConstants {
      */
     public static final String JSON_WEATHER_MEASUREMENTS = "main";
     /**
+     * The name of the JSON field for the visibility in meters
+     */
+    public static final String JSON_WEATHER_VISIBILITY = "visibility";
+    /**
      * The name of the JSON field for the wind data
      */
     public static final String JSON_WEATHER_WIND = "wind";
@@ -61,7 +65,7 @@ public final class ApiConstants {
     /**
      * The name of the JSON field for the system data
      */
-    public static final String JSON_WEATHER_SYSTEM = "system";
+    public static final String JSON_WEATHER_SYSTEM = "sys";
     /**
      * The name of the JSON field for the unique identifier of the city
      */

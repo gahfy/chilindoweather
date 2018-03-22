@@ -17,6 +17,7 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHE
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_RAIN;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_SNOW;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_SYSTEM;
+import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_VISIBILITY;
 import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_WIND;
 
 /**
@@ -59,6 +60,15 @@ public final class ApiWeather {
     // Safe as the variable is assigned by Moshi
     @SuppressWarnings({"UnusedDeclaration"})
     private ApiMeasurements measurements;
+
+    /**
+     * Visibility in meters
+     */
+    @Json(name = JSON_WEATHER_VISIBILITY)
+    @Nullable
+    // Safe as the variable is assigned by Moshi
+    @SuppressWarnings({"UnusedDeclaration"})
+    private Integer visibility;
 
     /**
      * Wind data
@@ -196,6 +206,18 @@ public final class ApiWeather {
     @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiMeasurements getMeasurements() {
         return measurements;
+    }
+
+    /**
+     * Returns the visibility in meters.
+     *
+     * @return the visibility in meters
+     */
+    @Nullable
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
+    public final Integer getVisibility() {
+        return visibility;
     }
 
     /**

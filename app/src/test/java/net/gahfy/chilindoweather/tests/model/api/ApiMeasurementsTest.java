@@ -31,27 +31,27 @@ public class ApiMeasurementsTest {
     public void testJsonComplete() throws Exception {
         ApiMeasurements apiMeasurements = jsonAdapter.fromJson(JSON_COMPLETE);
 
-        assertEquals("APIMeasurements temperature from JSON", 288.603, apiMeasurements.getTemperature());
-        assertEquals("APIMeasurements minimum temperature from JSON", 287.603, apiMeasurements.getMinimumTemperature());
-        assertEquals("APIMeasurements maximum temperature from JSON", 289.603, apiMeasurements.getMaximumTemperature());
-        assertEquals("APIMeasurements pressure from JSON", 1025.6, apiMeasurements.getPressure());
-        assertEquals("APIMeasurements sea level pressure from JSON", 1035.0, apiMeasurements.getSeaLevelPressure());
-        assertEquals("APIMeasurements ground level pressure from JSON", 1026.6, apiMeasurements.getGroundLevelPressure());
-        assertEquals("APIMeasurements humidity from JSON", Integer.valueOf(100), apiMeasurements.getHumidity());
-        assertEquals("APIMeasurements temp_kf from JSON", 0.0, apiMeasurements.getTempKf());
+        assertEquals("ApiMeasurements temperature from JSON", 288.603, apiMeasurements.getTemperature());
+        assertEquals("ApiMeasurements minimum temperature from JSON", 287.603, apiMeasurements.getMinimumTemperature());
+        assertEquals("ApiMeasurements maximum temperature from JSON", 289.603, apiMeasurements.getMaximumTemperature());
+        assertEquals("ApiMeasurements pressure from JSON", 1025.6, apiMeasurements.getPressure());
+        assertEquals("ApiMeasurements sea level pressure from JSON", 1035.0, apiMeasurements.getSeaLevelPressure());
+        assertEquals("ApiMeasurements ground level pressure from JSON", 1026.6, apiMeasurements.getGroundLevelPressure());
+        assertEquals("ApiMeasurements humidity from JSON", Integer.valueOf(100), apiMeasurements.getHumidity());
+        assertEquals("ApiMeasurements temp_kf from JSON", 0.0, apiMeasurements.getTempKf());
     }
 
     @Test
     public void testJsonEmpty() throws Exception {
         ApiMeasurements apiMeasurements = jsonAdapter.fromJson(JSON_EMPTY);
 
-        assertNull("APIMeasurements temperature from JSON", apiMeasurements.getTemperature());
-        assertNull("APIMeasurements minimum temperature from JSON", apiMeasurements.getMinimumTemperature());
-        assertNull("APIMeasurements maximum temperature from JSON", apiMeasurements.getMaximumTemperature());
-        assertNull("APIMeasurements pressure from JSON", apiMeasurements.getPressure());
-        assertNull("APIMeasurements sea level pressure from JSON", apiMeasurements.getSeaLevelPressure());
-        assertNull("APIMeasurements ground level pressure from JSON", apiMeasurements.getGroundLevelPressure());
-        assertNull("APIMeasurements humidity from JSON", apiMeasurements.getHumidity());
-        assertNull("APIMeasurements temp_kf from JSON", apiMeasurements.getTempKf());
+        assertNull("ApiMeasurements temperature from JSON", apiMeasurements.getTemperature());
+        assertNull("ApiMeasurements minimum temperature from JSON", apiMeasurements.getMinimumTemperature());
+        assertNull("ApiMeasurements maximum temperature from JSON", apiMeasurements.getMaximumTemperature());
+        assertNull("ApiMeasurements pressure from JSON", apiMeasurements.getPressure());
+        assertNull("ApiMeasurements sea level pressure from JSON", apiMeasurements.getSeaLevelPressure());
+        assertNull("ApiMeasurements ground level pressure from JSON", apiMeasurements.getGroundLevelPressure());
+        assertNull("ApiMeasurements humidity from JSON", apiMeasurements.getHumidity());
+        assertNull("ApiMeasurements temp_kf from JSON", apiMeasurements.getTempKf());
     }
 }
