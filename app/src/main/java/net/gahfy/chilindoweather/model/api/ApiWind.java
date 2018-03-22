@@ -11,8 +11,6 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WIND_S
  * Wind as it is returned by the OpenWeatherMap API.
  * @version 2.5
  */
-// Safe as we want API POJOs to be specific (in case API changes) instead of using inheritance
-@SuppressWarnings("findbugs:common-java:DuplicatedBlocks")
 public final class ApiWind {
     /**
      * Wind speed in meter/sec

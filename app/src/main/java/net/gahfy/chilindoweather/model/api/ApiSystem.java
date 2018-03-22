@@ -15,8 +15,6 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM
  * System parameters as it is returned by the OpenWeatherMap API
  * @version 2.5
  */
-// Safe as we want API POJOs to be specific (in case API changes) instead of using inheritance
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public final class ApiSystem {
     /**
      * API type value

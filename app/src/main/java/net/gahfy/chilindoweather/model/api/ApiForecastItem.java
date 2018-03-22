@@ -19,8 +19,6 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECA
  *
  * @version 2.5
  */
-// Safe as we want API POJOs to be specific (in case API changes) instead of using inheritance
-@SuppressWarnings("findbugs:common-java:DuplicatedBlocks")
 public final class ApiForecastItem {
     /**
      * Timestamp for which the weather forecast has been calculated
@@ -148,6 +146,18 @@ public final class ApiForecastItem {
     }
 
     /**
+     * Returns the rain data of the weather forecast.
+     *
+     * @return the rain data of the weather forecast
+     */
+    @Nullable
+    // Safe as we want to provide all getters being public for POJOs
+    @SuppressWarnings({"unused", "WeakerAccess"})
+    public final ApiRain getRain() {
+        return rain;
+    }
+
+    /**
      * Returns the wind data of the weather forecast.
      * @return the wind data of the weather forecast
      */
@@ -156,17 +166,6 @@ public final class ApiForecastItem {
     @SuppressWarnings({"unused", "WeakerAccess"})
     public final ApiWind getWind() {
         return wind;
-    }
-
-    /**
-     * Returns the rain data of the weather forecast.
-     * @return the rain data of the weather forecast
-     */
-    @Nullable
-    // Safe as we want to provide all getters being public for POJOs
-    @SuppressWarnings({"unused", "WeakerAccess"})
-    public final ApiRain getRain() {
-        return rain;
     }
 
     /**

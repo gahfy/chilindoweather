@@ -11,8 +11,6 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECA
  *
  * @version 2.5
  */
-// Safe as we want API POJOs to be specific (in case API changes) instead of using inheritance
-@SuppressWarnings("common-java:DuplicatedBlocks")
 public class ApiForecastItemSystem {
     /**
      * API pod value

@@ -23,8 +23,6 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHE
  * Weather as it is returned by the OpenWeatherMap API
  * @version 2.5
  */
-// Safe as we want API POJOs to be specific (in case API changes) instead of using inheritance
-@SuppressWarnings("findbugs:common-java:DuplicatedBlocks")
 public final class ApiWeather {
     /**
      * GPS coordinates to which weather forecast applies
