@@ -12,6 +12,7 @@ import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiMeasurements;
 import net.gahfy.chilindoweather.model.api.ApiWeather;
 import net.gahfy.chilindoweather.model.api.ApiWind;
+import net.gahfy.chilindoweather.utils.ContextUtils;
 import net.gahfy.chilindoweather.utils.StringUtils;
 import net.gahfy.chilindoweather.utils.unit.UnitUtils;
 import net.gahfy.chilindoweather.utils.weather.ApiConditionUtils;
@@ -210,7 +211,7 @@ public final class CurrentWeather implements Parcelable {
     public final String getCalculationDateTime(@NonNull final Context context) {
         if (calculationTimestamp != null) {
             return StringUtils.formatDate(
-                    context.getResources().getConfiguration().locale,
+                    ContextUtils.getLocale(context),
                     context.getString(R.string.calculation_date_format),
                     calculationTimestamp
             );
@@ -229,13 +230,12 @@ public final class CurrentWeather implements Parcelable {
     public final String getWindSpeed(@NonNull final Context context, int preferredSpeedIndex) {
         final Integer userWindSpeed = WindUtils.getWindSpeed(windSpeed, preferredSpeedIndex);
 
-        if (userWindSpeed != null) {
-            if (preferredSpeedIndex == METERS_INDEX || preferredSpeedIndex == MILES_INDEX) {
-                return context.getString(
-                        preferredSpeedIndex == METERS_INDEX ? R.string.wind_speed_metric : R.string.wind_speed_imperial,
-                        userWindSpeed
-                );
-            }
+        if (userWindSpeed != null &&
+                (preferredSpeedIndex == METERS_INDEX || preferredSpeedIndex == MILES_INDEX)) {
+            return context.getString(
+                    preferredSpeedIndex == METERS_INDEX ? R.string.wind_speed_metric : R.string.wind_speed_imperial,
+                    userWindSpeed
+            );
         }
         return context.getString(R.string.unknown_wind_speed);
     }
@@ -266,7 +266,6 @@ public final class CurrentWeather implements Parcelable {
     @NonNull
     public final String getWindDirection(@NonNull final Context context) {
         if (windDirection != null) {
-
             return context.getString(
                     R.string.wind_direction_value,
                     WindUtils.getWindDirectionNormalized(windDirection),
@@ -319,13 +318,12 @@ public final class CurrentWeather implements Parcelable {
      */
     @NonNull
     public final String getTemperature(@NonNull final Context context, int preferredIndex) {
-        if (temperature != null) {
-            if (preferredIndex == UnitUtils.CELSIUS_INDEX || preferredIndex == UnitUtils.FAHRENHEIT_INDEX) {
-                return context.getString(
-                        R.string.temperature_value,
-                        MeasurementsUtils.getTemperature(temperature, preferredIndex)
-                );
-            }
+        if (temperature != null &&
+                (preferredIndex == UnitUtils.CELSIUS_INDEX || preferredIndex == UnitUtils.FAHRENHEIT_INDEX)) {
+            return context.getString(
+                    R.string.temperature_value,
+                    MeasurementsUtils.getTemperature(temperature, preferredIndex)
+            );
         }
         return context.getString(R.string.unknown_temperature);
     }

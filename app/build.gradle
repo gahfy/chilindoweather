@@ -157,4 +157,12 @@ dependencies {
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 }
 
+sonarRunner {
+    sonarProperties {
+        property 'sonar.jacoco.reportPath', 'D:\\projname\\build\\jacoco\\test.exec'
+        property 'sonar.junit.reportsPath','$buildDir/test-results'
+        property 'sonar.tests', "$buildDir/classes/test"
+    }
+}
+
 apply plugin: 'com.google.gms.google-services'
