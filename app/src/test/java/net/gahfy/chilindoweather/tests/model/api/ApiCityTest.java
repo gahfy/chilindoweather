@@ -1,7 +1,9 @@
-package net.gahfy.chilindoweather.model.api;
+package net.gahfy.chilindoweather.tests.model.api;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+
+import net.gahfy.chilindoweather.model.api.ApiCity;
 
 import org.junit.Test;
 
