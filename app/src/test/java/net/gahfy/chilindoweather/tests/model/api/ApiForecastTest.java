@@ -5,6 +5,8 @@ import com.squareup.moshi.Moshi;
 
 import net.gahfy.chilindoweather.model.api.ApiForecast;
 
+import org.junit.Test;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
@@ -23,6 +25,7 @@ public class ApiForecastTest {
     private final Moshi moshi = new Moshi.Builder().build();
     private final JsonAdapter<ApiForecast> jsonAdapter = moshi.adapter(ApiForecast.class);
 
+    @Test
     public void testJsonComplete() throws Exception {
         ApiForecast apiForecast = jsonAdapter.fromJson(JSON_COMPLETE);
 
@@ -33,8 +36,9 @@ public class ApiForecastTest {
         assertNotNull("ApiForecast city from JSON", apiForecast.getCity());
     }
 
+    @Test
     public void testJsonEmpty() throws Exception {
-        ApiForecast apiForecast = jsonAdapter.fromJson(JSON_COMPLETE);
+        ApiForecast apiForecast = jsonAdapter.fromJson(JSON_EMPTY);
 
         assertNull("ApiForecast http code from JSON", apiForecast.getHttpCode());
         assertNull("ApiForecast message from JSON", apiForecast.getErrorMessage());
