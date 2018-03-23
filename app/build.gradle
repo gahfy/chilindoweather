@@ -89,8 +89,12 @@ project.afterEvaluate {
                 classDirectories =
                         fileTree(dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
                                 excludes: ['**/R.class',
+                                           // Remove Databinding as they are generated classes
                                            '**/net/gahfy/chilindoweather/databinding/*.*',
+                                           // Remove Activity and application as they are dependent to Context
                                            '**/*Activity.class',
+                                           '**/net/gahfy/chilindoweather/ChilindoWeatherApplication.class',
+                                           // Remove Dependency injection as it is overriden in unit tests
                                            '**/net/gahfy/chilindoweather/injection/*.*',
                                            '**/R$*.class',
                                            '**/*$ViewInjector*.*',
