@@ -223,7 +223,7 @@ public final class CurrentWeather implements Parcelable {
     }
 
     /**
-     * Returns the localized spped of the wind.
+     * Returns the localized speed of the wind.
      *
      * @param context             Context in which the application is running
      * @param preferredSpeedIndex the index of preferred unit for speed
