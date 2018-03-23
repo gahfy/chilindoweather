@@ -69,9 +69,9 @@ public class DayWeatherForecast implements Parcelable {
         public int compare(@NonNull final InstantWeatherForecast forecast1, @NonNull final InstantWeatherForecast forecast2) {
             if (forecast1.getCalculationTimestamp() == null && forecast2.getCalculationTimestamp() == null) {
                 return 0;
-            } else if (forecast1.getCalculationTimestamp() == null && forecast2.getCalculationTimestamp() != null) {
+            } else if (forecast1.getCalculationTimestamp() == null) {
                 return -1;
-            } else if (forecast1.getCalculationTimestamp() != null && forecast2.getCalculationTimestamp() == null) {
+            } else if (forecast2.getCalculationTimestamp() == null) {
                 return 1;
             } else {
                 return forecast1.getCalculationTimestamp().compareTo(forecast2.getCalculationTimestamp());
