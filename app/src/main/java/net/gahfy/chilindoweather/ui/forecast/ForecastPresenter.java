@@ -20,6 +20,7 @@ import net.gahfy.chilindoweather.utils.preferences.PreferencesUtils;
 import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -55,7 +56,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     @Inject
     PreferencesUtils preferencesUtils;
 
-    private ArrayList<DayWeatherForecast> dayWeatherForecastList = null;
+    private List<DayWeatherForecast> dayWeatherForecastList = null;
 
     private Disposable disposable = null;
 
@@ -73,7 +74,9 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
 
     @Override
     public Bundle saveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList(FORECAST_KEY, dayWeatherForecastList);
+        ArrayList<DayWeatherForecast> dayWeatherForecasts = new ArrayList<>();
+        dayWeatherForecasts.addAll(this.dayWeatherForecastList);
+        outState.putParcelableArrayList(FORECAST_KEY, dayWeatherForecasts);
         return outState;
     }
 
@@ -129,9 +132,9 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     protected void onLocationAvailable(final Location location) {
         view.showLoading(R.string.loading_network);
         disposable = openWeatherMapApi.getForecast(location.getLatitude(), location.getLongitude())
-                .flatMap(new Function<ApiForecast, ObservableSource<ArrayList<DayWeatherForecast>>>() {
+                .flatMap(new Function<ApiForecast, ObservableSource<List<DayWeatherForecast>>>() {
                     @Override
-                    public ObservableSource<ArrayList<DayWeatherForecast>> apply(ApiForecast apiForecast) throws Exception {
+                    public ObservableSource<List<DayWeatherForecast>> apply(ApiForecast apiForecast) throws Exception {
                         return Observable.just(DayWeatherForecast.getDayWeatherForecastList(apiForecast));
                     }
                 })
@@ -143,9 +146,9 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                         view.hideLoading();
                     }
                 })
-                .subscribe(new Consumer<ArrayList<DayWeatherForecast>>() {
+                .subscribe(new Consumer<List<DayWeatherForecast>>() {
                     @Override
-                    public void accept(ArrayList<DayWeatherForecast> dayWeatherForecastList) throws Exception {
+                    public void accept(List<DayWeatherForecast> dayWeatherForecastList) throws Exception {
                         updateDayWeatherForecastList(dayWeatherForecastList);
                         if (dayWeatherForecastList.size() > 0 && dayWeatherForecastList.get(0).getCity() != null) {
                             view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
@@ -167,7 +170,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                 });
     }
 
-    private void updateDayWeatherForecastList(ArrayList<DayWeatherForecast> dayWeatherForecastList) {
+    private void updateDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList) {
         view.showContent();
         this.dayWeatherForecastList = dayWeatherForecastList;
         view.setDayWeatherForecastList(dayWeatherForecastList, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
