@@ -90,6 +90,8 @@ project.afterEvaluate {
                         fileTree(dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
                                 excludes: ['**/R.class',
                                            '**/net/gahfy/chilindoweather/databinding/*.*',
+                                           '**/*Activity.class',
+                                           '**/net/gahfy/chilindoweather/injection/*.*',
                                            '**/R$*.class',
                                            '**/*$ViewInjector*.*',
                                            '**/*$ViewBinder*.*',
