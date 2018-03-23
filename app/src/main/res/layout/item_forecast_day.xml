@@ -20,6 +20,6 @@
         android:paddingEnd="16dp"
         android:paddingStart="16dp"
         android:paddingTop="6dp"
-        android:text="@{dayWeatherForecast.getCalculationDateTime(context)}"
+        android:text="@{dayWeatherForecast.getDay(context)}"
         android:textSize="16sp" />
 </layout>

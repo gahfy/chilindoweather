@@ -83,7 +83,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     @Override
-    public void setTitle(@StringRes int titleResId, String... formatString) {
+    public void setTitle(@StringRes int titleResId, @NonNull String... formatString) {
         super.setTitle(getString(titleResId, (Object[]) formatString));
     }
 

@@ -7,8 +7,8 @@ import android.support.annotation.StringRes;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiCondition;
 
-public class ApiConditionUtils {
-    private ApiConditionUtils() {
+public class ConditionUtils {
+    private ConditionUtils() {
     }
 
     @DrawableRes

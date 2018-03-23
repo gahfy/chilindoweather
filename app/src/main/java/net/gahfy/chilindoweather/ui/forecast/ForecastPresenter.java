@@ -147,7 +147,11 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                     @Override
                     public void accept(ArrayList<DayWeatherForecast> dayWeatherForecastList) throws Exception {
                         updateDayWeatherForecastList(dayWeatherForecastList);
-                        view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
+                        if (dayWeatherForecastList.size() > 0 && dayWeatherForecastList.get(0).getCity() != null) {
+                            view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
+                        } else {
+                            view.setTitle(R.string.forecast_title);
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override

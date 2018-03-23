@@ -9,8 +9,12 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
 import net.gahfy.chilindoweather.R;
+import net.gahfy.chilindoweather.model.api.ApiForecastItem;
 import net.gahfy.chilindoweather.utils.StringUtils;
 import net.gahfy.chilindoweather.utils.unit.UnitUtils;
+import net.gahfy.chilindoweather.utils.weather.ConditionUtils;
+import net.gahfy.chilindoweather.utils.weather.MeasurementsUtils;
+import net.gahfy.chilindoweather.utils.weather.WindUtils;
 
 public class InstantWeatherForecast implements Parcelable {
     public static final Creator<InstantWeatherForecast> CREATOR = new Creator<InstantWeatherForecast>() {
@@ -27,19 +31,19 @@ public class InstantWeatherForecast implements Parcelable {
     private Integer calculationTimestamp;
     @DrawableRes
     private int conditionIcon;
-    @DrawableRes
+    @StringRes
     private int conditionDescription;
     private Double temperature;
     private Integer windDirection;
     private Double windSpeed;
 
-    public InstantWeatherForecast(Integer calculationTimestamp, int conditionIcon, int conditionDescription, Double temperature, Integer windDirection, Double windSpeed) {
-        this.calculationTimestamp = calculationTimestamp;
-        this.conditionIcon = conditionIcon;
-        this.conditionDescription = conditionDescription;
-        this.windDirection = windDirection;
-        this.windSpeed = windSpeed;
-        this.temperature = temperature;
+    InstantWeatherForecast(@NonNull final ApiForecastItem apiForecastItem) {
+        this.calculationTimestamp = apiForecastItem.getCalculationTimestamp();
+        this.conditionIcon = ConditionUtils.getIconResId(apiForecastItem.getCondition());
+        this.conditionDescription = ConditionUtils.getDescriptionResId(apiForecastItem.getCondition());
+        this.windDirection = WindUtils.getWindDirection(apiForecastItem.getWind());
+        this.windSpeed = WindUtils.getWindSpeed(apiForecastItem.getWind());
+        this.temperature = MeasurementsUtils.getTemperature(apiForecastItem.getMeasurements());
     }
 
     protected InstantWeatherForecast(Parcel in) {

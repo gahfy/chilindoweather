@@ -33,6 +33,10 @@ So the best would have been to have a service that would try to update the weath
 
 Because of that, I had to decide by myself, so I decided to make what is the most easy for a developer, so the weather is refreshed each time an Activity is created if there is no `savedInstanceState` with weather.
 
+#### Times
+
+The application only allows the user get the weather forecast for their current position (it is not possible to search for the weather forecast for an other place). This means that the current timezone of their phone matches the timezone of the weather forecast they actually get. This is why their is no timezone management in the application.
+
 ## Architecture
 
 The project has been developed with Java as it was required by the specification.

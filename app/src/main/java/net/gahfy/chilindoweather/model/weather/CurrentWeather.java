@@ -15,7 +15,7 @@ import net.gahfy.chilindoweather.model.api.ApiWind;
 import net.gahfy.chilindoweather.utils.ContextUtils;
 import net.gahfy.chilindoweather.utils.StringUtils;
 import net.gahfy.chilindoweather.utils.log.Logger;
-import net.gahfy.chilindoweather.utils.weather.ApiConditionUtils;
+import net.gahfy.chilindoweather.utils.weather.ConditionUtils;
 import net.gahfy.chilindoweather.utils.weather.MeasurementsUtils;
 import net.gahfy.chilindoweather.utils.weather.WindUtils;
 
@@ -107,8 +107,8 @@ public final class CurrentWeather implements Parcelable {
         atmosphericPressure = MeasurementsUtils.getAtmosphericPressure(apiMeasurements);
         windDirection = WindUtils.getWindDirection(apiWind);
         windSpeed = WindUtils.getWindSpeed(apiWind);
-        iconResId = ApiConditionUtils.getIconResId(apiWeather.getCondition());
-        conditionDescription = ApiConditionUtils.getDescriptionResId(apiWeather.getCondition());
+        iconResId = ConditionUtils.getIconResId(apiWeather.getCondition());
+        conditionDescription = ConditionUtils.getDescriptionResId(apiWeather.getCondition());
     }
 
     /**
