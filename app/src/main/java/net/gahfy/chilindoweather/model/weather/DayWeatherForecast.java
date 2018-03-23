@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiForecast;
 import net.gahfy.chilindoweather.model.api.ApiForecastItem;
+import net.gahfy.chilindoweather.utils.ContextUtils;
 import net.gahfy.chilindoweather.utils.DateUtils;
 import net.gahfy.chilindoweather.utils.IntegerUtils;
 import net.gahfy.chilindoweather.utils.StringUtils;
@@ -132,7 +133,7 @@ public class DayWeatherForecast implements Parcelable {
      * @return a list of DayWeatherForecast with data of the specified ApiForecast instance
      */
     @NonNull
-    public static ArrayList<DayWeatherForecast> getDayWeatherForecastList(@NonNull final ApiForecast apiForecast) {
+    public static List<DayWeatherForecast> getDayWeatherForecastList(@NonNull final ApiForecast apiForecast) {
         final String city = CityUtils.getCityName(apiForecast.getCity());
 
         final ArrayList<DayWeatherForecast> dayWeatherForecasts = new ArrayList<>();
@@ -140,22 +141,7 @@ public class DayWeatherForecast implements Parcelable {
         if (apiForecast.getForecastItemList() != null) {
             for (final ApiForecastItem apiForecastItem : apiForecast.getForecastItemList()) {
                 if (apiForecastItem != null) {
-                    final InstantWeatherForecast instantWeatherForecast = new InstantWeatherForecast(apiForecastItem);
-
-                    final Integer midnightTimestamp = DateUtils.getMidnightTimestamp(apiForecastItem.getCalculationTimestamp());
-                    boolean found = false;
-                    for (final DayWeatherForecast dayWeatherForecast : dayWeatherForecasts) {
-                        if (IntegerUtils.equals(dayWeatherForecast.dayTimestamp, midnightTimestamp)) {
-                            dayWeatherForecast.getForecastList().add(instantWeatherForecast);
-                            found = true;
-                        }
-                    }
-                    if (!found) {
-                        final List<InstantWeatherForecast> forecastList = new ArrayList<>();
-                        forecastList.add(instantWeatherForecast);
-                        final DayWeatherForecast dayWeatherForecast = new DayWeatherForecast(midnightTimestamp, forecastList, city);
-                        dayWeatherForecasts.add(dayWeatherForecast);
-                    }
+                    addForecastItemToDayWeatherForecastList(dayWeatherForecasts, apiForecastItem, city);
                 }
             }
         } else {
@@ -169,6 +155,34 @@ public class DayWeatherForecast implements Parcelable {
         }
 
         return dayWeatherForecasts;
+    }
+
+    /**
+     * Inserts the InstantWeatherForecast instance with data from specified apiForecastItem to the
+     * specified dayWeatherForecastList.
+     *
+     * @param dayWeatherForecastList the list in which to add the InstantWeatherForecastInstance
+     * @param apiForecastItem        the ApiForecastItem from which the value must be taken to instantiate
+     *                               the InstantWeatherForecast
+     * @param city                   the city to which the weather forecasts apply
+     */
+    private static void addForecastItemToDayWeatherForecastList(@NonNull final List<DayWeatherForecast> dayWeatherForecastList, @NonNull final ApiForecastItem apiForecastItem, @Nullable final String city) {
+        final InstantWeatherForecast instantWeatherForecast = new InstantWeatherForecast(apiForecastItem);
+
+        final Integer midnightTimestamp = DateUtils.getMidnightTimestamp(apiForecastItem.getCalculationTimestamp());
+        boolean found = false;
+        for (final DayWeatherForecast dayWeatherForecast : dayWeatherForecastList) {
+            if (IntegerUtils.equals(dayWeatherForecast.dayTimestamp, midnightTimestamp)) {
+                dayWeatherForecast.getForecastList().add(instantWeatherForecast);
+                found = true;
+            }
+        }
+        if (!found) {
+            final List<InstantWeatherForecast> forecastList = new ArrayList<>();
+            forecastList.add(instantWeatherForecast);
+            final DayWeatherForecast dayWeatherForecast = new DayWeatherForecast(midnightTimestamp, forecastList, city);
+            dayWeatherForecastList.add(dayWeatherForecast);
+        }
     }
 
     /**
@@ -227,7 +241,7 @@ public class DayWeatherForecast implements Parcelable {
     public final String getDay(@NonNull final Context context) {
         if (dayTimestamp != null) {
             return StringUtils.formatDateWithLongWeekDay(
-                    context.getResources().getConfiguration().locale,
+                    ContextUtils.getLocale(context),
                     context.getString(R.string.date_format_forecast),
                     dayTimestamp,
                     context.getResources().getStringArray(R.array.week_days),
