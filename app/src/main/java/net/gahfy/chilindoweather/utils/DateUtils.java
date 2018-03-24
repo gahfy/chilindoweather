@@ -12,7 +12,7 @@ public class DateUtils {
             c.set(Calendar.MINUTE, 0);
             c.set(Calendar.SECOND, 0);
             c.set(Calendar.MILLISECOND, 0);
-            return Long.valueOf(c.getTimeInMillis() / 1000L).intValue();
+            return (int) (c.getTimeInMillis() / 1000L);
         }
         return null;
     }

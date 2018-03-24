@@ -22,14 +22,24 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
     GoogleSignInAccount googleSignInAccount;
 
     @Inject
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
+    @NonNull
     PermissionUtils permissionUtils;
 
     @Inject
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
+    @NonNull
     GoogleSignInClient googleSignInClient;
 
     @Inject
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
+    @NonNull
     PreferencesUtils preferencesUtils;
 
+    @SuppressWarnings("squid:S2637")
     public SettingsPresenter(@NonNull SettingsView view) {
         super(view);
     }

@@ -67,6 +67,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
      *
      * @param view the view associated to the presenter to set
      */
+    @SuppressWarnings("squid:S2637")
     public WeatherPresenter(@NonNull WeatherView view) {
         super(view);
     }
