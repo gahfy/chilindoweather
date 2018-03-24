@@ -34,15 +34,22 @@ public class ChilindoWeatherContextWrapper extends ContextWrapper {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
                 context = context.createConfigurationContext(config);
             } else {
-                context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
+                updateConfituration(context, config);
             }
         }
         return new ChilindoWeatherContextWrapper(context);
     }
 
-    @SuppressWarnings("deprecation")
+    // Safe as we use it only with version < N
+    @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
     public static Locale getSystemLocaleLegacy(Configuration config) {
         return config.locale;
+    }
+
+    // Safe as we use it only with version < N
+    @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
+    public static void updateConfituration(Context context, Configuration config) {
+        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
 
     @TargetApi(Build.VERSION_CODES.N)
