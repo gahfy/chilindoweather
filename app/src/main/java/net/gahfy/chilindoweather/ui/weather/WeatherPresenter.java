@@ -86,6 +86,8 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
      *
      * @param view the view associated to the presenter to set
      */
+    // Safe as non null members are injected by @NonNull providers
+    @SuppressWarnings("squid:S2637")
     WeatherPresenter(@NonNull WeatherView view) {
         super(view);
     }

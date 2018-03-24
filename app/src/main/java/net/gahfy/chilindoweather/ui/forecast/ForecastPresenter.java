@@ -79,6 +79,7 @@ public final class ForecastPresenter extends CommonPresenter<ForecastView> {
 
     private Disposable disposable = null;
 
+    // Safe as non null members are injected by @NonNull providers
     @SuppressWarnings("squid:S2637")
     ForecastPresenter(@NonNull final ForecastView view) {
         super(view);

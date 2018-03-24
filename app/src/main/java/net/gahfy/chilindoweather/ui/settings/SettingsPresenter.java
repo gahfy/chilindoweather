@@ -44,6 +44,7 @@ public final class SettingsPresenter extends CommonPresenter<SettingsView> {
     @NonNull
     PreferencesUtils preferencesUtils;
 
+    // Safe as non null members are injected by @NonNull providers
     @SuppressWarnings("squid:S2637")
     SettingsPresenter(@NonNull final SettingsView view) {
         super(view);
