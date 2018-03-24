@@ -33,10 +33,26 @@ import net.gahfy.chilindoweather.utils.location.LocationUtils;
 import net.gahfy.chilindoweather.utils.log.Logger;
 import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 
+/**
+ * Common presenter that all presenter related to weather must implement.
+ *
+ * @param <V> the type of View the presenter is associated to.
+ */
 public abstract class CommonPresenter<V extends CommonView> extends BasePresenter<V> {
+    /**
+     * The request code of asking for geolocation permission
+     */
     private static final int PERMISSION_REQUEST_CODE = 1;
+
+    /**
+     * The request code for result of Google Sign-In
+     */
     private static final int GOOGLE_SIGN_IN_REQUEST_CODE = 2;
 
+    /**
+     * Click listener to handle click on GRANT on geolocation rationale message
+     */
+    @NonNull
     private final View.OnClickListener rationaleRetryClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -45,20 +61,26 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     };
 
+    /**
+     * Location listener to handle location events
+     */
+    @NonNull
     private final LocationUtils.SingleLocationListener locationListener = new LocationUtils.SingleLocationListener() {
+        private static final String TAG = "CommonPresenter.locationListener";
+
         @Override
-        public void onLocationFound(Location location) {
-            Logger.e(CommonPresenter.class.getSimpleName(), "Location found: " + location.getLatitude() + "," + location.getLongitude());
+        public final void onLocationFound(@NonNull final Location location) {
+            Logger.d(TAG, "Location found: " + location.getLatitude() + "," + location.getLongitude());
             onLocationAvailable(location);
         }
 
         @Override
-        public void onGeolocationStarted() {
+        public final void onGeolocationStarted() {
             view.hideNoGeolocationAvailableError();
         }
 
         @Override
-        public void onProviderNotAvailableError() {
+        public final void onProviderNotAvailableError() {
             view.showNoGeolocationAvailableError(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -69,7 +91,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
 
         @Override
-        public void onPermissionError() {
+        public final void onPermissionError() {
             manageGeolocationPermission();
         }
     };
@@ -79,17 +101,20 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
      *
      * @param view the view associated to the presenter to set
      */
-    public CommonPresenter(@NonNull V view) {
+    public CommonPresenter(@NonNull final V view) {
         super(view);
     }
 
-    public void onViewCreated(Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final Bundle savedInstanceState){
     }
 
-    public void saveInstanceState(Bundle outState) {
+    public void saveInstanceState(@NonNull final Bundle outState){
     }
 
-    public void onResumeView() {
+    /**
+     * Method that must be called when the view is resumed
+     */
+    protected void onResumeView() {
         inject();
         checkRelevantMenu();
         presentAccount(getGoogleSignInAccount());
@@ -98,6 +123,54 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
+    /**
+     * Method that must be called when the view is destroyed
+     */
+    protected void onViewDestroyed() {
+        getLocationUtils().removeSingleLocationListener(locationListener);
+    }
+
+    /**
+     * Handles google Sign-In result
+     *
+     * @param requestCode the request code (to check if it's a Google Sign-In result)
+     * @param data        the data sent by Google Sign-In
+     */
+    final void onActivityResult(final int requestCode, @NonNull final Intent data) {
+        if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
+            GoogleSignInResult result = getSignInResultFromIntent(data);
+            onGoogleSignInResult(result);
+        }
+    }
+
+    /**
+     * Method that must be called when a result from permission is retrieved.
+     *
+     * @param requestCode  the request code
+     * @param grantResults the result of permission request
+     */
+    final void onPermissionResult(final int requestCode, @NonNull final int[] grantResults) {
+        boolean hasPermission = false;
+        if (requestCode == PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            view.hideGeolocationRationale();
+            hasPermission = true;
+            geolocate();
+        }
+
+        if (!hasPermission) {
+            view.showGeolocationPermissionRationale(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getPermissionUtils().requestGeolocationPermission(PERMISSION_REQUEST_CODE);
+                }
+            });
+        }
+    }
+
+    /**
+     * Performs actions regarding the location permission (geolocate, ask for permission or show
+     * rationale)
+     */
     private void manageGeolocationPermission() {
         if (getPermissionUtils().hasFineLocationPermission()) {
             view.hideGeolocationRationale();
@@ -114,36 +187,46 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
-    void onActivityResult(int requestCode, Intent data) {
-        if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
-            GoogleSignInResult result = getSignInResultFromIntent(data);
-            onGoogleSignInResult(result);
-        }
-    }
-
-    protected GoogleSignInResult getSignInResultFromIntent(Intent data) {
+    /**
+     * Returns a GoogleSignInResult from data in the specified Intent.
+     *
+     * @param data the data sent by Google Sign-In
+     * @return a GoogleSignInResult from data in the specified Internt
+     */
+    private GoogleSignInResult getSignInResultFromIntent(@NonNull final Intent data) {
         return Auth.GoogleSignInApi.getSignInResultFromIntent(data);
     }
 
+    /**
+     * Performs Google Sign-In
+     */
     private void onSignInClick() {
         checkRelevantMenu();
         Intent signInIntent = getGoogleSignInClient().getSignInIntent();
         view.startActivityForResult(signInIntent, GOOGLE_SIGN_IN_REQUEST_CODE);
     }
 
+    /**
+     * Performs Google Sign-Out
+     */
     private void onSignOutClick() {
         checkRelevantMenu();
         getGoogleSignInClient().signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 view.removeUserInfo();
-                view.setMenuVisibility(R.id.sign_in, true);
-                view.setMenuVisibility(R.id.sign_out, false);
+                view.setMenuItemVisibility(R.id.sign_in, true);
+                view.setMenuItemVisibility(R.id.sign_out, false);
             }
         });
     }
 
-    private void onGoogleSignInResult(GoogleSignInResult result) {
+    /**
+     * Called when a GoogleSignInResult is retrieved.
+     *
+     * @param result the GoogleSignInResult that has been retrieved
+     */
+    private void onGoogleSignInResult(@NonNull final GoogleSignInResult result) {
         if (result.isSuccess()) {
             presentAccount(result.getSignInAccount());
         } else {
@@ -157,33 +240,36 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
+    /**
+     * Starts Geolocation
+     */
     // Safe as Geolocate is only called when permission is granted
     @SuppressLint("MissingPermission")
     private void geolocate() {
         view.showLoading(R.string.loading_location);
-        if (getLocationUtils() != null) {
-            getLocationUtils().addSingleLocationListener(locationListener);
-        }
+        getLocationUtils().addSingleLocationListener(locationListener);
     }
 
-    public void onViewDestroyed() {
-        if (getLocationUtils() != null) {
-            getLocationUtils().removeSingleLocationListener(locationListener);
-        }
-    }
-
-    private void presentAccount(final GoogleSignInAccount account) {
+    /**
+     * Presents the Google account in the view.
+     *
+     * @param account the Google account to present
+     */
+    private void presentAccount(@Nullable final GoogleSignInAccount account) {
         if (account != null) {
-            view.setMenuVisibility(R.id.sign_in, false);
-            view.setMenuVisibility(R.id.sign_out, true);
+            view.setMenuItemVisibility(R.id.sign_in, false);
+            view.setMenuItemVisibility(R.id.sign_out, true);
             view.showProfileInfo(account.getPhotoUrl(), account.getDisplayName(), account.getEmail());
         } else {
-            view.setMenuVisibility(R.id.sign_in, true);
-            view.setMenuVisibility(R.id.sign_out, false);
+            view.setMenuItemVisibility(R.id.sign_in, true);
+            view.setMenuItemVisibility(R.id.sign_out, false);
             view.removeUserInfo();
         }
     }
 
+    /**
+     * Shows Sign-In or Logout regarding status (logged or not) of the user
+     */
     private void checkRelevantMenu() {
         if (this instanceof WeatherPresenter) {
             view.checkMenu(R.id.current_weather);
@@ -194,9 +280,15 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
+    /**
+     * Returns the NavigationItemClickListener to handle when a user clicks on an item of the
+     * NavigationDrawer.
+     * @return the NavigationItemClickListener
+     */
     // Safe as it in use for unit tests
     @SuppressWarnings("WeakerAccess")
-    public NavigationView.OnNavigationItemSelectedListener getOnNavigationItemSelectedListener() {
+    @NonNull
+    public final NavigationView.OnNavigationItemSelectedListener getOnNavigationItemSelectedListener() {
         return new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -236,44 +328,66 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         };
     }
 
-    void onPermissionResult(int requestCode, int[] grantResults) {
-        boolean hasPermission = false;
-        if (requestCode == PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            view.hideGeolocationRationale();
-            hasPermission = true;
-            geolocate();
-        }
-
-        if (!hasPermission) {
-            view.showGeolocationPermissionRationale(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getPermissionUtils().requestGeolocationPermission(PERMISSION_REQUEST_CODE);
-                }
-            });
-        }
-    }
-
+    /**
+     * Returns the GoogleSignInClient injected in final presenters.
+     * @return the GoogleSignInClient injected in final presenters
+     */
+    @NonNull
     protected abstract GoogleSignInClient getGoogleSignInClient();
 
+    /**
+     * Returns the PermissionUtils injected in final presenters.
+     * @return the PermissionUtils injected in final presenters
+     */
+    @NonNull
     protected abstract PermissionUtils getPermissionUtils();
 
+    /**
+     * Returns the GoogleSignInAccount injected in final presenters.
+     * @return the GoogleSignInAccount injected in final presenters
+     */
+    @NonNull
     protected abstract GoogleSignInAccount getGoogleSignInAccount();
 
-    @Nullable
+    /**
+     * Returns the LocationUtils injected in final presenters.
+     * @return the LocationUtils injected in final presenters
+     */
+    @NonNull
     protected abstract LocationUtils getLocationUtils();
 
+    /**
+     * Returns whether the view needs geolocation or not
+     * @return whether the view needs geolocation or not
+     */
     protected boolean needGeolocationonStartup() {
         return false;
     }
 
-    protected void onLocationAvailable(Location location) {
+    /**
+     * Called when location is available.
+     *
+     * @param location the retrieved location.
+     */
+    protected void onLocationAvailable(@NonNull final Location location) {
     }
 
+    /**
+     * MenuItemRunnable to avoid final in things that are Asynchronous
+     */
     private abstract static class MenuItemRunnable implements Runnable {
-        MenuItem menuItem;
+        /**
+         * MenuItem of the Runnable
+         */
+        @NonNull
+        final MenuItem menuItem;
 
-        public MenuItemRunnable(MenuItem menuItem) {
+        /**
+         * Instantiates a new MenuItemRunnable
+         *
+         * @param menuItem the menuItem to keep in the runnable
+         */
+        MenuItemRunnable(@NonNull final MenuItem menuItem) {
             super();
             this.menuItem = menuItem;
         }
