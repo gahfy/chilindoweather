@@ -47,7 +47,7 @@ public final class ContextModule {
     @NonNull
     // Safe here as it is a module provider
     @SuppressWarnings("unused")
-    static Context provideContext(@NonNull BaseView view) {
+    static Context provideContext(@NonNull final BaseView view) {
         return view.getContext();
     }
 
@@ -61,7 +61,7 @@ public final class ContextModule {
     @NonNull
     // Safe here as it is a module provider
     @SuppressWarnings("unused")
-    static ChilindoWeatherApplication provideApplication(@NonNull Context context) {
+    static ChilindoWeatherApplication provideApplication(@NonNull final Context context) {
         return (ChilindoWeatherApplication) context.getApplicationContext();
     }
 }

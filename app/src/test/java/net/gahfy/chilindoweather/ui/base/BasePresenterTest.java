@@ -27,7 +27,7 @@ public class BasePresenterTest {
         @SuppressWarnings("unused")
         OpenWeatherMapApi openWeatherMapApi;
 
-        BasePresenterClass(@NonNull BaseViewClass view) {
+        BasePresenterClass(@NonNull final BaseViewClass view) {
             super(view);
         }
     }

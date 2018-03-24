@@ -13,12 +13,23 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-final class ContextModule {
+public final class ContextModule {
+    @NonNull
+    private static final ContextModule instance = new ContextModule();
+
+    private ContextModule() {
+    }
+
+    @NonNull
+    public static ContextModule getInstance() {
+        return instance;
+    }
+
     @Provides
     @NonNull
     // Safe here as it is a module provider
     @SuppressWarnings("unused")
-    static Context provideContext(@NonNull BaseView view) {
+    public static Context provideContext(@NonNull final BaseView view) {
         ChilindoWeatherApplication application = Mockito.mock(ChilindoWeatherApplication.class);
         Mockito.when(application.getApplicationContext()).thenReturn(application);
         return application;
@@ -28,7 +39,7 @@ final class ContextModule {
     @NonNull
     // Safe here as it is a module provider
     @SuppressWarnings("unused")
-    static ChilindoWeatherApplication provideApplication(@NonNull Context context) {
+    public static ChilindoWeatherApplication provideApplication(@NonNull final Context context) {
         return (ChilindoWeatherApplication) context.getApplicationContext();
     }
 }
