@@ -74,7 +74,6 @@ project.afterEvaluate {
 
             def testTaskName = "test${sourceName.capitalize()}UnitTest"
 
-            //noinspection GroovyAssignabilityCheck
             task "create${sourceName.capitalize()}UnitTestCoverageReport"(type: JacocoReport, dependsOn: "$testTaskName") {
 
                 group = "Reporting"
@@ -156,7 +155,10 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // Firebase
+    //TODO: Update Firebase version
+    //noinspection GradleDependency
     implementation 'com.google.firebase:firebase-auth:11.8.0'
+    //noinspection GradleDependency
     implementation 'com.google.android.gms:play-services-auth:11.8.0'
 
     // Glide

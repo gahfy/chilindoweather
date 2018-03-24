@@ -76,6 +76,12 @@ key_store_password=chilindo
 release_password=chilindorelease
 ```
 
+### Use of `@SuppressWarning` and `//noinspect`
+
+The use of `@SuppressWarning` and `//noinspect` allows to remove solve false positive warnings. It allows to have a 0 code smell on Sonar and no warning in Android Studio.
+
+The goal by having 0 warning and code smells is to be able to easily detect new ones when writing new code, as Android Studio warns you when you commit, and you have the ability to check the number of code smells with Sonar.
+
 ## Continuous Integration
 
 ### Travis

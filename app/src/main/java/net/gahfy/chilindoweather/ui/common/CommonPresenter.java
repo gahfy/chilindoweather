@@ -127,7 +127,9 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
      * Method that must be called when the view is destroyed
      */
     protected void onViewDestroyed() {
-        getLocationUtils().removeSingleLocationListener(locationListener);
+        if (getLocationUtils() != null) {
+            getLocationUtils().removeSingleLocationListener(locationListener);
+        }
     }
 
     /**
@@ -247,7 +249,9 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     @SuppressLint("MissingPermission")
     private void geolocate() {
         view.showLoading(R.string.loading_location);
-        getLocationUtils().addSingleLocationListener(locationListener);
+        if (getLocationUtils() != null) {
+            getLocationUtils().addSingleLocationListener(locationListener);
+        }
     }
 
     /**
@@ -353,7 +357,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
      * Returns the LocationUtils injected in final presenters.
      * @return the LocationUtils injected in final presenters
      */
-    @NonNull
+    @Nullable
     protected abstract LocationUtils getLocationUtils();
 
     /**

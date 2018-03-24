@@ -40,7 +40,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
     PreferencesUtils preferencesUtils;
 
     @SuppressWarnings("squid:S2637")
-    public SettingsPresenter(@NonNull SettingsView view) {
+    SettingsPresenter(@NonNull SettingsView view) {
         super(view);
     }
 
@@ -85,11 +85,13 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
     }
 
     @Override
+    @NonNull
     protected GoogleSignInClient getGoogleSignInClient() {
         return googleSignInClient;
     }
 
     @Override
+    @NonNull
     protected PermissionUtils getPermissionUtils() {
         return permissionUtils;
     }
@@ -101,6 +103,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
     }
 
     @Override
+    @Nullable
     protected LocationUtils getLocationUtils() {
         return null;
     }

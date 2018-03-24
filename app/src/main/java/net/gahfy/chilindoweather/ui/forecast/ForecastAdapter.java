@@ -22,12 +22,12 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private static final int VIEW_TYPE_DAY = 0;
     private static final int VIEW_TYPE_FORECAST = 1;
 
-    Context context;
-    List<Object> itemWrapper = new ArrayList<>();
-    int temperatureIndex;
-    int speedIndex;
+    private Context context;
+    private List<Object> itemWrapper = new ArrayList<>();
+    private int temperatureIndex;
+    private int speedIndex;
 
-    public ForecastAdapter(Context context) {
+    ForecastAdapter(Context context) {
         this.context = context;
     }
 
@@ -43,7 +43,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         }
     }
 
-    public void setDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList, int temperatureIndex, int speedIndex) {
+    void setDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList, int temperatureIndex, int speedIndex) {
         itemWrapper.clear();
         for (DayWeatherForecast dayWeatherForecast : dayWeatherForecastList) {
             itemWrapper.add(dayWeatherForecast);
@@ -88,7 +88,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private static class ForecastDayViewHolder extends ForecastViewHolder {
         private ItemForecastDayBinding itemForecastDayBinding;
 
-        public ForecastDayViewHolder(ViewDataBinding binding) {
+        ForecastDayViewHolder(ViewDataBinding binding) {
             super(binding);
             itemForecastDayBinding = (ItemForecastDayBinding) binding;
         }
@@ -102,7 +102,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private static class ForecastInstantViewHolder extends ForecastViewHolder {
         private ItemWeatherForecastBinding itemWeatherForecastBinding;
 
-        public ForecastInstantViewHolder(ViewDataBinding binding) {
+        private ForecastInstantViewHolder(ViewDataBinding binding) {
             super(binding);
             itemWeatherForecastBinding = (ItemWeatherForecastBinding) binding;
         }

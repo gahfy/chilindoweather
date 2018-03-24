@@ -67,13 +67,12 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
      *
      * @param view the view associated to the presenter to set
      */
-    @SuppressWarnings("squid:S2637")
-    public WeatherPresenter(@NonNull WeatherView view) {
+    WeatherPresenter(@NonNull WeatherView view) {
         super(view);
     }
 
     @Override
-    public void onViewCreated(Bundle savedInstanceState) {
+    public void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey(CURRENT_WEATHER_KEY)) {
             currentWeather = savedInstanceState.getParcelable(CURRENT_WEATHER_KEY);
@@ -81,7 +80,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     }
 
     @Override
-    public void saveInstanceState(Bundle outState) {
+    public void saveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(CURRENT_WEATHER_KEY, currentWeather);
     }
 
@@ -128,6 +127,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     }
 
     @Override
+    @NonNull
     protected LocationUtils getLocationUtils() {
         return locationUtils;
     }
