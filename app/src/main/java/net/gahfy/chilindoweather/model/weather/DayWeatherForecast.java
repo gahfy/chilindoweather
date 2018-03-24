@@ -50,9 +50,8 @@ public class DayWeatherForecast implements Parcelable {
     private static final Comparator<DayWeatherForecast> DAY_WEATHER_FORECAST_COMPARATOR = new Comparator<DayWeatherForecast>() {
         @Override
         public int compare(@NonNull final DayWeatherForecast forecast1, @NonNull final DayWeatherForecast forecast2) {
-            if (forecast1.dayTimestamp == null && forecast2.dayTimestamp == null) {
-                return 0;
-            } else if (forecast1.dayTimestamp == null) {
+            // we know that dayTimestamps are not equals, because if they are, then they are merged
+            if (forecast1.dayTimestamp == null) {
                 return -1;
             } else if (forecast2.dayTimestamp == null) {
                 return 1;
@@ -67,12 +66,9 @@ public class DayWeatherForecast implements Parcelable {
     private static final Comparator<InstantWeatherForecast> INSTANT_WEATHER_FORECAST_COMPARATOR = new Comparator<InstantWeatherForecast>() {
         @Override
         public int compare(@NonNull final InstantWeatherForecast forecast1, @NonNull final InstantWeatherForecast forecast2) {
-            if (forecast1.getCalculationTimestamp() == null && forecast2.getCalculationTimestamp() == null) {
+            // They are both null or both non-null, due to separation of instant in days
+            if (forecast1.getCalculationTimestamp() == null) {
                 return 0;
-            } else if (forecast1.getCalculationTimestamp() == null) {
-                return -1;
-            } else if (forecast2.getCalculationTimestamp() == null) {
-                return 1;
             } else {
                 return forecast1.getCalculationTimestamp().compareTo(forecast2.getCalculationTimestamp());
             }
@@ -112,18 +108,11 @@ public class DayWeatherForecast implements Parcelable {
     /**
      * @author Android Studio Generator
      */
+
     private DayWeatherForecast(@NonNull final Parcel in) {
-        if (in.readByte() == 0) {
-            dayTimestamp = null;
-        } else {
-            dayTimestamp = in.readInt();
-        }
-        if (in.readByte() == 0) {
-            city = null;
-        } else {
-            city = in.readString();
-        }
-        forecastList = in.createTypedArrayList(InstantWeatherForecast.CREATOR);
+        dayTimestamp = (in.readByte() == 0) ? null : in.readInt(); // $COVERAGE-IGNORE$
+        city = in.readString(); // $COVERAGE-IGNORE$
+        forecastList = in.createTypedArrayList(InstantWeatherForecast.CREATOR); // $COVERAGE-IGNORE$
     }
 
     /**

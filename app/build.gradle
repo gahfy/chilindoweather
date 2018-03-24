@@ -85,6 +85,12 @@ project.afterEvaluate {
                     xml.enabled true
                 }
 
+                test {
+                    jacoco {
+
+                    }
+                }
+
                 //Directory where the compiled class files are
                 classDirectories =
                         fileTree(dir: "${project.buildDir}/intermediates/classes/${sourcePath}",
