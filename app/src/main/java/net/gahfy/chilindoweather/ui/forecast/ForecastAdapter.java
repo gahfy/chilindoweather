@@ -73,7 +73,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         return itemWrapper.size();
     }
 
-    static abstract class ForecastViewHolder extends RecyclerView.ViewHolder {
+    abstract static class ForecastViewHolder extends RecyclerView.ViewHolder {
         ForecastViewHolder(ViewDataBinding binding) {
             super(binding.getRoot());
         }

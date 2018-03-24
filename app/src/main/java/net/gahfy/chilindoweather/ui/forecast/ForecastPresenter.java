@@ -45,15 +45,27 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     GoogleSignInAccount googleSignInAccount;
 
     @Inject
+    @NonNull
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
     GoogleSignInClient googleSignInClient;
 
     @Inject
+    @NonNull
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
     PermissionUtils permissionUtils;
 
     @Inject
+    @NonNull
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
     LocationUtils locationUtils;
 
     @Inject
+    @NonNull
+    // Safe as provide method is @NonNull
+    @SuppressWarnings("NullableProblems")
     PreferencesUtils preferencesUtils;
 
     private List<DayWeatherForecast> dayWeatherForecastList = null;
@@ -65,7 +77,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    public void onViewCreated(Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey(FORECAST_KEY)) {
             dayWeatherForecastList = savedInstanceState.getParcelableArrayList(FORECAST_KEY);
