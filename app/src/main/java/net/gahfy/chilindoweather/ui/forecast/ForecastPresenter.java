@@ -147,6 +147,10 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
 
     @Override
     protected final void onLocationAvailable(@NonNull final Location location) {
+        callForecastApi(location);
+    }
+
+    private void callForecastApi(@NonNull final Location location) {
         view.showLoading(R.string.loading_network);
         disposable = openWeatherMapApi.getForecast(location.getLatitude(), location.getLongitude())
                 .flatMap(new Function<ApiForecast, ObservableSource<List<DayWeatherForecast>>>() {
@@ -180,7 +184,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                         view.showNetworkError(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                onLocationAvailable(location);
+                                callForecastApi(location);
                             }
                         });
                     }
