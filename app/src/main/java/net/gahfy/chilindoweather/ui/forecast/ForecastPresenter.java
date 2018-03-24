@@ -76,8 +76,10 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
         super(view);
     }
 
+    // Safe as all Non Null properties are injected
+    @SuppressWarnings("squid:S2637")
     @Override
-    public void onViewCreated(@NonNull Bundle savedInstanceState) {
+    public void onViewCreated(@Nullable Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey(FORECAST_KEY)) {
             dayWeatherForecastList = savedInstanceState.getParcelableArrayList(FORECAST_KEY);
