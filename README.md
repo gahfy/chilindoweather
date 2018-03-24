@@ -82,6 +82,8 @@ The use of `@SuppressWarning` and `//noinspect` allows to remove solve false pos
 
 The goal by having 0 warning and code smells is to be able to easily detect new ones when writing new code, as Android Studio warns you when you commit, and you have the ability to check the number of code smells with Sonar.
 
+If it is allowed to use them, they must all be prefixed with a comment explaining why it is safe to use them (typically starting by `//Safe because`)
+
 ## Continuous Integration
 
 ### Travis

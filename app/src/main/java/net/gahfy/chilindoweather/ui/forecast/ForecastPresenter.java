@@ -136,15 +136,15 @@ public final class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    @Nullable
-    protected final GoogleSignInAccount getGoogleSignInAccount() {
-        return googleSignInAccount;
-    }
-
-    @Override
     @NonNull
     protected final LocationUtils getLocationUtils() {
         return locationUtils;
+    }
+
+    @Override
+    @Nullable
+    protected final GoogleSignInAccount getGoogleSignInAccount() {
+        return googleSignInAccount;
     }
 
     @Override

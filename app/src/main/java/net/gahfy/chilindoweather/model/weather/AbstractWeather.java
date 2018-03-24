@@ -16,8 +16,10 @@ import net.gahfy.chilindoweather.utils.weather.WindUtils;
 import static net.gahfy.chilindoweather.utils.UnitUtils.METERS_INDEX;
 import static net.gahfy.chilindoweather.utils.weather.WindUtils.WIND_TO_FROM_DIFFERENCE;
 
+/**
+ * Weather as it is displayed in the application
+ */
 public abstract class AbstractWeather implements Parcelable {
-
     /**
      * Timestamp to which the weather applies
      */

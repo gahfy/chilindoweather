@@ -96,6 +96,12 @@ public final class SettingsPresenter extends CommonPresenter<SettingsView> {
     }
 
     @Override
+    @Nullable
+    protected final LocationUtils getLocationUtils() {
+        return null;
+    }
+
+    @Override
     @NonNull
     protected final PermissionUtils getPermissionUtils() {
         return permissionUtils;
@@ -107,9 +113,4 @@ public final class SettingsPresenter extends CommonPresenter<SettingsView> {
         return googleSignInAccount;
     }
 
-    @Override
-    @Nullable
-    protected final LocationUtils getLocationUtils() {
-        return null;
-    }
 }
