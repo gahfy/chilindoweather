@@ -3,6 +3,9 @@ package net.gahfy.chilindoweather.utils;
 import android.util.Log;
 
 public class Logger {
+    private Logger() {
+    }
+
     public static int d(String tag, String message) {
         return Log.d(tag, message);
     }

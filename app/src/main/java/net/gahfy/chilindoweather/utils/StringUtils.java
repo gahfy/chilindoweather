@@ -9,6 +9,9 @@ import java.util.Locale;
 public class StringUtils {
     private static final long JAVA_TIMESTAMP_MULTIPLIER = 1000L;
 
+    private StringUtils() {
+    }
+
     @NonNull
     public static String formatDate(@NonNull final Locale locale, @NonNull final String dateFormatString, @NonNull final int timestamp) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString, locale);

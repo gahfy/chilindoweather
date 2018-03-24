@@ -8,7 +8,6 @@ public final class ApiConstants {
      * The base URL of the API
      */
     public static final String BASE_URL = "http://api.openweathermap.org/";
-
     /**
      * The name of the GET query for the API key
      */
@@ -21,7 +20,6 @@ public final class ApiConstants {
      * The name of the GET query for the longitude of a GPS position
      */
     public static final String QUERY_GPS_LONGITUDE = "lon";
-
     /**
      * The name of the JSON field for the GPS coordinates to which weather forecast applies
      */
@@ -82,7 +80,6 @@ public final class ApiConstants {
      * The name of the JSON field for the error message
      */
     public static final String JSON_WEATHER_ERROR_MESSAGE = "message";
-
     /**
      * The name of the JSON field for the HTTP code of the response
      */
@@ -103,7 +100,6 @@ public final class ApiConstants {
      * The name of the JSON field for the city
      */
     public static final String JSON_FORECAST_CITY = "city";
-
     /**
      * The name of the JSON field for the calculation timestamp
      */
@@ -140,12 +136,10 @@ public final class ApiConstants {
      * The name of the JSON field for API sys value
      */
     public static final String JSON_FORECAST_ITEM_SYSTEM = "sys";
-
     /**
      * The name of the JSON field for API pod value
      */
     public static final String JSON_FORECAST_ITEM_SYSTEM_POD = "pod";
-
     /**
      * The name of the JSON field for the unique identifier of the city
      */
@@ -162,7 +156,6 @@ public final class ApiConstants {
      * The name of the JSON field for the country code of the city
      */
     public static final String JSON_CITY_COUNTRY = "country";
-
     /**
      * The name of the JSON field for latitude of GPS coordinates
      */
@@ -171,7 +164,6 @@ public final class ApiConstants {
      * The name of the JSON field for longitude of GPS coordinates
      */
     public static final String JSON_GPS_COORDINATES_LONGITUDE = "lon";
-
     /**
      * The name of the JSON field for the unique identifier of weather condition
      */
@@ -188,7 +180,6 @@ public final class ApiConstants {
      * The name of the JSON field for the identifier of the weather icon
      */
     public static final String JSON_CONDITION_ICON_ID = "icon";
-
     /**
      * The name of the JSON field for the temperature
      */
@@ -221,7 +212,6 @@ public final class ApiConstants {
      * The name of the JSON field for the temp_kf value
      */
     public static final String JSON_MEASUREMENTS_TEMP_KF = "temp_kf";
-
     /**
      * The name of the JSON field for the wind speed
      */
@@ -230,22 +220,18 @@ public final class ApiConstants {
      * The name of the JSON field for the wind direction
      */
     public static final String JSON_WIND_DIRECTION = "deg";
-
     /**
      * The name of the JSON field for the cloudiness
      */
     public static final String JSON_CLOUDS_CLOUDINESS = "all";
-
     /**
      * The name of the JSON field for the rain volume of the last 3 hours
      */
     public static final String JSON_RAIN_LAST_3_HOURS_VOLUME = "3h";
-
     /**
      * The name of the JSON field for the snow volume of the last 3 hours
      */
     public static final String JSON_SNOW_LAST_3_HOURS_VOLUME = "3h";
-
     /**
      * The name of the JSON field for the API type value
      */
@@ -270,4 +256,7 @@ public final class ApiConstants {
      * The name of the JSON field for the time of sunset
      */
     public static final String JSON_SYSTEM_SUNSET_TIMESTAMP = "sunset";
+
+    private ApiConstants() {
+    }
 }

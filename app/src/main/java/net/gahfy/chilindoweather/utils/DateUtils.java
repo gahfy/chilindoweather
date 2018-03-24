@@ -3,6 +3,9 @@ package net.gahfy.chilindoweather.utils;
 import java.util.Calendar;
 
 public class DateUtils {
+    private DateUtils() {
+    }
+
     public static Integer getMidnightTimestamp(Integer timestamp) {
         if (timestamp != null) {
             long javaTimestamp = timestamp.longValue() * 1000L;

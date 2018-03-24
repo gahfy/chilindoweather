@@ -48,12 +48,15 @@ public class LocationUtils {
         }
 
         public void onStatusChanged(String provider, int status, Bundle extras) {
+            // We do not handle this for now
         }
 
         public void onProviderEnabled(String provider) {
+            // We do not handle this for now
         }
 
         public void onProviderDisabled(String provider) {
+            // We do not handle this for now
         }
     };
 
@@ -69,8 +72,6 @@ public class LocationUtils {
         return ourInstance;
     }
 
-    // Safe as check is made by PermissionUtils
-    @SuppressLint("MissingPermission")
     private void getLocation() {
         if (permissionUtils.hasFineLocationPermission()) {
             if (locationManager != null && (
@@ -82,15 +83,9 @@ public class LocationUtils {
                 for (SingleLocationListener singleLocationListener : singleLocationListeners) {
                     singleLocationListener.onGeolocationStarted();
                 }
-                if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
-                }
-                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                }
-                if (locationManager.isProviderEnabled(LocationManager.PASSIVE_PROVIDER)) {
-                    locationManager.requestLocationUpdates(LocationManager.PASSIVE_PROVIDER, 0, 0, locationListener);
-                }
+                requestLocationUpdatesIfAvailable(LocationManager.NETWORK_PROVIDER);
+                requestLocationUpdatesIfAvailable(LocationManager.GPS_PROVIDER);
+                requestLocationUpdatesIfAvailable(LocationManager.PASSIVE_PROVIDER);
             } else {
                 for (SingleLocationListener singleLocationListener : singleLocationListeners) {
                     singleLocationListener.onProviderNotAvailableError();
@@ -100,6 +95,14 @@ public class LocationUtils {
             for (SingleLocationListener singleLocationListener : singleLocationListeners) {
                 singleLocationListener.onPermissionError();
             }
+        }
+    }
+
+    // Safe as check is made by PermissionUtils
+    @SuppressLint("MissingPermission")
+    private void requestLocationUpdatesIfAvailable(String provider) {
+        if (locationManager.isProviderEnabled(provider)) {
+            locationManager.requestLocationUpdates(provider, 0, 0, locationListener);
         }
     }
 

@@ -44,6 +44,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
         super(view);
     }
 
+    @Override
     public void onViewCreated(Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         int temperatureUnit = getTemperatureUnitResId(preferencesUtils.getTemperatureIndex());

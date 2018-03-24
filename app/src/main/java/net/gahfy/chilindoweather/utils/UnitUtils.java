@@ -9,6 +9,9 @@ public class UnitUtils {
     public static final int METERS_INDEX = 0;
     public static final int MILES_INDEX = 1;
 
+    private UnitUtils() {
+    }
+
     public static int getDefaultTemperatureIndex() {
         Locale defaultLocale = Locale.getDefault();
         // Fahrenheit is the default temperature unit for United States, Cayman Islands and Belize
