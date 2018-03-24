@@ -110,9 +110,9 @@ public class DayWeatherForecast implements Parcelable {
      */
 
     private DayWeatherForecast(@NonNull final Parcel in) {
-        dayTimestamp = (in.readByte() == 0) ? null : in.readInt(); // $COVERAGE-IGNORE$
-        city = in.readString(); // $COVERAGE-IGNORE$
-        forecastList = in.createTypedArrayList(InstantWeatherForecast.CREATOR); // $COVERAGE-IGNORE$
+        dayTimestamp = (in.readByte() == 0) ? null : in.readInt();
+        city = in.readString();
+        forecastList = in.createTypedArrayList(InstantWeatherForecast.CREATOR);
     }
 
     /**
