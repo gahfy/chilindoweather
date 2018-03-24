@@ -114,6 +114,18 @@ It allows also to display difference of code coverage when a pull request is mad
 
 ### SonarQube
 
+[![SonarCloud](https://sonarcloud.io/api/badges/gate?key=chilindoweather%3Aapp)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=coverage)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=code_smells)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=ncloc)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=security_rating)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=sqale_index)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=alert_status)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+
 SonarQube measures code quality and provide issue tracking.
 
 ## Libraries

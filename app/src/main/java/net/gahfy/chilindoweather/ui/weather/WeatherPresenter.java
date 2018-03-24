@@ -48,6 +48,13 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
 
     @Inject
     @NonNull
+    // Safe as provide method is @NonNull
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
+    PreferencesUtils preferencesUtils;
+
+    @Inject
+    @NonNull
     @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     LocationUtils locationUtils;
 
@@ -70,13 +77,6 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     // Safe as Injected members must be not private
     @SuppressWarnings("WeakerAccess")
     GoogleSignInAccount googleSignInAccount;
-
-    @Inject
-    @NonNull
-    // Safe as provide method is @NonNull
-    // Safe as Injected members must be not private
-    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
-    PreferencesUtils preferencesUtils;
 
     private CurrentWeather currentWeather = null;
     private Disposable disposable = null;
