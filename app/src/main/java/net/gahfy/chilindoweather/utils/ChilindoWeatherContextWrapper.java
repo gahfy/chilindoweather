@@ -46,7 +46,7 @@ public class ChilindoWeatherContextWrapper extends ContextWrapper {
         return config.locale;
     }
 
-    // Safe as we use it only with version < N
+    // Safe as we use it only with version < JELLY_BEAN_MRA
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
     public static void updateConfituration(Context context, Configuration config) {
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
@@ -57,7 +57,8 @@ public class ChilindoWeatherContextWrapper extends ContextWrapper {
         return config.getLocales().get(0);
     }
 
-    @SuppressWarnings("deprecation")
+    // Safe as we use it only with version < N
+    @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
     public static void setSystemLocaleLegacy(Configuration config, Locale locale) {
         config.locale = locale;
     }
