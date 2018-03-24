@@ -39,6 +39,14 @@ Because of that, I had to decide by myself, so I decided to make what is the mos
 
 The application only allows the user get the weather forecast for their current position (it is not possible to search for the weather forecast for an other place). This means that the current timezone of their phone matches the timezone of the weather forecast they actually get. This is why their is no timezone management in the application.
 
+### Localization
+
+The application is available in English and Arabic. Arabic is provided only to show compatibility with RTL languages.
+
+<p align="center"><img src="https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_chilindo%20Weather.jpg" width="250" /> <img src="https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_french_chilindo%20Weather.jpg" width="250" /></p>
+[![Screenshot](https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_chilindo%20Weather.jpg)](https://github.com/gahfy/chilindoweather)
+[![Screenshot](https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_chilindo%20Weather.jpg)](https://github.com/gahfy/chilindoweather)
+
 ## Architecture
 
 The project has been developed with Java as it was required by the specification.
