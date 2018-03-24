@@ -8,9 +8,10 @@ import com.squareup.leakcanary.LeakCanary;
 import net.gahfy.chilindoweather.ui.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChilindoWeatherApplication extends Application {
-    public ArrayList<BaseActivity> activityStack = new ArrayList<>();
+    private List<BaseActivity> activityStack = new ArrayList<>();
 
     @Override
     public void onCreate() {

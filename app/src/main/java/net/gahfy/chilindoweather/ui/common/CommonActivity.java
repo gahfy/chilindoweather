@@ -26,6 +26,12 @@ import com.bumptech.glide.request.RequestOptions;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.ui.base.BaseActivity;
 
+/**
+ * Activity all Activity related to weather must extend. It provides required methods and presenter
+ * calls.
+ *
+ * @param <P> the type of CommonPresenter the Activity is based on
+ */
 // Safe as this issue is due to AppCompatActivity
 @java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
 public abstract class CommonActivity<P extends CommonPresenter> extends BaseActivity<P> implements CommonView {
@@ -122,7 +128,7 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public final void setMenuVisibility(final int resId, final boolean visibility) {
+    public final void setMenuItemVisibility(final int resId, final boolean visibility) {
         navigationMenu.findItem(resId).setVisible(visibility);
     }
 
