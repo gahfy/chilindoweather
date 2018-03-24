@@ -43,9 +43,7 @@ The application only allows the user get the weather forecast for their current 
 
 The application is available in English and Arabic. Arabic is provided only to show compatibility with RTL languages.
 
-<p align="center"><img src="https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_chilindo%20Weather.jpg" width="250" /> <img src="https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_french_chilindo%20Weather.jpg" width="250" /></p>
-[![Screenshot](https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_chilindo%20Weather.jpg)](https://github.com/gahfy/chilindoweather)
-[![Screenshot](https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_chilindo%20Weather.jpg)](https://github.com/gahfy/chilindoweather)
+<p align="center"><img src="https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_french_Chilindo%20Weather.jpg" width="250" /> <img src="https://github.com/gahfy/chilindoweather/raw/master/img/Screenshot_arabic_Chilindo%20Weather.jpg" width="250" /></p>
 
 ## Architecture
 
