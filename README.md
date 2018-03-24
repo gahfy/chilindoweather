@@ -1,6 +1,12 @@
 # Chilindo OpenWeatherMap Application
 
 [![Build Status](https://travis-ci.org/gahfy/chilindoweather.svg?branch=master)](https://travis-ci.org/gahfy/chilindoweather) [![Codecov](https://codecov.io/github/gahfy/chilindoweather/coverage.svg?branch=master)](https://codecov.io/gh/gahfy/chilindoweather)
+[![SonarCloud](https://sonarcloud.io/api/badges/gate?key=chilindoweather%3Aapp)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=code_smells)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=sqale_index)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
+[![SonarCloud](https://sonarcloud.io/api/badges/measure?key=chilindoweather%3Aapp&metric=alert_status)](https://sonarcloud.io/dashboard?id=chilindoweather%3Aapp)
 
 A demo weather app for interview with Chilindo
 
