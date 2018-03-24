@@ -72,12 +72,12 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
 
     private Disposable disposable = null;
 
+    @SuppressWarnings("squid:S2637")
     ForecastPresenter(@NonNull final ForecastView view) {
         super(view);
     }
 
     // Safe as all Non Null properties are injected
-    @SuppressWarnings("squid:S2637")
     @Override
     public final void onViewCreated(@Nullable final Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
