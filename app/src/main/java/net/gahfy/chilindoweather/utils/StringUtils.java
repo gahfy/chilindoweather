@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class StringUtils {
+public final class StringUtils {
     private static final long JAVA_TIMESTAMP_MULTIPLIER = 1000L;
 
     private StringUtils() {
@@ -20,7 +20,7 @@ public class StringUtils {
     }
 
     @NonNull
-    public static String formatDateWithLongWeekDay(Locale locale, String dateFormatString, int timestamp, String[] weekDays, String[] months) {
+    public static String formatDateWithLongWeekDay(@NonNull final Locale locale, @NonNull String dateFormatString, final int timestamp, @NonNull final String[] weekDays, @NonNull final String[] months) {
         SimpleDateFormat dataDateFormat = new SimpleDateFormat("u/M", Locale.US);
         Date dateInstance = new Date(1000L * ((long) timestamp));
         String[] dateData = dataDateFormat.format(dateInstance).split("/");

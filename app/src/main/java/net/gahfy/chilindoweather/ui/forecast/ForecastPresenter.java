@@ -31,7 +31,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-public class ForecastPresenter extends CommonPresenter<ForecastView> {
+public final class ForecastPresenter extends CommonPresenter<ForecastView> {
     private static final String FORECAST_KEY = "forecast";
 
     @Inject

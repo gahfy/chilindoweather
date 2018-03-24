@@ -15,7 +15,7 @@ import net.gahfy.chilindoweather.ui.common.CommonActivity;
 
 // Safe as this issue is due to AppCompatActivity
 @java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
-public class SettingsActivity extends CommonActivity<SettingsPresenter> implements SettingsView {
+public final class SettingsActivity extends CommonActivity<SettingsPresenter> implements SettingsView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

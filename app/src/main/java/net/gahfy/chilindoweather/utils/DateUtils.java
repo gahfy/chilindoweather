@@ -1,12 +1,15 @@
 package net.gahfy.chilindoweather.utils;
 
+import android.support.annotation.Nullable;
+
 import java.util.Calendar;
 
-public class DateUtils {
+public final class DateUtils {
     private DateUtils() {
     }
 
-    public static Integer getMidnightTimestamp(Integer timestamp) {
+    @Nullable
+    public static Integer getMidnightTimestamp(@Nullable final Integer timestamp) {
         if (timestamp != null) {
             long javaTimestamp = timestamp.longValue() * 1000L;
             Calendar c = Calendar.getInstance();

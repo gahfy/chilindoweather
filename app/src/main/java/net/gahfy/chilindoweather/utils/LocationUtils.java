@@ -12,7 +12,7 @@ import android.support.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class LocationUtils {
+public final class LocationUtils {
     private static final long RELOCATION_DELAY = 3600000;
 
     private static LocationUtils ourInstance;
@@ -22,11 +22,20 @@ public class LocationUtils {
 
     @NonNull
     private final PermissionUtils permissionUtils;
+
+    @NonNull
     private final ArrayList<SingleLocationListener> singleLocationListeners = new ArrayList<>();
+
     private boolean isGeolocating = false;
+
+    @Nullable
     private Location location = null;
+
     private long lastLocationTimestamp = 0;
+
     private boolean geolocationSent = false;
+
+    @NonNull
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             if (locationManager != null) {
@@ -56,12 +65,13 @@ public class LocationUtils {
         }
     };
 
-    private LocationUtils(Context context) {
+    private LocationUtils(@NonNull final Context context) {
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         permissionUtils = new PermissionUtils(context);
     }
 
-    public static LocationUtils getInstance(Context context) {
+    @NonNull
+    public static LocationUtils getInstance(@NonNull final Context context) {
         if (ourInstance == null) {
             ourInstance = new LocationUtils(context);
         }
@@ -102,11 +112,11 @@ public class LocationUtils {
         }
     }
 
-    public boolean hasLocationAvailable() {
+    public final boolean hasLocationAvailable() {
         return location != null;
     }
 
-    public void addSingleLocationListener(SingleLocationListener singleLocationListener) {
+    public final void addSingleLocationListener(@NonNull final SingleLocationListener singleLocationListener) {
         singleLocationListeners.add(singleLocationListener);
         if (location == null || new Date().getTime() - RELOCATION_DELAY > lastLocationTimestamp) {
             location = null;
@@ -119,14 +129,14 @@ public class LocationUtils {
         }
     }
 
-    public void removeSingleLocationListener(SingleLocationListener singleLocationListener) {
+    public void removeSingleLocationListener(@NonNull final SingleLocationListener singleLocationListener) {
         singleLocationListeners.remove(singleLocationListener);
     }
 
     public interface SingleLocationListener {
         void onGeolocationStarted();
 
-        void onLocationFound(Location location);
+        void onLocationFound(@NonNull final Location location);
 
         void onProviderNotAvailableError();
 

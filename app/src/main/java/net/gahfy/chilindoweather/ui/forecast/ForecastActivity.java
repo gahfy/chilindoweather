@@ -2,6 +2,7 @@ package net.gahfy.chilindoweather.ui.forecast;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +17,11 @@ import java.util.List;
 
 // Safe as this issue is due to AppCompatActivity
 @java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
-public class ForecastActivity extends CommonActivity<ForecastPresenter> implements ForecastView {
+public final class ForecastActivity extends CommonActivity<ForecastPresenter> implements ForecastView {
     private ForecastAdapter forecastAdapter;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public final void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         LayoutInflater.from(this).inflate(R.layout.activity_forecast, (ViewGroup) findViewById(R.id.content_container), true);
@@ -33,13 +34,13 @@ public class ForecastActivity extends CommonActivity<ForecastPresenter> implemen
     }
 
     @Override
-    public void setDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList, int temperatureIndex, int speedIndex) {
+    public final void setDayWeatherForecastList(@NonNull final List<DayWeatherForecast> dayWeatherForecastList, final int temperatureIndex, final int speedIndex) {
         forecastAdapter.setDayWeatherForecastList(dayWeatherForecastList, temperatureIndex, speedIndex);
     }
 
     @NonNull
     @Override
-    protected ForecastPresenter instantiatePresenter() {
+    protected final ForecastPresenter instantiatePresenter() {
         return new ForecastPresenter(this);
     }
 }

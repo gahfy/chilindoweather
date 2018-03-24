@@ -66,11 +66,9 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
      */
     @NonNull
     private final LocationUtils.SingleLocationListener locationListener = new LocationUtils.SingleLocationListener() {
-        private static final String TAG = "CommonPresenter.locationListener";
-
         @Override
         public final void onLocationFound(@NonNull final Location location) {
-            Logger.d(TAG, "Location found: " + location.getLatitude() + "," + location.getLongitude());
+            Logger.d("Location found: " + location.getLatitude() + "," + location.getLongitude());
             onLocationAvailable(location);
         }
 

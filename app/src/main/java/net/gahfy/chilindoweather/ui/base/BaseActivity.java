@@ -29,7 +29,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected P presenter;
 
     @Override
-    protected final void attachBaseContext(@NonNull final Context newBase) {
+    protected final void attachBaseContext(@NonNull Context newBase) {
         super.attachBaseContext(ChilindoWeatherContextWrapper.wrap(newBase, newBase.getString(R.string.language)));
     }
 

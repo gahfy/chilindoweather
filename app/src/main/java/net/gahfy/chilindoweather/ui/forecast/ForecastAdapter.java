@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
+public final class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.ForecastViewHolder> {
     private static final int VIEW_TYPE_DAY = 0;
     private static final int VIEW_TYPE_FORECAST = 1;
 
@@ -27,13 +27,13 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private int temperatureIndex;
     private int speedIndex;
 
-    ForecastAdapter(Context context) {
+    ForecastAdapter(final Context context) {
         this.context = context;
     }
 
     @NonNull
     @Override
-    public ForecastViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public final ForecastViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
         if (viewType == VIEW_TYPE_DAY) {
             ItemForecastDayBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.item_forecast_day, parent, false);
             return new ForecastDayViewHolder(binding);
@@ -43,7 +43,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         }
     }
 
-    void setDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList, int temperatureIndex, int speedIndex) {
+    final void setDayWeatherForecastList(@NonNull final List<DayWeatherForecast> dayWeatherForecastList, final int temperatureIndex, final int speedIndex) {
         itemWrapper.clear();
         for (DayWeatherForecast dayWeatherForecast : dayWeatherForecastList) {
             itemWrapper.add(dayWeatherForecast);
@@ -55,7 +55,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ForecastViewHolder holder, int position) {
+    public final void onBindViewHolder(@NonNull final ForecastViewHolder holder, final int position) {
         if (getItemViewType(position) == VIEW_TYPE_DAY) {
             holder.bind((DayWeatherForecast) itemWrapper.get(position));
         } else {
@@ -64,28 +64,28 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public final int getItemViewType(final int position) {
         return (itemWrapper.get(position) instanceof DayWeatherForecast) ? VIEW_TYPE_DAY : VIEW_TYPE_FORECAST;
     }
 
     @Override
-    public int getItemCount() {
+    public final int getItemCount() {
         return itemWrapper.size();
     }
 
     abstract static class ForecastViewHolder extends RecyclerView.ViewHolder {
-        ForecastViewHolder(ViewDataBinding binding) {
+        ForecastViewHolder(@NonNull final ViewDataBinding binding) {
             super(binding.getRoot());
         }
 
-        void bind(DayWeatherForecast dayWeatherForecast) {
+        void bind(@NonNull final DayWeatherForecast dayWeatherForecast) {
         }
 
-        void bind(InstantWeatherForecast instantWeatherForecast, int temperatureIndex, int speedIndex) {
+        void bind(@NonNull final InstantWeatherForecast instantWeatherForecast, final int temperatureIndex, final int speedIndex) {
         }
     }
 
-    private static class ForecastDayViewHolder extends ForecastViewHolder {
+    private static final class ForecastDayViewHolder extends ForecastViewHolder {
         private final ItemForecastDayBinding itemForecastDayBinding;
 
         ForecastDayViewHolder(ViewDataBinding binding) {
@@ -94,21 +94,21 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
         }
 
         @Override
-        public void bind(DayWeatherForecast dayWeatherForecast) {
+        public void bind(@NonNull final DayWeatherForecast dayWeatherForecast) {
             itemForecastDayBinding.setDayWeatherForecast(dayWeatherForecast);
         }
     }
 
-    private static class ForecastInstantViewHolder extends ForecastViewHolder {
+    private static final class ForecastInstantViewHolder extends ForecastViewHolder {
         private final ItemWeatherForecastBinding itemWeatherForecastBinding;
 
-        private ForecastInstantViewHolder(ViewDataBinding binding) {
+        private ForecastInstantViewHolder(@NonNull final ViewDataBinding binding) {
             super(binding);
             itemWeatherForecastBinding = (ItemWeatherForecastBinding) binding;
         }
 
         @Override
-        public void bind(InstantWeatherForecast forecast, int temperatureIndex, int speedIndex) {
+        public void bind(@NonNull final InstantWeatherForecast forecast, final int temperatureIndex, final int speedIndex) {
             itemWeatherForecastBinding.setForecast(forecast);
             itemWeatherForecastBinding.setPreferredTemperatureIndex(temperatureIndex);
             itemWeatherForecastBinding.setPreferredSpeedIndex(speedIndex);

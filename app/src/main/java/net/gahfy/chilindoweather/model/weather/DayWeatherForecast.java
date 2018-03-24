@@ -41,10 +41,6 @@ public class DayWeatherForecast implements Parcelable {
         }
     };
     /**
-     * Tag to be used for logging
-     */
-    private static final String TAG = "DayWeatherForecast";
-    /**
      * Comparator for Day Weather. It is used to sort Day Weather by their date chronologically.
      */
     private static final Comparator<DayWeatherForecast> DAY_WEATHER_FORECAST_COMPARATOR = new Comparator<DayWeatherForecast>() {
@@ -134,7 +130,7 @@ public class DayWeatherForecast implements Parcelable {
                 }
             }
         } else {
-            Logger.w(TAG, "apiForecast.getForecastItemList() returned null");
+            Logger.w("apiForecast.getForecastItemList() returned null");
         }
 
         // Sorting the list

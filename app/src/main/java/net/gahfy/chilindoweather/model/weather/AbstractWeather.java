@@ -17,10 +17,6 @@ import static net.gahfy.chilindoweather.utils.UnitUtils.METERS_INDEX;
 import static net.gahfy.chilindoweather.utils.weather.WindUtils.WIND_TO_FROM_DIFFERENCE;
 
 public abstract class AbstractWeather implements Parcelable {
-    /**
-     * Tag to be used for logging
-     */
-    private static final String TAG = "InstantWeatherForecast";
 
     /**
      * Timestamp to which the weather applies
@@ -163,7 +159,7 @@ public abstract class AbstractWeather implements Parcelable {
                 );
             }
         } catch (IllegalArgumentException e) {
-            Logger.e(TAG, e);
+            Logger.e(e);
         }
         return context.getString(R.string.unknown_temperature);
     }
@@ -187,7 +183,7 @@ public abstract class AbstractWeather implements Parcelable {
                 );
             }
         } catch (IllegalArgumentException e) {
-            Logger.e(TAG, e);
+            Logger.e(e);
         }
         return context.getString(R.string.unknown_wind_speed);
     }

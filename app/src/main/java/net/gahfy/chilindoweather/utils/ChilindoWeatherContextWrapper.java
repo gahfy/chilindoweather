@@ -5,17 +5,18 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Configuration;
 import android.os.Build;
+import android.support.annotation.NonNull;
 
 import java.util.Locale;
 
-public class ChilindoWeatherContextWrapper extends ContextWrapper {
+public final class ChilindoWeatherContextWrapper extends ContextWrapper {
 
-    private ChilindoWeatherContextWrapper(Context base) {
+    private ChilindoWeatherContextWrapper(@NonNull Context base) {
         super(base);
     }
 
-    @SuppressWarnings("deprecation")
-    public static ContextWrapper wrap(Context context, String language) {
+    @NonNull
+    public static ContextWrapper wrap(@NonNull Context context, final String language) {
         Configuration config = context.getResources().getConfiguration();
         Locale sysLocale;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -40,31 +41,33 @@ public class ChilindoWeatherContextWrapper extends ContextWrapper {
         return new ChilindoWeatherContextWrapper(context);
     }
 
+    @NonNull
     // Safe as we use it only with version < N
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
-    private static Locale getSystemLocaleLegacy(Configuration config) {
+    private static Locale getSystemLocaleLegacy(@NonNull final Configuration config) {
         return config.locale;
     }
 
     // Safe as we use it only with version < JELLY_BEAN_MRA
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
-    private static void updateConfituration(Context context, Configuration config) {
+    private static void updateConfituration(@NonNull final Context context, @NonNull final Configuration config) {
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
 
+    @NonNull
     @TargetApi(Build.VERSION_CODES.N)
-    private static Locale getSystemLocale(Configuration config) {
+    private static Locale getSystemLocale(@NonNull final Configuration config) {
         return config.getLocales().get(0);
     }
 
     // Safe as we use it only with version < N
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
-    private static void setSystemLocaleLegacy(Configuration config, Locale locale) {
+    private static void setSystemLocaleLegacy(@NonNull final Configuration config, @NonNull final Locale locale) {
         config.locale = locale;
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    private static void setSystemLocale(Configuration config, Locale locale) {
+    private static void setSystemLocale(@NonNull final Configuration config, @NonNull final Locale locale) {
         config.setLocale(locale);
     }
 }

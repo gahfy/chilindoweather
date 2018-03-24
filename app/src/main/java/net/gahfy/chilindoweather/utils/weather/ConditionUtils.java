@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiCondition;
 
-public class ConditionUtils {
+public final class ConditionUtils {
     private ConditionUtils() {
     }
 

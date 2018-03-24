@@ -16,7 +16,7 @@ import net.gahfy.chilindoweather.utils.PreferencesUtils;
 
 import javax.inject.Inject;
 
-public class SettingsPresenter extends CommonPresenter<SettingsView> {
+public final class SettingsPresenter extends CommonPresenter<SettingsView> {
     @Inject
     @Nullable
     // Safe as Injected members must be not private
@@ -45,12 +45,12 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
     PreferencesUtils preferencesUtils;
 
     @SuppressWarnings("squid:S2637")
-    SettingsPresenter(@NonNull SettingsView view) {
+    SettingsPresenter(@NonNull final SettingsView view) {
         super(view);
     }
 
     @Override
-    public void onViewCreated(Bundle savedInstanceState) {
+    public final void onViewCreated(@Nullable final Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         int temperatureUnit = getTemperatureUnitResId(preferencesUtils.getTemperatureIndex());
         int windSpeedUnit = getWindSpeedUnitResId(preferencesUtils.getWindSpeedIndex());
@@ -59,7 +59,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
         view.setTitle(R.string.settings);
     }
 
-    void onTemperatureClick() {
+    final void onTemperatureClick() {
         view.showTemperatureDialog(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -70,7 +70,7 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
         }, preferencesUtils.getTemperatureIndex());
     }
 
-    void onWindSpeedClick() {
+    final void onWindSpeedClick() {
         view.showWindSpeedDialog(new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -81,35 +81,35 @@ public class SettingsPresenter extends CommonPresenter<SettingsView> {
         }, preferencesUtils.getWindSpeedIndex());
     }
 
-    private int getTemperatureUnitResId(int selectedIndex) {
+    private int getTemperatureUnitResId(final int selectedIndex) {
         return selectedIndex == 0 ? R.string.settings_temperature_celsius : R.string.settings_temperature_fahrenheit;
     }
 
-    private int getWindSpeedUnitResId(int selectedIndex) {
+    private int getWindSpeedUnitResId(final int selectedIndex) {
         return selectedIndex == 0 ? R.string.settings_wind_speed_m : R.string.settings_wind_speed_mi;
     }
 
     @Override
     @NonNull
-    protected GoogleSignInClient getGoogleSignInClient() {
+    protected final GoogleSignInClient getGoogleSignInClient() {
         return googleSignInClient;
     }
 
     @Override
     @NonNull
-    protected PermissionUtils getPermissionUtils() {
+    protected final PermissionUtils getPermissionUtils() {
         return permissionUtils;
     }
 
     @Override
     @Nullable
-    protected GoogleSignInAccount getGoogleSignInAccount() {
+    protected final GoogleSignInAccount getGoogleSignInAccount() {
         return googleSignInAccount;
     }
 
     @Override
     @Nullable
-    protected LocationUtils getLocationUtils() {
+    protected final LocationUtils getLocationUtils() {
         return null;
     }
 }
