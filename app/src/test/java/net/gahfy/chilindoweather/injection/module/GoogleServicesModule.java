@@ -4,8 +4,6 @@ import android.app.Application;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -28,6 +26,8 @@ public class GoogleServicesModule {
     }
 
     @NonNull
+    // Safe as it is used in app code
+    @SuppressWarnings("unused")
     public static GoogleServicesModule getInstance() {
         return instance;
     }
@@ -42,12 +42,16 @@ public class GoogleServicesModule {
 
     @Provides
     @NonNull
+    // Safe as it is used in app code
+    @SuppressWarnings("unused")
     static GoogleSignInClient provideGoogleSignInClient(GoogleSignInOptions googleSignInOptions, Application context) {
         return Mockito.mock(GoogleSignInClient.class);
     }
 
     @Provides
     @Nullable
+    // Safe as it is used in app code
+    @SuppressWarnings("unused")
     static GoogleSignInAccount provideGoogleSignInAccount(Application context) {
         return MockInstance.googleSignInAccount;
     }

@@ -23,6 +23,8 @@ public class BasePresenterTest {
 
     private static class BasePresenterClass extends BasePresenter<BaseViewClass> {
         @Inject
+        // Safe as we use it to check it is null
+        @SuppressWarnings("unused")
         OpenWeatherMapApi openWeatherMapApi;
 
         BasePresenterClass(@NonNull BaseViewClass view) {
@@ -39,19 +41,15 @@ public class BasePresenterTest {
         }
 
         @Override
-        public void setTitle(int titleResId, String... formatString) {
+        public void setTitle(final int titleResId, @NonNull final String... formatString) {
         }
 
         @Override
-        public void setTitle(CharSequence title) {
+        public void startActivity(@NonNull final Class<? extends BaseActivity> activityClass) {
         }
 
         @Override
-        public void startActivity(Class<? extends BaseActivity> activityClass) {
-        }
-
-        @Override
-        public void startActivityForResult(Intent intent, int requestCode) {
+        public void startActivityForResult(@NonNull final Intent intent, final int requestCode) {
         }
 
         @Override

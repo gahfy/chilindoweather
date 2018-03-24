@@ -22,8 +22,8 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     private static final int VIEW_TYPE_DAY = 0;
     private static final int VIEW_TYPE_FORECAST = 1;
 
-    private Context context;
-    private List<Object> itemWrapper = new ArrayList<>();
+    private final Context context;
+    private final List<Object> itemWrapper = new ArrayList<>();
     private int temperatureIndex;
     private int speedIndex;
 
@@ -86,7 +86,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     }
 
     private static class ForecastDayViewHolder extends ForecastViewHolder {
-        private ItemForecastDayBinding itemForecastDayBinding;
+        private final ItemForecastDayBinding itemForecastDayBinding;
 
         ForecastDayViewHolder(ViewDataBinding binding) {
             super(binding);
@@ -100,7 +100,7 @@ public class ForecastAdapter extends RecyclerView.Adapter<ForecastAdapter.Foreca
     }
 
     private static class ForecastInstantViewHolder extends ForecastViewHolder {
-        private ItemWeatherForecastBinding itemWeatherForecastBinding;
+        private final ItemWeatherForecastBinding itemWeatherForecastBinding;
 
         private ForecastInstantViewHolder(ViewDataBinding binding) {
             super(binding);

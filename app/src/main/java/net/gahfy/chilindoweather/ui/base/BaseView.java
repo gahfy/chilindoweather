@@ -26,13 +26,6 @@ public interface BaseView {
     void setTitle(@StringRes final int titleResId, @NonNull final String... formatString);
 
     /**
-     * Sets the title of the view.
-     *
-     * @param title title of the view
-     */
-    void setTitle(@NonNull final CharSequence title);
-
-    /**
      * Starts an Activity.
      *
      * @param activityClass the Activity to start
@@ -45,10 +38,16 @@ public interface BaseView {
      * @param intent      the Intent describing the Activity to start
      * @param requestCode the request code to return when giving the result back
      */
-    void startActivityForResult(@NonNull final Intent intent, final int requestCode);
+    // Safe as we pass only views to Presenter, not activities
+    @SuppressWarnings("EmptyMethod")
+    // Safe as it is used by Activity
+    void startActivityForResult(@SuppressWarnings("unused") @NonNull final Intent intent,
+                                @SuppressWarnings("unused") final int requestCode);
 
     /**
      * Terminates the view
      */
+    // Safe as we pass only views to Presenter, not activities
+    @SuppressWarnings("EmptyMethod")
     void finish();
 }

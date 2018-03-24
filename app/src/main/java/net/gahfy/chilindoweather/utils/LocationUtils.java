@@ -22,15 +22,11 @@ public class LocationUtils {
 
     @NonNull
     private final PermissionUtils permissionUtils;
-
+    private final ArrayList<SingleLocationListener> singleLocationListeners = new ArrayList<>();
     private boolean isGeolocating = false;
-
     private Location location = null;
     private long lastLocationTimestamp = 0;
     private boolean geolocationSent = false;
-
-    private ArrayList<SingleLocationListener> singleLocationListeners = new ArrayList<>();
-
     private final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             if (locationManager != null) {

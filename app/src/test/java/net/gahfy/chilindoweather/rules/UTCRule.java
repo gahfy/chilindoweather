@@ -7,7 +7,7 @@ import java.util.TimeZone;
 
 public class UTCRule extends TestWatcher {
 
-    private TimeZone origDefault = TimeZone.getDefault();
+    private final TimeZone origDefault = TimeZone.getDefault();
 
     @Override
     protected void starting(Description description) {

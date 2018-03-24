@@ -6,6 +6,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+// Safe as this class is used in generated code
+@SuppressWarnings("WeakerAccess")
 public class DataBindingAdapters {
     private DataBindingAdapters() {
     }

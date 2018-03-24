@@ -1,7 +1,5 @@
 package net.gahfy.chilindoweather.injection.component;
 
-import android.support.annotation.NonNull;
-
 import net.gahfy.chilindoweather.injection.module.ContextModule;
 import net.gahfy.chilindoweather.injection.module.GoogleServicesModule;
 import net.gahfy.chilindoweather.injection.module.LocationModule;
@@ -29,11 +27,11 @@ public interface PresenterInjector {
      *
      * @param weatherPresenter the WeatherPresenter in which to inject the dependencies
      */
-    void inject(@NonNull WeatherPresenter weatherPresenter);
+    void inject(WeatherPresenter weatherPresenter);
 
-    void inject(@NonNull SettingsPresenter settingsPresenter);
+    void inject(SettingsPresenter settingsPresenter);
 
-    void inject(@NonNull ForecastPresenter forecastPresenter);
+    void inject(ForecastPresenter forecastPresenter);
 
     /**
      * The builder to instantiate the component.
@@ -53,7 +51,7 @@ public interface PresenterInjector {
          * @param networkModule the NetworkModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder networkModule(@NonNull NetworkModule networkModule);
+        Builder networkModule(NetworkModule networkModule);
 
         /**
          * Sets the specified PermissionModule to the component.
@@ -61,7 +59,7 @@ public interface PresenterInjector {
          * @param presenterModule the PermissionModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder permissionModule(@NonNull PermissionModule presenterModule);
+        Builder permissionModule(PermissionModule presenterModule);
 
         /**
          * Sets the specified LocationModule to the component.
@@ -69,7 +67,7 @@ public interface PresenterInjector {
          * @param locationModule the LocationModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder locationModule(@NonNull LocationModule locationModule);
+        Builder locationModule(LocationModule locationModule);
 
         /**
          * Sets the GoogleServicesModule to the component.
@@ -77,7 +75,7 @@ public interface PresenterInjector {
          * @param googleServicesModule the GoogleServicesModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder googleServicesModule(@NonNull GoogleServicesModule googleServicesModule);
+        Builder googleServicesModule(GoogleServicesModule googleServicesModule);
 
         /**
          * Sets the PreferencesModule to the component.
@@ -85,7 +83,7 @@ public interface PresenterInjector {
          * @param preferencesModule the PreferencesModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder preferencesModule(@NonNull PreferencesModule preferencesModule);
+        Builder preferencesModule(PreferencesModule preferencesModule);
 
         /**
          * Sets the specified ContextModule to the component.
@@ -93,7 +91,7 @@ public interface PresenterInjector {
          * @param contextModule the ContextModule to set to the component
          * @return the current instance of PresenterInjector.Builder
          */
-        Builder contextModule(@NonNull ContextModule contextModule);
+        Builder contextModule(ContextModule contextModule);
 
         /**
          * Sets the specified BaseView to the component.
@@ -102,6 +100,6 @@ public interface PresenterInjector {
          * @return the current instance of PresenterInjector.Builder
          */
         @BindsInstance
-        Builder baseView(@NonNull BaseView baseView);
+        Builder baseView(BaseView baseView);
     }
 }

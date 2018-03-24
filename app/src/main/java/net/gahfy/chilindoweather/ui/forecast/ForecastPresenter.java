@@ -37,35 +37,42 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     OpenWeatherMapApi openWeatherMapApi;
 
     @Inject
     @Nullable
+    // Safe as Injected members must be not private
+    @SuppressWarnings("WeakerAccess")
     GoogleSignInAccount googleSignInAccount;
 
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     GoogleSignInClient googleSignInClient;
 
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     PermissionUtils permissionUtils;
 
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     LocationUtils locationUtils;
 
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     PreferencesUtils preferencesUtils;
 
     private List<DayWeatherForecast> dayWeatherForecastList = null;

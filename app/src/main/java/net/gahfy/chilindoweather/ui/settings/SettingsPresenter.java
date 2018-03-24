@@ -19,23 +19,28 @@ import javax.inject.Inject;
 public class SettingsPresenter extends CommonPresenter<SettingsView> {
     @Inject
     @Nullable
+    // Safe as Injected members must be not private
+    @SuppressWarnings("WeakerAccess")
     GoogleSignInAccount googleSignInAccount;
 
     @Inject
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     @NonNull
     PermissionUtils permissionUtils;
 
     @Inject
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     @NonNull
     GoogleSignInClient googleSignInClient;
 
     @Inject
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     @NonNull
     PreferencesUtils preferencesUtils;
 

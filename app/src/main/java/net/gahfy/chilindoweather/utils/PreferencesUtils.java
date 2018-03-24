@@ -8,7 +8,7 @@ public class PreferencesUtils {
     private static final String PREFERENCE_TEMPERATURE = "temperature";
     private static final String PREFERENCE_WIND_SPEED = "wind_speed";
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     public PreferencesUtils(Context context) {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

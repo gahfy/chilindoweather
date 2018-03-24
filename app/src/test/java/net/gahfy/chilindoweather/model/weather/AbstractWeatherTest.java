@@ -17,9 +17,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 
 public class AbstractWeatherTest {
-    private int parcelCounter = 0;
-
-    private AbstractWeather allSetAbstractWeather = new AbstractWeather(
+    private final AbstractWeather allSetAbstractWeather = new AbstractWeather(
             1521763200,
             R.drawable.broken_clouds,
             R.string.condition_200_description,
@@ -27,14 +25,10 @@ public class AbstractWeatherTest {
             13,
             14.0
     ) {
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            super.writeToParcel(dest, flags);
-        }
     };
 
 
-    private AbstractWeather allNullAbstractWeather = new AbstractWeather(
+    private final AbstractWeather allNullAbstractWeather = new AbstractWeather(
             null,
             R.drawable.broken_clouds,
             R.string.condition_200_description,
@@ -42,10 +36,6 @@ public class AbstractWeatherTest {
             null,
             null
     ) {
-        @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            super.writeToParcel(dest, flags);
-        }
     };
 
     @Test
@@ -112,10 +102,6 @@ public class AbstractWeatherTest {
         Mockito.when(allNullParcel.readInt()).thenReturn(0);
         Mockito.when(allNullParcel.readByte()).thenReturn((byte) 0);
         AbstractWeather allNullAbstractWeather = new AbstractWeather(allNullParcel) {
-            @Override
-            public void writeToParcel(Parcel dest, int flags) {
-                super.writeToParcel(dest, flags);
-            }
         };
 
         assertEquals("get temperature", "…°", allNullAbstractWeather.getTemperature(ContextTestUtils.getContext(), UnitUtils.CELSIUS_INDEX));
@@ -130,10 +116,6 @@ public class AbstractWeatherTest {
         Mockito.when(allSetParcel.readDouble()).thenReturn(0.0);
         Mockito.when(allSetParcel.readByte()).thenReturn((byte) 1);
         AbstractWeather allSetAbstractWeather = new AbstractWeather(allSetParcel) {
-            @Override
-            public void writeToParcel(Parcel dest, int flags) {
-                super.writeToParcel(dest, flags);
-            }
         };
 
         assertEquals("get temperature", "-273°", allSetAbstractWeather.getTemperature(ContextTestUtils.getContext(), UnitUtils.CELSIUS_INDEX));

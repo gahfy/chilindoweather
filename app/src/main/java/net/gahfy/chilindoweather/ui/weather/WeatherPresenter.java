@@ -35,30 +35,49 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     OpenWeatherMapApi openWeatherMapApi;
+
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     PermissionUtils permissionUtils;
+
     @Inject
+    @NonNull
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     LocationUtils locationUtils;
+
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     GoogleApiClient googleApiClient;
+
     @Inject
     @NonNull
     // Safe as provide method is @NonNull
-    @SuppressWarnings("NullableProblems")
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     GoogleSignInClient googleSignInClient;
+
     @Inject
     @Nullable
+    // Safe as Injected members must be not private
+    @SuppressWarnings("WeakerAccess")
     GoogleSignInAccount googleSignInAccount;
+
     @Inject
+    @NonNull
+    // Safe as provide method is @NonNull
+    // Safe as Injected members must be not private
+    @SuppressWarnings({"NullableProblems", "WeakerAccess"})
     PreferencesUtils preferencesUtils;
+
     private CurrentWeather currentWeather = null;
     private Disposable disposable = null;
 

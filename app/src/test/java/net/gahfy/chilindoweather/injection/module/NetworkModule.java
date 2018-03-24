@@ -37,6 +37,8 @@ import static net.gahfy.chilindoweather.utils.ApiUtils.weatherMockPath;
  * Module which provides all required dependencies about network
  */
 @Module
+// Safe as it is used in app code
+@SuppressWarnings("UnusedDeclaration")
 public class NetworkModule {
     @NonNull
     private static final NetworkModule instance = new NetworkModule();
@@ -45,6 +47,8 @@ public class NetworkModule {
     }
 
     @NonNull
+    // Safe as we need to keep same signature as app class
+    @SuppressWarnings("UnusedDeclaration")
     public static NetworkModule getInstance() {
         return instance;
     }
@@ -52,6 +56,8 @@ public class NetworkModule {
     @Provides
     @Reusable
     @NonNull
+    // Safe as we need to keep same signature as app class
+    @SuppressWarnings("unused")
     static OpenWeatherMapApi provideOpenWeatherMapApi(@NonNull Retrofit retrofit) {
         return new OpenWeatherMapApi() {
             @Override
@@ -79,6 +85,8 @@ public class NetworkModule {
     @Provides
     @Reusable
     @NonNull
+    // Safe as we need to keep same signature as app class
+    @SuppressWarnings("UnusedDeclaration")
     static Retrofit provideRetrofitInstance(OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -91,6 +99,8 @@ public class NetworkModule {
     @Provides
     @Reusable
     @NonNull
+    // Safe as we need to keep same signature as app class
+    @SuppressWarnings("UnusedDeclaration")
     static OkHttpClient provideClient(@Named("get_param_injector") Interceptor interceptor) {
         return new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
@@ -101,6 +111,8 @@ public class NetworkModule {
     @Reusable
     @Named("get_param_injector")
     @NonNull
+    // Safe as we need to keep same signature as app class
+    @SuppressWarnings("UnusedDeclaration")
     static Interceptor provideGetParamInterceptor() {
         return new Interceptor() {
             @Override

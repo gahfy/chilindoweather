@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class ChilindoWeatherContextWrapper extends ContextWrapper {
 
-    public ChilindoWeatherContextWrapper(Context base) {
+    private ChilindoWeatherContextWrapper(Context base) {
         super(base);
     }
 
@@ -42,29 +42,29 @@ public class ChilindoWeatherContextWrapper extends ContextWrapper {
 
     // Safe as we use it only with version < N
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
-    public static Locale getSystemLocaleLegacy(Configuration config) {
+    private static Locale getSystemLocaleLegacy(Configuration config) {
         return config.locale;
     }
 
     // Safe as we use it only with version < JELLY_BEAN_MRA
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
-    public static void updateConfituration(Context context, Configuration config) {
+    private static void updateConfituration(Context context, Configuration config) {
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    public static Locale getSystemLocale(Configuration config) {
+    private static Locale getSystemLocale(Configuration config) {
         return config.getLocales().get(0);
     }
 
     // Safe as we use it only with version < N
     @SuppressWarnings({"deprecation", "squid:CallToDeprecatedMethod"})
-    public static void setSystemLocaleLegacy(Configuration config, Locale locale) {
+    private static void setSystemLocaleLegacy(Configuration config, Locale locale) {
         config.locale = locale;
     }
 
     @TargetApi(Build.VERSION_CODES.N)
-    public static void setSystemLocale(Configuration config, Locale locale) {
+    private static void setSystemLocale(Configuration config, Locale locale) {
         config.setLocale(locale);
     }
 }

@@ -23,7 +23,11 @@ public interface OpenWeatherMapApi {
      */
     @GET("/data/2.5/weather")
     Observable<ApiWeather> getWeather(
+            // Safe because we need to keep same signature as in app
+            @SuppressWarnings("unused")
             @Query(QUERY_GPS_LATITUDE) double gpsLatitude,
+            // Safe because we need to keep same signature as in app
+            @SuppressWarnings("unused")
             @Query(QUERY_GPS_LONGITUDE) double gpsLongitude
     );
 
@@ -36,7 +40,11 @@ public interface OpenWeatherMapApi {
      */
     @GET("/data/2.5/forecast")
     Observable<ApiForecast> getForecast(
+            // Safe because we need to keep same signature as in app
+            @SuppressWarnings("unused")
             @Query(QUERY_GPS_LATITUDE) double gpsLatitude,
+            // Safe because we need to keep same signature as in app
+            @SuppressWarnings("unused")
             @Query(QUERY_GPS_LONGITUDE) double gpsLongitude
     );
 }

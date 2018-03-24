@@ -101,7 +101,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
      *
      * @param view the view associated to the presenter to set
      */
-    public CommonPresenter(@NonNull final V view) {
+    protected CommonPresenter(@NonNull final V view) {
         super(view);
     }
 

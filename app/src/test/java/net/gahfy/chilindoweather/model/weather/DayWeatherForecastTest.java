@@ -140,7 +140,7 @@ public class DayWeatherForecastTest {
     @Test
     public void testParcels() throws Exception {
         Context context = ContextTestUtils.getContext();
-        ArrayList<InstantWeatherForecast> testInstantWeatherForecasts = new ArrayList<InstantWeatherForecast>();
+        ArrayList<InstantWeatherForecast> testInstantWeatherForecasts = new ArrayList<>();
 
         DayWeatherForecast[] dayWeatherForecasts = DayWeatherForecast.CREATOR.newArray(20);
         assertEquals("size of array", 20, dayWeatherForecasts.length);

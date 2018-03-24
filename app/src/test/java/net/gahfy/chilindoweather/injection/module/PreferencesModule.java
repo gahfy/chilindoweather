@@ -12,6 +12,8 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(includes = {ContextModule.class})
+// Safe because it is used in app code but not in tests
+@SuppressWarnings("UnusedDeclaration")
 public class PreferencesModule {
     @NonNull
     private static final PreferencesModule instance = new PreferencesModule();
@@ -20,6 +22,8 @@ public class PreferencesModule {
     }
 
     @NonNull
+    // Safe because it is used in app code but not in tests
+    @SuppressWarnings("UnusedDeclaration")
     public static PreferencesModule getInstance() {
         return instance;
     }

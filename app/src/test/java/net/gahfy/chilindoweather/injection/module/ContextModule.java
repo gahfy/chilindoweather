@@ -13,14 +13,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module
-public final class ContextModule {
-    @NonNull
-    private static final ContextModule instance = new ContextModule();
-
-    public static ContextModule getInstance(){
-        return instance;
-    }
-
+final class ContextModule {
     @Provides
     @NonNull
     // Safe here as it is a module provider
