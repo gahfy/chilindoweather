@@ -13,6 +13,8 @@ import android.widget.TextView;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.ui.common.CommonActivity;
 
+// Safe as this issue is due to AppCompatActivity
+@java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
 public class SettingsActivity extends CommonActivity<SettingsPresenter> implements SettingsView {
     @Override
     public void onCreate(Bundle savedInstanceState) {

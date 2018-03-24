@@ -12,7 +12,8 @@ import net.gahfy.chilindoweather.ui.common.CommonActivity;
 
 import java.util.Locale;
 
-
+// Safe as this issue is due to AppCompatActivity
+@java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
 public class WeatherActivity extends CommonActivity<WeatherPresenter> implements WeatherView {
     ActivityCurrentWeatherBinding binding;
 

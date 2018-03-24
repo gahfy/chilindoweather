@@ -14,6 +14,8 @@ import net.gahfy.chilindoweather.ui.common.CommonActivity;
 
 import java.util.List;
 
+// Safe as this issue is due to AppCompatActivity
+@java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
 public class ForecastActivity extends CommonActivity<ForecastPresenter> implements ForecastView {
     private ForecastAdapter forecastAdapter;
 

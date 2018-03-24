@@ -2,37 +2,39 @@ package net.gahfy.chilindoweather.ui.common;
 
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.view.View;
 
 import net.gahfy.chilindoweather.ui.base.BaseView;
 
 public interface CommonView extends BaseView {
-    void showProfileInfo(Uri imageUrl, String userName, String userEmail);
+    void showProfileInfo(@Nullable final Uri imageUrl, @Nullable final String userName, @Nullable final String userEmail);
 
-    void setMenuVisibility(int resId, boolean visibility);
+    void setMenuVisibility(final int resId, final boolean visibility);
 
     void hideGeolocationRationale();
 
-    Void showGeolocationPermissionRationale(View.OnClickListener retryClickListener);
+    void showGeolocationPermissionRationale(@NonNull final View.OnClickListener retryClickListener);
 
     void removeUserInfo();
 
     void hideNoGeolocationAvailableError();
 
-    void showNoGeolocationAvailableError(View.OnClickListener settingsClickListener);
+    void showNoGeolocationAvailableError(@NonNull final View.OnClickListener settingsClickListener);
 
-    void showGoogleSignInError(DialogInterface.OnClickListener retryClickListener);
+    void showGoogleSignInError(@NonNull final DialogInterface.OnClickListener retryClickListener);
 
     void closeDrawers();
 
-    void checkMenu(int menuResId);
+    void checkMenu(final int menuResId);
 
-    void showLoading(@StringRes int loadingMessageResId);
+    void showLoading(@StringRes final int loadingMessageResId);
 
     void hideLoading();
 
-    void showNetworkError(View.OnClickListener onClickListener);
+    void showNetworkError(@NonNull final View.OnClickListener onClickListener);
 
     void showContent();
 

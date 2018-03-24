@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -25,6 +26,8 @@ import com.bumptech.glide.request.RequestOptions;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.ui.base.BaseActivity;
 
+// Safe as this issue is due to AppCompatActivity
+@java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
 public abstract class CommonActivity<P extends CommonPresenter> extends BaseActivity<P> implements CommonView {
     private boolean destroyed = true;
     private DrawerLayout drawerLayout;
@@ -34,7 +37,7 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     private Bundle savedInstanceState;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_common);
@@ -60,7 +63,7 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public void onStart() {
+    public final void onStart() {
         super.onStart();
         if (destroyed) {
             destroyed = false;
@@ -69,36 +72,36 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState = presenter.saveInstanceState(outState);
+    public final void onSaveInstanceState(@NonNull final Bundle outState) {
+        presenter.saveInstanceState(outState);
         super.onSaveInstanceState(outState);
     }
 
     @Override
-    public void onResume() {
+    public final void onResume() {
         super.onResume();
         presenter.onResumeView();
     }
 
     @Override
-    public void onDestroy() {
+    public final void onDestroy() {
         super.onDestroy();
         presenter.onViewDestroyed();
         destroyed = true;
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public final void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent data) {
         presenter.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    public final void onRequestPermissionsResult(final int requestCode, @NonNull final String permissions[], @NonNull final int[] grantResults) {
         presenter.onPermissionResult(requestCode, permissions, grantResults);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public final boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
@@ -108,72 +111,71 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public void showProfileInfo(Uri imageUrl, String userName, String userEmail) {
+    public final void showProfileInfo(@Nullable final Uri imageUrl, @Nullable final String userName, @Nullable final String userEmail) {
         RequestOptions requestOptions = RequestOptions.circleCropTransform()
                 .placeholder(R.drawable.ic_account_placeholder)
                 .error(R.drawable.ic_account_placeholder)
                 .fallback(R.drawable.ic_account_placeholder);
         Glide.with(this).load(imageUrl).apply(requestOptions).into((ImageView) navigationHeader.findViewById(R.id.profilePicture));
-        ((TextView) navigationHeader.findViewById(R.id.user_name)).setText(userName);
-        ((TextView) navigationHeader.findViewById(R.id.user_email)).setText(userEmail);
+        ((TextView) navigationHeader.findViewById(R.id.user_name)).setText(userName != null ? userName : "");
+        ((TextView) navigationHeader.findViewById(R.id.user_email)).setText(userEmail != null ? userEmail : "");
     }
 
     @Override
-    public void setMenuVisibility(int resId, boolean visibility) {
+    public final void setMenuVisibility(final int resId, final boolean visibility) {
         navigationMenu.findItem(resId).setVisible(visibility);
     }
 
     @Override
-    public void hideGeolocationRationale() {
+    public final void hideGeolocationRationale() {
         hideSnackbar();
     }
 
     @Override
-    public void hideNoGeolocationAvailableError() {
+    public final void hideNoGeolocationAvailableError() {
         hideSnackbar();
     }
 
     @Override
-    public Void showGeolocationPermissionRationale(View.OnClickListener retryClickListener) {
+    public final void showGeolocationPermissionRationale(@NonNull final View.OnClickListener retryClickListener) {
         activitySnackbar = Snackbar.make(findViewById(android.R.id.content), R.string.geolocation_permission_rationale, Snackbar.LENGTH_INDEFINITE);
         activitySnackbar.setAction(R.string.geolocation_permission_grant, retryClickListener);
         activitySnackbar.show();
-        return null;
     }
 
     @Override
-    public void showNetworkError(View.OnClickListener onClickListener) {
+    public final void showNetworkError(@NonNull final View.OnClickListener onClickListener) {
         activitySnackbar = Snackbar.make(findViewById(android.R.id.content), R.string.network_error_message, Snackbar.LENGTH_INDEFINITE);
         activitySnackbar.setAction(R.string.retry, onClickListener);
         activitySnackbar.show();
     }
 
     @Override
-    public void showContent() {
+    public final void showContent() {
         findViewById(R.id.content_container).setVisibility(View.VISIBLE);
     }
 
     @Override
-    public void hideContent() {
+    public final void hideContent() {
         findViewById(R.id.content_container).setVisibility(View.GONE);
     }
 
     @Override
-    public void removeUserInfo() {
+    public final void removeUserInfo() {
         ((ImageView) navigationHeader.findViewById(R.id.profilePicture)).setImageDrawable(null);
         ((TextView) navigationHeader.findViewById(R.id.user_name)).setText("");
         ((TextView) navigationHeader.findViewById(R.id.user_email)).setText("");
     }
 
     @Override
-    public void showNoGeolocationAvailableError(View.OnClickListener settingsClickListener) {
+    public final void showNoGeolocationAvailableError(@NonNull final View.OnClickListener settingsClickListener) {
         activitySnackbar = Snackbar.make(findViewById(android.R.id.content), R.string.location_provider_disabled_message, Snackbar.LENGTH_INDEFINITE);
         activitySnackbar.setAction(R.string.location_provider_disabled_settings, settingsClickListener);
         activitySnackbar.show();
     }
 
     @Override
-    public void showGoogleSignInError(DialogInterface.OnClickListener retryClickListener) {
+    public final void showGoogleSignInError(@NonNull final DialogInterface.OnClickListener retryClickListener) {
         final AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
 
         dlgAlert.setTitle(R.string.google_sign_in_error_title);
@@ -191,27 +193,30 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
     }
 
     @Override
-    public void closeDrawers() {
+    public final void closeDrawers() {
         drawerLayout.closeDrawers();
     }
 
-    public void showLoading(@StringRes int loadingMessageResId) {
+    public final void showLoading(@StringRes final int loadingMessageResId) {
         findViewById(R.id.loading_layout).setVisibility(View.VISIBLE);
         ((TextView) findViewById(R.id.loading_message)).setText(loadingMessageResId);
     }
 
-    public void hideLoading() {
+    public final void hideLoading() {
         findViewById(R.id.loading_layout).setVisibility(View.GONE);
     }
 
     @Override
-    public void checkMenu(int resId) {
+    public final void checkMenu(final int resId) {
         for (int i = 0; i < navigationMenu.size(); i++) {
             MenuItem currentItem = navigationMenu.getItem(i);
             currentItem.setChecked(currentItem.getItemId() == resId);
         }
     }
 
+    /**
+     * Hides the displayed SnackBar
+     */
     private void hideSnackbar() {
         if (activitySnackbar != null) {
             activitySnackbar.dismiss();

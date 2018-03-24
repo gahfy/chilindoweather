@@ -17,6 +17,8 @@ import net.gahfy.chilindoweather.utils.ChilindoWeatherContextWrapper;
  *
  * @param <P> the type of presenter the Activity is based on
  */
+// Safe as this issue is due to AppCompatActivity
+@java.lang.SuppressWarnings("squid:MaximumInheritanceDepth")
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     /**
      * The presenter associated to this Activity
@@ -27,12 +29,12 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected P presenter;
 
     @Override
-    protected void attachBaseContext(Context newBase) {
+    protected final void attachBaseContext(@NonNull final Context newBase) {
         super.attachBaseContext(ChilindoWeatherContextWrapper.wrap(newBase, newBase.getString(R.string.language)));
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((ChilindoWeatherApplication) getApplicationContext()).addActivity(this);
         presenter = instantiatePresenter();
@@ -52,17 +54,17 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @NonNull
     @Override
-    public Context getContext() {
+    public final Context getContext() {
         return this;
     }
 
     @Override
-    public void startActivity(Class<? extends BaseActivity> activityClass) {
+    public final void startActivity(@NonNull final Class<? extends BaseActivity> activityClass) {
         ((ChilindoWeatherApplication) getApplicationContext()).startActivity(this, activityClass);
     }
 
     @Override
-    public void setTitle(@StringRes int titleResId, @NonNull String... formatString) {
+    public final void setTitle(@StringRes final int titleResId, @NonNull final String... formatString) {
         super.setTitle(getString(titleResId, (Object[]) formatString));
     }
 }
