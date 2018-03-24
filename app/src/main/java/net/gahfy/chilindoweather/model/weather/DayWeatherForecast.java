@@ -185,12 +185,7 @@ public class DayWeatherForecast implements Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(dayTimestamp);
         }
-        if (city == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeString(city);
-        }
+        dest.writeString(city);
         dest.writeTypedList(forecastList);
     }
 
