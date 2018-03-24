@@ -1,8 +1,8 @@
 package net.gahfy.chilindoweather.injection.module;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
-import net.gahfy.chilindoweather.ChilindoWeatherApplication;
 import net.gahfy.chilindoweather.utils.LocationUtils;
 
 import dagger.Module;
@@ -48,7 +48,7 @@ public class LocationModule {
     @Reusable
     // Safe here as it is a module provider
     @SuppressWarnings("unused")
-    static LocationUtils provideLocationUtils(@NonNull ChilindoWeatherApplication context) {
+    static LocationUtils provideLocationUtils(@NonNull Context context) {
         return LocationUtils.getInstance(context);
     }
 }

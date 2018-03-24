@@ -71,7 +71,7 @@
     <string name="settings_wind_speed_mi">mi/h</string>
 
     <!-- {wd} for week-days full letters, {mn} for month name full letters -->
-    <string name="date_format_forecast">{wd}, {mn} d, yyyy</string>
+    <string name="date_format_forecast">|wd|, |mn| d, yyyy</string>
     <string name="forecast_time_format">hh a</string>
 
     <string name="day_monday">Monday</string>

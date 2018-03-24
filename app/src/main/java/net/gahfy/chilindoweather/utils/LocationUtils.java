@@ -101,7 +101,7 @@ public class LocationUtils {
     // Safe as check is made by PermissionUtils
     @SuppressLint("MissingPermission")
     private void requestLocationUpdatesIfAvailable(String provider) {
-        if (locationManager.isProviderEnabled(provider)) {
+        if (locationManager != null && locationManager.isProviderEnabled(provider)) {
             locationManager.requestLocationUpdates(provider, 0, 0, locationListener);
         }
     }
@@ -110,7 +110,7 @@ public class LocationUtils {
         return location != null;
     }
 
-    public Void addSingleLocationListener(SingleLocationListener singleLocationListener) {
+    public void addSingleLocationListener(SingleLocationListener singleLocationListener) {
         singleLocationListeners.add(singleLocationListener);
         if (location == null || new Date().getTime() - RELOCATION_DELAY > lastLocationTimestamp) {
             location = null;
@@ -121,7 +121,6 @@ public class LocationUtils {
         } else {
             singleLocationListener.onLocationFound(location);
         }
-        return null;
     }
 
     public void removeSingleLocationListener(SingleLocationListener singleLocationListener) {

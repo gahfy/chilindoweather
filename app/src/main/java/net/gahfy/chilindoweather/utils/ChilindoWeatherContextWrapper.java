@@ -17,7 +17,7 @@ public class ChilindoWeatherContextWrapper extends ContextWrapper {
     @SuppressWarnings("deprecation")
     public static ContextWrapper wrap(Context context, String language) {
         Configuration config = context.getResources().getConfiguration();
-        Locale sysLocale = null;
+        Locale sysLocale;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             sysLocale = getSystemLocale(config);
         } else {
