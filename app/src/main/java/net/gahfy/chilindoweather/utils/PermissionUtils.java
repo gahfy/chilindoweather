@@ -26,18 +26,26 @@ public class PermissionUtils {
         return shouldShowRationale(Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
+    // Safe as this is a utils method
+    @SuppressWarnings("unused")
     public void requestGeolocationPermission(int requestCode) {
         requestPermission(requestCode, Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
+    // Safe as this is a utils method
+    @SuppressWarnings("unused")
     private boolean hasPermission(String permission) {
         return ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
+    // Safe as this is a utils method
+    @SuppressWarnings("unused")
     private boolean shouldShowRationale(String permission) {
         return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
+    // Safe as this is a utils method
+    @SuppressWarnings("unused")
     private void requestPermission(int requestCode, String... permissions) {
         ActivityCompat.requestPermissions(activity, permissions, requestCode);
     }

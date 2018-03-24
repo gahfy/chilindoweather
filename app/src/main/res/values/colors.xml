@@ -9,6 +9,5 @@
     <color name="white">#fff</color>
     <color name="separator_color">#30FFFFFF</color>
 
-    <color name="item_menu_color">@color/black</color>
     <color name="menu_background">@color/white</color>
 </resources>

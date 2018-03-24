@@ -30,6 +30,8 @@ public class Logger {
         Timber.e(tag, message);
     }
 
+    // Safe as this is a utils method
+    @SuppressWarnings("unused")
     public static void e(String tag, Throwable tr) {
         Timber.e(tag, Log.getStackTraceString(tr));
     }

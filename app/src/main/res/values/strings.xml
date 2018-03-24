@@ -11,8 +11,6 @@
     <string name="forecast_for_title">Forecast for %s</string>
 
     <string name="retry">Retry</string>
-    <string name="cancel">Cancel</string>
-    <string name="network_error_title">Network Error</string>
     <string name="network_error_message">An issue occurred while retrieving weather data.</string>
 
     <string name="loading_location">Retrieving your current location</string>
@@ -32,18 +30,13 @@
     <string name="unknown_humidity">&#8230; %%</string>
 
     <string name="pressure_label">Pressure:</string>
-    <string name="pressure_value" formatted="false">%dhPa</string>
+    <string name="pressure_value" formatted="true">%dhPa</string>
     <string name="unknown_pressure">&#8230;hPa</string>
-
-    <string name="rain_label">Rain (mm/3h):</string>
-    <string name="rain_value" formatted="false">%d mm</string>
-    <string name="unknown_rain">&#8230; mm</string>
 
     <string name="temperature_value" formatted="true">%1$d°</string>
     <string name="unknown_temperature">&#8230;°</string>
 
     <string name="calculation_date_format">MM-dd-yyyy hh:mm a</string>
-    <string name="unknown_calculation_date" />
 
     <string name="geolocation_permission_rationale">Location permission required to show weather forecast for your location.</string>
     <string name="geolocation_permission_grant">GRANT</string>
