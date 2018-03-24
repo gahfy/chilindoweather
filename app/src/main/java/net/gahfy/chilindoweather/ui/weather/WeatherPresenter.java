@@ -16,6 +16,7 @@ import net.gahfy.chilindoweather.model.weather.CurrentWeather;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
 import net.gahfy.chilindoweather.ui.common.CommonPresenter;
 import net.gahfy.chilindoweather.utils.LocationUtils;
+import net.gahfy.chilindoweather.utils.Logger;
 import net.gahfy.chilindoweather.utils.PermissionUtils;
 import net.gahfy.chilindoweather.utils.PreferencesUtils;
 import net.gahfy.chilindoweather.utils.Schedulers;
@@ -191,6 +192,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        Logger.e(throwable);
                         view.hideContent();
                         view.showNetworkError(new View.OnClickListener() {
                             @Override
