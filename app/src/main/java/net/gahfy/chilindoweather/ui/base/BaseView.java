@@ -19,7 +19,7 @@ public interface BaseView {
 
     void setTitle(@StringRes int titleResId, String... formatString);
 
-    void setTitle(String title);
+    void setTitle(CharSequence title);
 
     void startActivity(Class<? extends BaseActivity> activityClass);
 

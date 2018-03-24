@@ -1,10 +1,6 @@
 package net.gahfy.chilindoweather.ui.base;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import net.gahfy.chilindoweather.ChilindoWeatherApplication;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.utils.ChilindoWeatherContextWrapper;
-
-import java.util.Locale;
 
 /**
  * Activity all Activity classes must extend. It provides required methods and presenter
@@ -50,16 +44,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         ((ChilindoWeatherApplication) getApplicationContext()).removeActivity(this);
     }
 
-    @SuppressWarnings("deprecation")
-    public void setSystemLocaleLegacy(Configuration config, Locale locale) {
-        config.locale = locale;
-    }
-
-    @TargetApi(Build.VERSION_CODES.N)
-    public void setSystemLocale(Configuration config, Locale locale) {
-        config.setLocale(locale);
-    }
-
     /**
      * Instantiates the presenter the Activity is based on.
      */
@@ -78,17 +62,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     }
 
     @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        super.startActivityForResult(intent, requestCode);
-    }
-
-    @Override
     public void setTitle(@StringRes int titleResId, @NonNull String... formatString) {
         super.setTitle(getString(titleResId, (Object[]) formatString));
-    }
-
-    @Override
-    public void setTitle(String title) {
-        super.setTitle(title);
     }
 }

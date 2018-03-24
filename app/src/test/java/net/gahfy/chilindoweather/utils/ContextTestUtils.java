@@ -99,6 +99,8 @@ public class ContextTestUtils {
             }
         });
 
+        Mockito.when(context.getString(R.string.forecast_time_format)).thenReturn("hh a");
+
         return context;
     }
 }
