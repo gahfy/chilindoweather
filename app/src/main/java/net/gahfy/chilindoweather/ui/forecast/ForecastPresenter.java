@@ -73,11 +73,10 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    public Bundle saveInstanceState(Bundle outState) {
+    public void saveInstanceState(Bundle outState) {
         ArrayList<DayWeatherForecast> dayWeatherForecasts = new ArrayList<>();
         dayWeatherForecasts.addAll(this.dayWeatherForecastList);
         outState.putParcelableArrayList(FORECAST_KEY, dayWeatherForecasts);
-        return outState;
     }
 
     public void onViewDestroyed() {

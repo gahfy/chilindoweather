@@ -80,9 +80,8 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
     }
 
     @Override
-    public Bundle saveInstanceState(Bundle outState) {
+    public void saveInstanceState(Bundle outState) {
         outState.putParcelable(CURRENT_WEATHER_KEY, currentWeather);
-        return outState;
     }
 
     @Override

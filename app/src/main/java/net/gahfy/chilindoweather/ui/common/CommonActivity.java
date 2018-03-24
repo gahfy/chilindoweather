@@ -92,22 +92,22 @@ public abstract class CommonActivity<P extends CommonPresenter> extends BaseActi
 
     @Override
     public final void onActivityResult(final int requestCode, final int resultCode, @NonNull final Intent data) {
-        presenter.onActivityResult(requestCode, resultCode, data);
+        presenter.onActivityResult(requestCode, data);
     }
 
     @Override
-    public final void onRequestPermissionsResult(final int requestCode, @NonNull final String permissions[], @NonNull final int[] grantResults) {
-        presenter.onPermissionResult(requestCode, permissions, grantResults);
+    public final void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+        presenter.onPermissionResult(requestCode, grantResults);
     }
 
     @Override
     public final boolean onOptionsItemSelected(@NonNull final MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            drawerLayout.openDrawer(GravityCompat.START);
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -37,7 +37,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     private static final int PERMISSION_REQUEST_CODE = 1;
     private static final int GOOGLE_SIGN_IN_REQUEST_CODE = 2;
 
-    private final View.OnClickListener RationaleRetryClickListener = new View.OnClickListener() {
+    private final View.OnClickListener rationaleRetryClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             view.showGeolocationPermissionRationale(this);
@@ -86,8 +86,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     public void onViewCreated(Bundle savedInstanceState) {
     }
 
-    public Bundle saveInstanceState(Bundle outState) {
-        return outState;
+    public void saveInstanceState(Bundle outState) {
     }
 
     public void onResumeView() {
@@ -107,7 +106,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         } else {
             if (getPermissionUtils().shouldShowGeolocationRationale()) {
                 view.showLoading(R.string.loading_permission);
-                view.showGeolocationPermissionRationale(RationaleRetryClickListener);
+                view.showGeolocationPermissionRationale(rationaleRetryClickListener);
             } else {
                 view.showLoading(R.string.loading_permission);
                 getPermissionUtils().requestGeolocationPermission(PERMISSION_REQUEST_CODE);
@@ -115,11 +114,8 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         }
     }
 
-    void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
+    void onActivityResult(int requestCode, Intent data) {
         if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             GoogleSignInResult result = getSignInResultFromIntent(data);
             onGoogleSignInResult(result);
         }
@@ -225,6 +221,8 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
                             case R.id.settings:
                                 view.startActivity(SettingsActivity.class);
                                 break;
+                            default:
+                                break;
                         }
                     }
                 }, 250);
@@ -238,14 +236,12 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         };
     }
 
-    void onPermissionResult(int requestCode, String[] permissions, int[] grantResults) {
+    void onPermissionResult(int requestCode, int[] grantResults) {
         boolean hasPermission = false;
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                view.hideGeolocationRationale();
-                hasPermission = true;
-                geolocate();
-            }
+        if (requestCode == PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            view.hideGeolocationRationale();
+            hasPermission = true;
+            geolocate();
         }
 
         if (!hasPermission) {
