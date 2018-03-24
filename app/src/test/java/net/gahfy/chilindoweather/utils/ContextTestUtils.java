@@ -42,7 +42,7 @@ public class ContextTestUtils {
         Mockito.when(resources.getStringArray(R.array.week_days)).thenReturn(new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"});
         Mockito.when(resources.getStringArray(R.array.months)).thenReturn(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"});
 
-        Mockito.when(context.getString(R.string.date_format_forecast)).thenReturn("{wd}, {mn} d, yyyy");
+        Mockito.when(context.getString(R.string.date_format_forecast)).thenReturn("|wd|, |mn| d, yyyy");
         Mockito.when(context.getString(R.string.calculation_date_format)).thenReturn("MM-dd-yyyy hh:mm a");
         Mockito.when(context.getString(R.string.empty)).thenReturn("");
         Mockito.when(context.getResources()).thenReturn(resources);
