@@ -8,10 +8,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
 public class PermissionUtils {
-    private Context context;
+    private Activity activity;
 
     public PermissionUtils(Context context) {
-        this.context = context;
+        if (context instanceof Activity) {
+            this.activity = (Activity) context;
+        } else {
+            throw new IllegalArgumentException("Provided context must be an instance of Activity");
+        }
     }
 
     public boolean hasFineLocationPermission() {
@@ -27,25 +31,14 @@ public class PermissionUtils {
     }
 
     private boolean hasPermission(String permission) {
-        return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
     private boolean shouldShowRationale(String permission) {
-        if (context instanceof Activity) {
-            return ActivityCompat.shouldShowRequestPermissionRationale((Activity) context,
-                    permission);
-        } else {
-            throw new RuntimeException("Provided context must be an instance of Activity");
-        }
+        return ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
     }
 
     private void requestPermission(int requestCode, String... permissions) {
-        if (context instanceof Activity) {
-            ActivityCompat.requestPermissions((Activity) context,
-                    permissions,
-                    requestCode);
-        } else {
-            throw new RuntimeException("Provided context must be an instance of Activity");
-        }
+        ActivityCompat.requestPermissions(activity, permissions, requestCode);
     }
 }

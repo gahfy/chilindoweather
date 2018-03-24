@@ -24,11 +24,12 @@ public final class WindUtils {
 
     @Nullable
     public static Integer getWindDirection(@Nullable final ApiWind apiWind) {
-        return apiWind != null ?
-                apiWind.getDirection() != null ?
-                        apiWind.getDirection().intValue() :
-                        null :
-                null;
+        if (apiWind != null) {
+            return apiWind.getDirection() != null ?
+                    apiWind.getDirection().intValue() :
+                    null;
+        }
+        return null;
     }
 
     public static int getWindDirectionNormalized(@Nullable final Integer windDirection) {
@@ -50,12 +51,16 @@ public final class WindUtils {
                     return R.string.south_abbr;
                 case 3:
                     return R.string.west_abbr;
+                default:
+                    return R.string.empty;
             }
         }
         return R.string.empty;
     }
 
     @Nullable
+    // Safe as we want to keep the information that the exception may be thrown
+    @SuppressWarnings("squid:RedundantThrowsDeclarationCheck")
     public static Integer getWindSpeed(@Nullable final Double windSpeed, final int preferredSpeedIndex) throws IllegalArgumentException {
         if (preferredSpeedIndex != METERS_INDEX && preferredSpeedIndex != MILES_INDEX) {
             throw new IllegalArgumentException("preferredSpeedIndex must be one of METERS_INDEX or MILES_INDEX.");

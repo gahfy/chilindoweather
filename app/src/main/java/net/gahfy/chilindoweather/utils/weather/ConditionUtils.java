@@ -12,6 +12,9 @@ public class ConditionUtils {
     }
 
     @DrawableRes
+    // Safe as the complixity is due to the number of available codes and it is a bad practice to
+    // load resource by using their string names
+    @SuppressWarnings("squid:S3776")
     public static int getIconResId(@Nullable final ApiCondition[] apiConditions) {
         if (apiConditions != null && apiConditions.length > 0 && apiConditions[0] != null) {
             final String icon = apiConditions[0].getIconId();
@@ -50,21 +53,14 @@ public class ConditionUtils {
     }
 
     @StringRes
+    // Safe as the complixity is due to the number of available codes and it is a bad practice to
+    // load resource by using their string names
+    @SuppressWarnings("squid:S1479")
     public static int getDescriptionResId(@Nullable final ApiCondition[] apiConditions) {
         if (apiConditions != null && apiConditions.length > 0 && apiConditions[0] != null) {
             final Integer conditionId = apiConditions[0].getId();
             if (conditionId != null) {
                 switch (conditionId) {
-                /*
-                 In order to generate this block, copy paste block of conditions from strings.xml.
-                 Then replace all, with regex checked:
-
-                 Search pattern:
-                 <string name="condition_([\d]{3})_description">[^<]+</string>
-
-                 Replace by:
-                 case $1: return R.string.condition_$1_description;
-                 */
                     case 200:
                         return R.string.condition_200_description;
                     case 201:
@@ -218,6 +214,8 @@ public class ConditionUtils {
                         return R.string.condition_961_description;
                     case 962:
                         return R.string.condition_962_description;
+                    default:
+                        return R.string.empty;
                 }
             }
         }

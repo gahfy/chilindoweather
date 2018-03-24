@@ -41,6 +41,8 @@ public final class MeasurementsUtils {
 
 
     @Nullable
+    // Safe as we want to keep the information that the exception may be thrown
+    @SuppressWarnings("squid:RedundantThrowsDeclarationCheck")
     public static Integer getTemperature(@Nullable final Double temperature, final int preferredTemperatureIndex) throws IllegalArgumentException {
         if (preferredTemperatureIndex != CELSIUS_INDEX && preferredTemperatureIndex != FAHRENHEIT_INDEX) {
             throw new IllegalArgumentException("preferredTemperatureIndex must be one of CELSIUS_INDEX or FAHRENHEIT_INDEX.");
