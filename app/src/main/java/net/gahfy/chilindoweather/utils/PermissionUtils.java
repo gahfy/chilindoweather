@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.permissions;
+package net.gahfy.chilindoweather.utils;
 
 import android.Manifest;
 import android.app.Activity;

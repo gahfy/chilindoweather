@@ -15,10 +15,10 @@ import net.gahfy.chilindoweather.model.api.ApiWeather;
 import net.gahfy.chilindoweather.model.weather.CurrentWeather;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
 import net.gahfy.chilindoweather.ui.common.CommonPresenter;
-import net.gahfy.chilindoweather.utils.location.LocationUtils;
-import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
-import net.gahfy.chilindoweather.utils.preferences.PreferencesUtils;
-import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
+import net.gahfy.chilindoweather.utils.LocationUtils;
+import net.gahfy.chilindoweather.utils.PermissionUtils;
+import net.gahfy.chilindoweather.utils.PreferencesUtils;
+import net.gahfy.chilindoweather.utils.Schedulers;
 
 import javax.inject.Inject;
 

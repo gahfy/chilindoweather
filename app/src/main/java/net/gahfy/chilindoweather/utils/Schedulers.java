@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.rxandroid;
+package net.gahfy.chilindoweather.utils;
 
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;

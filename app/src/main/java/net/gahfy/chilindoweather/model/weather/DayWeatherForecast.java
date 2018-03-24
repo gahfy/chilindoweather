@@ -12,8 +12,8 @@ import net.gahfy.chilindoweather.model.api.ApiForecastItem;
 import net.gahfy.chilindoweather.utils.ContextUtils;
 import net.gahfy.chilindoweather.utils.DateUtils;
 import net.gahfy.chilindoweather.utils.IntegerUtils;
+import net.gahfy.chilindoweather.utils.Logger;
 import net.gahfy.chilindoweather.utils.StringUtils;
-import net.gahfy.chilindoweather.utils.log.Logger;
 import net.gahfy.chilindoweather.utils.weather.CityUtils;
 
 import java.util.ArrayList;

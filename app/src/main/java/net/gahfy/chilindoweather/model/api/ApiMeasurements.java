@@ -5,14 +5,14 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_GROUND_LEVEL_PRESSURE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_HUMIDITY;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_MAXIMUM_TEMPERATURE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_MINIMUM_TEMPERATURE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_PRESSURE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_SEA_LEVEL_PRESSURE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_TEMPERATURE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_MEASUREMENTS_TEMP_KF;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_GROUND_LEVEL_PRESSURE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_HUMIDITY;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_MAXIMUM_TEMPERATURE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_MINIMUM_TEMPERATURE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_PRESSURE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_SEA_LEVEL_PRESSURE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_TEMPERATURE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_MEASUREMENTS_TEMP_KF;
 
 /**
  * Weather measurements as they are returned by the OpenWeatherMap API

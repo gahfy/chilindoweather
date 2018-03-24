@@ -4,10 +4,10 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CONDITION_CONDITION_NAME;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CONDITION_GROUP_NAME;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CONDITION_ICON_ID;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CONDITION_ID;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CONDITION_CONDITION_NAME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CONDITION_GROUP_NAME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CONDITION_ICON_ID;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CONDITION_ID;
 
 /**
  * Weather condition as it is returned by the OpenWeatherMap API

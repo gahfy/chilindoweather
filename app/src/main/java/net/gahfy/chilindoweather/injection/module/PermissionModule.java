@@ -3,7 +3,7 @@ package net.gahfy.chilindoweather.injection.module;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
+import net.gahfy.chilindoweather.utils.PermissionUtils;
 
 import dagger.Module;
 import dagger.Provides;

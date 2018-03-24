@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.unit;
+package net.gahfy.chilindoweather.utils;
 
 import java.util.Locale;
 

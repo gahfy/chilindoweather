@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.log;
+package net.gahfy.chilindoweather.utils;
 
 import android.util.Log;
 

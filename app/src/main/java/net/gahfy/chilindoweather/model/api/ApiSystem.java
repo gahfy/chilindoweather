@@ -4,12 +4,12 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM_COUNTRY_CODE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM_ID;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM_MESSAGE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM_SUNRISE_TIMESTAMP;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM_SUNSET_TIMESTAMP;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SYSTEM_TYPE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SYSTEM_COUNTRY_CODE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SYSTEM_ID;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SYSTEM_MESSAGE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SYSTEM_SUNRISE_TIMESTAMP;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SYSTEM_SUNSET_TIMESTAMP;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SYSTEM_TYPE;
 
 /**
  * System parameters as it is returned by the OpenWeatherMap API

@@ -4,7 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_SNOW_LAST_3_HOURS_VOLUME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_SNOW_LAST_3_HOURS_VOLUME;
 
 /**
  * Snow as it is returned by the OpenWeatherMap API

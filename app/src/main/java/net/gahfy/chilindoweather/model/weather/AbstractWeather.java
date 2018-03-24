@@ -9,11 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 
 import net.gahfy.chilindoweather.R;
-import net.gahfy.chilindoweather.utils.log.Logger;
+import net.gahfy.chilindoweather.utils.Logger;
 import net.gahfy.chilindoweather.utils.weather.MeasurementsUtils;
 import net.gahfy.chilindoweather.utils.weather.WindUtils;
 
-import static net.gahfy.chilindoweather.utils.unit.UnitUtils.METERS_INDEX;
+import static net.gahfy.chilindoweather.utils.UnitUtils.METERS_INDEX;
 import static net.gahfy.chilindoweather.utils.weather.WindUtils.WIND_TO_FROM_DIFFERENCE;
 
 public abstract class AbstractWeather implements Parcelable {

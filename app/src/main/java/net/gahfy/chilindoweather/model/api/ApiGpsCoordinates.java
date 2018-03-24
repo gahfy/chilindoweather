@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_GPS_COORDINATES_LATITUDE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_GPS_COORDINATES_LONGITUDE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_GPS_COORDINATES_LATITUDE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_GPS_COORDINATES_LONGITUDE;
 
 /**
  * Gps coordinates as they are returned by OpenWeatherMap API

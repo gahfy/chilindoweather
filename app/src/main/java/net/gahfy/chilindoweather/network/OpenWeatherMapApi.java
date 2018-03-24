@@ -7,8 +7,8 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.QUERY_GPS_LATITUDE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.QUERY_GPS_LONGITUDE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.QUERY_GPS_LATITUDE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.QUERY_GPS_LONGITUDE;
 
 /**
  * The interface which provides methods to get result of the OpenWeatherMap API

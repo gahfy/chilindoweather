@@ -4,7 +4,7 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_RAIN_LAST_3_HOURS_VOLUME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_RAIN_LAST_3_HOURS_VOLUME;
 
 /**
  * Rain as it is returned by the OpenWeatherMap API

@@ -3,7 +3,7 @@ package net.gahfy.chilindoweather.injection.module;
 import android.support.annotation.NonNull;
 
 import net.gahfy.chilindoweather.ChilindoWeatherApplication;
-import net.gahfy.chilindoweather.utils.preferences.PreferencesUtils;
+import net.gahfy.chilindoweather.utils.PreferencesUtils;
 
 import dagger.Module;
 import dagger.Provides;

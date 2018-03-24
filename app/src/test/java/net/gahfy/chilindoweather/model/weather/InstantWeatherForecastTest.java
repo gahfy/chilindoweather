@@ -9,7 +9,7 @@ import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiForecastItem;
 import net.gahfy.chilindoweather.rules.UTCRule;
 import net.gahfy.chilindoweather.utils.ContextTestUtils;
-import net.gahfy.chilindoweather.utils.unit.UnitUtils;
+import net.gahfy.chilindoweather.utils.UnitUtils;
 
 import org.junit.Before;
 import org.junit.Rule;

@@ -29,9 +29,9 @@ import net.gahfy.chilindoweather.ui.settings.SettingsPresenter;
 import net.gahfy.chilindoweather.ui.weather.WeatherActivity;
 import net.gahfy.chilindoweather.ui.weather.WeatherPresenter;
 import net.gahfy.chilindoweather.utils.HandlerUtils;
-import net.gahfy.chilindoweather.utils.location.LocationUtils;
-import net.gahfy.chilindoweather.utils.log.Logger;
-import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
+import net.gahfy.chilindoweather.utils.LocationUtils;
+import net.gahfy.chilindoweather.utils.Logger;
+import net.gahfy.chilindoweather.utils.PermissionUtils;
 
 /**
  * Common presenter that all presenter related to weather must implement.

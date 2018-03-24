@@ -1,10 +1,8 @@
-package net.gahfy.chilindoweather.utils.preferences;
+package net.gahfy.chilindoweather.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-
-import net.gahfy.chilindoweather.utils.unit.UnitUtils;
 
 public class PreferencesUtils {
     private static final String PREFERENCE_TEMPERATURE = "temperature";

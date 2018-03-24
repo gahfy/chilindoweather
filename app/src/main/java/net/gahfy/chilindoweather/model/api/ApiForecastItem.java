@@ -4,15 +4,15 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_CALCULATION_DATETIME;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_CALCULATION_TIMESTAMP;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_CLOUDINESS;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_CONDITION;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_MEASUREMENTS;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_RAIN;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_SNOW;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_SYSTEM;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_WIND;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_CALCULATION_DATETIME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_CALCULATION_TIMESTAMP;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_CLOUDINESS;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_CONDITION;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_MEASUREMENTS;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_RAIN;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_SNOW;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_SYSTEM;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_WIND;
 
 /**
  * Weather forecast as it is returned by OpenWeatherMap API.

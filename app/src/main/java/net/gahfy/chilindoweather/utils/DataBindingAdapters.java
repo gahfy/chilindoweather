@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.databinding;
+package net.gahfy.chilindoweather.utils;
 
 import android.databinding.BindingAdapter;
 import android.support.v4.content.ContextCompat;

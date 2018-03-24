@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WIND_DIRECTION;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WIND_SPEED;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WIND_DIRECTION;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WIND_SPEED;
 
 /**
  * Wind as it is returned by the OpenWeatherMap API.

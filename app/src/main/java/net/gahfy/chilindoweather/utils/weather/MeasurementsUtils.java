@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 
 import net.gahfy.chilindoweather.model.api.ApiMeasurements;
 
-import static net.gahfy.chilindoweather.utils.unit.UnitUtils.CELSIUS_INDEX;
-import static net.gahfy.chilindoweather.utils.unit.UnitUtils.FAHRENHEIT_INDEX;
+import static net.gahfy.chilindoweather.utils.UnitUtils.CELSIUS_INDEX;
+import static net.gahfy.chilindoweather.utils.UnitUtils.FAHRENHEIT_INDEX;
 
 public final class MeasurementsUtils {
     private static final double KELVIN_TO_CELSIUS_DIFFERENCE = 273.15;

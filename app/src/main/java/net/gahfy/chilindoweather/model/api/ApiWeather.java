@@ -4,21 +4,21 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_BASE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_CALCULATION_TIMESTAMP;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_CITY_ID;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_CITY_NAME;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_CLOUDS;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_CONDITION;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_ERROR_MESSAGE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_GPS_COORDINATES;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_HTTP_CODE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_MEASUREMENTS;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_RAIN;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_SNOW;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_SYSTEM;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_VISIBILITY;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_WEATHER_WIND;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_BASE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_CALCULATION_TIMESTAMP;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_CITY_ID;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_CITY_NAME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_CLOUDS;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_CONDITION;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_ERROR_MESSAGE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_GPS_COORDINATES;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_HTTP_CODE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_MEASUREMENTS;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_RAIN;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_SNOW;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_SYSTEM;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_VISIBILITY;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_WEATHER_WIND;
 
 /**
  * Weather as it is returned by the OpenWeatherMap API

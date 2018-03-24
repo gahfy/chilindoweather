@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import net.gahfy.chilindoweather.utils.MockInstance;
-import net.gahfy.chilindoweather.utils.preferences.PreferencesUtils;
+import net.gahfy.chilindoweather.utils.PreferencesUtils;
 
 import org.mockito.Mockito;
 

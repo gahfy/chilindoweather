@@ -4,10 +4,10 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CITY_COUNTRY;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CITY_GPS_COORDINATES;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CITY_ID;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CITY_NAME;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CITY_COUNTRY;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CITY_GPS_COORDINATES;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CITY_ID;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CITY_NAME;
 
 /**
  * City as it is returned by OpenWeatherMap API

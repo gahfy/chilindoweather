@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.constants;
+package net.gahfy.chilindoweather.utils;
 
 /**
  * Constants related to the OpenWeatherMap API

@@ -4,11 +4,11 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_CITY;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ERROR_MESSAGE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_FORECAST_LIST;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_HTTP_CODE;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_FORECAST_ITEM_COUNT;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_CITY;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ERROR_MESSAGE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_FORECAST_LIST;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_HTTP_CODE;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_FORECAST_ITEM_COUNT;
 
 /**
  * List of weather forecasts as it is returned by OpenWeatherMap API

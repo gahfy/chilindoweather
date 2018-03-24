@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.squareup.moshi.Json;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.JSON_CLOUDS_CLOUDINESS;
+import static net.gahfy.chilindoweather.utils.ApiConstants.JSON_CLOUDS_CLOUDINESS;
 
 /**
  * Clouds as it is returned by OpenWeatherMap API

@@ -1,4 +1,4 @@
-package net.gahfy.chilindoweather.utils.location;
+package net.gahfy.chilindoweather.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -8,8 +8,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import net.gahfy.chilindoweather.utils.permissions.PermissionUtils;
 
 import java.util.ArrayList;
 import java.util.Date;

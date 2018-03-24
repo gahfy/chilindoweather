@@ -6,8 +6,8 @@ import android.support.annotation.StringRes;
 import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiWind;
 
-import static net.gahfy.chilindoweather.utils.unit.UnitUtils.METERS_INDEX;
-import static net.gahfy.chilindoweather.utils.unit.UnitUtils.MILES_INDEX;
+import static net.gahfy.chilindoweather.utils.UnitUtils.METERS_INDEX;
+import static net.gahfy.chilindoweather.utils.UnitUtils.MILES_INDEX;
 
 public final class WindUtils {
     public static final int WIND_TO_FROM_DIFFERENCE = 180;

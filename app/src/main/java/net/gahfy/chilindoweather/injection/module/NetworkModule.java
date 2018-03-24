@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import net.gahfy.chilindoweather.BuildConfig;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
-import net.gahfy.chilindoweather.utils.rxandroid.Schedulers;
+import net.gahfy.chilindoweather.utils.Schedulers;
 
 import java.io.IOException;
 
@@ -22,8 +22,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.BASE_URL;
-import static net.gahfy.chilindoweather.utils.constants.ApiConstants.QUERY_API_KEY;
+import static net.gahfy.chilindoweather.utils.ApiConstants.BASE_URL;
+import static net.gahfy.chilindoweather.utils.ApiConstants.QUERY_API_KEY;
 
 /**
  * Module which provides all required dependencies about network
