@@ -105,7 +105,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
         super(view);
     }
 
-    public void onViewCreated(@NonNull final Bundle savedInstanceState){
+    public void onViewCreated(@Nullable final Bundle savedInstanceState) {
     }
 
     public void saveInstanceState(@NonNull final Bundle outState){
@@ -346,7 +346,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
      * Returns the GoogleSignInAccount injected in final presenters.
      * @return the GoogleSignInAccount injected in final presenters
      */
-    @NonNull
+    @Nullable
     protected abstract GoogleSignInAccount getGoogleSignInAccount();
 
     /**

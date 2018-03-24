@@ -72,14 +72,14 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
 
     private Disposable disposable = null;
 
-    public ForecastPresenter(@NonNull ForecastView view) {
+    ForecastPresenter(@NonNull final ForecastView view) {
         super(view);
     }
 
     // Safe as all Non Null properties are injected
     @SuppressWarnings("squid:S2637")
     @Override
-    public void onViewCreated(@Nullable Bundle savedInstanceState) {
+    public final void onViewCreated(@Nullable final Bundle savedInstanceState) {
         super.onViewCreated(savedInstanceState);
         if (savedInstanceState != null && savedInstanceState.containsKey(FORECAST_KEY)) {
             dayWeatherForecastList = savedInstanceState.getParcelableArrayList(FORECAST_KEY);
@@ -87,13 +87,14 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    public void saveInstanceState(Bundle outState) {
+    public final void saveInstanceState(@NonNull final Bundle outState) {
         ArrayList<DayWeatherForecast> dayWeatherForecasts = new ArrayList<>();
         dayWeatherForecasts.addAll(this.dayWeatherForecastList);
         outState.putParcelableArrayList(FORECAST_KEY, dayWeatherForecasts);
     }
 
-    public void onViewDestroyed() {
+    @Override
+    public final void onViewDestroyed() {
         super.onViewDestroyed();
         if (disposable != null) {
             disposable.dispose();
@@ -101,9 +102,9 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    public void onResumeView() {
+    public final void onResumeView() {
         super.onResumeView();
-        if (dayWeatherForecastList != null && dayWeatherForecastList.size() > 0) {
+        if (dayWeatherForecastList != null && !dayWeatherForecastList.isEmpty()) {
             updateDayWeatherForecastList(dayWeatherForecastList);
             view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
             view.hideLoading();
@@ -116,33 +117,36 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
     }
 
     @Override
-    protected GoogleSignInClient getGoogleSignInClient() {
+    @NonNull
+    protected final GoogleSignInClient getGoogleSignInClient() {
         return googleSignInClient;
     }
 
     @Override
-    protected PermissionUtils getPermissionUtils() {
+    @NonNull
+    protected final PermissionUtils getPermissionUtils() {
         return permissionUtils;
     }
 
     @Override
     @Nullable
-    protected GoogleSignInAccount getGoogleSignInAccount() {
+    protected final GoogleSignInAccount getGoogleSignInAccount() {
         return googleSignInAccount;
     }
 
     @Override
-    protected LocationUtils getLocationUtils() {
+    @NonNull
+    protected final LocationUtils getLocationUtils() {
         return locationUtils;
     }
 
     @Override
-    protected boolean needGeolocationonStartup() {
+    protected final boolean needGeolocationonStartup() {
         return true;
     }
 
     @Override
-    protected void onLocationAvailable(final Location location) {
+    protected final void onLocationAvailable(@NonNull final Location location) {
         view.showLoading(R.string.loading_network);
         disposable = openWeatherMapApi.getForecast(location.getLatitude(), location.getLongitude())
                 .flatMap(new Function<ApiForecast, ObservableSource<List<DayWeatherForecast>>>() {
@@ -163,7 +167,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                     @Override
                     public void accept(List<DayWeatherForecast> dayWeatherForecastList) throws Exception {
                         updateDayWeatherForecastList(dayWeatherForecastList);
-                        if (dayWeatherForecastList.size() > 0 && dayWeatherForecastList.get(0).getCity() != null) {
+                        if (!dayWeatherForecastList.isEmpty() && dayWeatherForecastList.get(0).getCity() != null) {
                             view.setTitle(R.string.forecast_for_title, dayWeatherForecastList.get(0).getCity());
                         } else {
                             view.setTitle(R.string.forecast_title);
@@ -183,7 +187,7 @@ public class ForecastPresenter extends CommonPresenter<ForecastView> {
                 });
     }
 
-    private void updateDayWeatherForecastList(List<DayWeatherForecast> dayWeatherForecastList) {
+    private void updateDayWeatherForecastList(@NonNull final List<DayWeatherForecast> dayWeatherForecastList) {
         view.showContent();
         this.dayWeatherForecastList = dayWeatherForecastList;
         view.setDayWeatherForecastList(dayWeatherForecastList, preferencesUtils.getTemperatureIndex(), preferencesUtils.getWindSpeedIndex());
