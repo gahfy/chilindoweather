@@ -1,9 +1,7 @@
-package net.gahfy.chilindoweather.tests.model.api;
+package net.gahfy.chilindoweather.model.api;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
-
-import net.gahfy.chilindoweather.model.api.ApiCity;
 
 import org.junit.Test;
 
@@ -22,7 +20,9 @@ public class ApiCityTest {
             "\"country\":\"JP\"" +
             "}";
 
-    /** JSON string with no property set */
+    /**
+     * JSON string with no property set
+     */
     private static final String JSON_EMPTY = "{}";
 
     private final Moshi moshi = new Moshi.Builder().build();

@@ -1,25 +1,21 @@
-package net.gahfy.chilindoweather.tests.model.weather;
+package net.gahfy.chilindoweather.model.weather;
 
 import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.os.LocaleList;
 import android.os.Parcel;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
-import net.gahfy.chilindoweather.R;
 import net.gahfy.chilindoweather.model.api.ApiForecast;
-import net.gahfy.chilindoweather.model.weather.DayWeatherForecast;
-import net.gahfy.chilindoweather.model.weather.InstantWeatherForecast;
+import net.gahfy.chilindoweather.rules.UTCRule;
+import net.gahfy.chilindoweather.utils.ContextTestUtils;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
@@ -27,14 +23,13 @@ import static junit.framework.Assert.assertNull;
 
 public class DayWeatherForecastTest {
     private static final String JSON_EMPTY = "{}";
-
     private static final String JSON_NOT_SAME_DAY = "{" +
             "\"list\": [" +
             "{" +
-            "\"dt\": 1521828000" +
+            "\"dt\": 1521720000" +
             "}," +
             "{" +
-            "\"dt\": 1521817200" +
+            "\"dt\": 1521676800" +
             "}," +
             "{" +
             "\"dt\": 1521892800" +
@@ -42,54 +37,52 @@ public class DayWeatherForecastTest {
             "null" +
             "]" +
             "}";
-
     private static final String JSON_FOR_DAY_COMPARATOR = "{" +
             "\"list\": [" +
             "{" +
-            "\"dt\": 1521828000" +
+            "\"dt\": 1521676800" +
             "}," +
             "{" +
             "\"dt\": null" +
             "}," +
             "{" +
-            "\"dt\": 1522314000" +
+            "\"dt\": 1521763200" +
             "}" +
             "]" +
             "}";
-
     private static final String JSON_FOR_INSTANT_COMPARATOR = "{" +
             "\"list\": [" +
             "{" +
-            "\"dt\": 1521828000" +
+            "\"dt\": 1521763200" +
             "}," +
             "{" +
-            "\"dt\": 1521828002" +
-            "}," +
-            "{" +
-            "\"dt\": null" +
+            "\"dt\": 1521763202" +
             "}," +
             "{" +
             "\"dt\": null" +
             "}," +
             "{" +
-            "\"dt\": 1521828001" +
+            "\"dt\": null" +
+            "}," +
+            "{" +
+            "\"dt\": 1521763201" +
             "}" +
             "]" +
             "}";
-
     private static final String JSON_FOR_GET_DAY = "{" +
             "\"list\": [" +
             "{" +
             "\"dt\": null" +
             "}," +
             "{" +
-            "\"dt\": 1521806400" +
+            "\"dt\": 1521763200" +
             "}" +
             "]" +
             "}";
-
     private final Moshi moshi = new Moshi.Builder().build();
     private final JsonAdapter<ApiForecast> jsonAdapter = moshi.adapter(ApiForecast.class);
+    @Rule
+    public UTCRule utcRule = new UTCRule();
 
     @Test
     public void testGetDayWeatherForecastList() throws Exception {
@@ -133,7 +126,7 @@ public class DayWeatherForecastTest {
 
     @Test
     public void testGetDay() throws Exception {
-        Context context = getDateContext();
+        Context context = ContextTestUtils.getContext();
 
         ApiForecast apiForecast = jsonAdapter.fromJson(JSON_FOR_GET_DAY);
 
@@ -146,7 +139,7 @@ public class DayWeatherForecastTest {
 
     @Test
     public void testParcels() throws Exception {
-        Context context = getDateContext();
+        Context context = ContextTestUtils.getContext();
         ArrayList<InstantWeatherForecast> testInstantWeatherForecasts = new ArrayList<InstantWeatherForecast>();
 
         DayWeatherForecast[] dayWeatherForecasts = DayWeatherForecast.CREATOR.newArray(20);
@@ -170,7 +163,7 @@ public class DayWeatherForecastTest {
 
         Parcel parcel2 = Mockito.mock(Parcel.class);
         Mockito.when(parcel2.readByte()).thenReturn((byte) 1);
-        Mockito.when(parcel2.readInt()).thenReturn(1521806400);
+        Mockito.when(parcel2.readInt()).thenReturn(1521763200);
         Mockito.when(parcel2.readString()).thenReturn("Paris");
         Mockito.when(parcel2.createTypedArrayList(InstantWeatherForecast.CREATOR)).thenReturn(new ArrayList<InstantWeatherForecast>());
 
@@ -182,29 +175,8 @@ public class DayWeatherForecastTest {
         dayWeatherForecast2.writeToParcel(parcel2, 0);
 
         Mockito.verify(parcel2).writeByte((byte) 1);
-        Mockito.verify(parcel2).writeInt(1521806400);
+        Mockito.verify(parcel2).writeInt(1521763200);
         Mockito.verify(parcel2).writeString("Paris");
         Mockito.verify(parcel2).writeTypedList(testInstantWeatherForecasts);
-    }
-
-    private Context getDateContext() {
-        LocaleList localeList = Mockito.mock(LocaleList.class);
-        Mockito.when(localeList.get(0)).thenReturn(Locale.US);
-
-        Context context = Mockito.mock(Context.class);
-        Resources resources = Mockito.mock(Resources.class);
-
-        Configuration configuration = Mockito.mock(Configuration.class);
-        Mockito.when(configuration.getLocales()).thenReturn(localeList);
-        configuration.locale = localeList.get(0);
-
-        Mockito.when(resources.getConfiguration()).thenReturn(configuration);
-        Mockito.when(resources.getStringArray(R.array.week_days)).thenReturn(new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"});
-        Mockito.when(resources.getStringArray(R.array.months)).thenReturn(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"});
-
-        Mockito.when(context.getString(R.string.date_format_forecast)).thenReturn("{wd}, {mn} d, yyyy");
-        Mockito.when(context.getString(R.string.empty)).thenReturn("");
-        Mockito.when(context.getResources()).thenReturn(resources);
-        return context;
     }
 }

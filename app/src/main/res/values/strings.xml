@@ -21,7 +21,7 @@
 
     <string name="wind_speed_metric" formatted="true">%1$d m/s</string>
     <string name="wind_speed_imperial" formatted="true">%1$d mph</string>
-    <string name="unknown_wind_speed">&#8230; km/h</string>
+    <string name="unknown_wind_speed">&#8230; m/s</string>
 
     <string name="wind_directon_label">Direction:</string>
     <string name="wind_direction_value" formatted="true">%1$d°%2$s</string>

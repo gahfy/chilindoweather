@@ -15,11 +15,11 @@ import static net.gahfy.chilindoweather.utils.constants.ApiConstants.QUERY_GPS_L
  */
 public interface OpenWeatherMapApi {
     /**
-     * Returns the weather forecast data for the specified position.
+     * Returns the weather data for the specified position.
      *
-     * @param gpsLatitude  the latitude of the position for which to get the weather forecast data
-     * @param gpsLongitude the longitude of the position for which to get the weather forecast data
-     * @return the weather forecast data for the specified position
+     * @param gpsLatitude  the latitude of the position for which to get the weather data
+     * @param gpsLongitude the longitude of the position for which to get the weather data
+     * @return the weather data for the specified position
      */
     @GET("/data/2.5/weather")
     Observable<ApiWeather> getWeather(
@@ -27,6 +27,13 @@ public interface OpenWeatherMapApi {
             @Query(QUERY_GPS_LONGITUDE) double gpsLongitude
     );
 
+    /**
+     * Returns the weather forecast for the specified position.
+     *
+     * @param gpsLatitude  the latitude of the position for which to get the weather forecast
+     * @param gpsLongitude the longitude of the position for which to get the weather forecast
+     * @return the weather forecast for the specified position
+     */
     @GET("/data/2.5/forecast")
     Observable<ApiForecast> getForecast(
             @Query(QUERY_GPS_LATITUDE) double gpsLatitude,
