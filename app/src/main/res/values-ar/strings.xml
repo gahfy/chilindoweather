@@ -7,13 +7,13 @@
     <string name="weather_at_title">الطقس في %1$s</string>
     <string name="forecast_title">التوقعات</string>
     <string name="forecast_for_title">التوقعات ل %1$s</string>
-    <string name="cancel">الغاء</string>
     <string name="network_error_message">خطأ في تحميل بيانات الطقس</string>
+    <string name="retry">حاول</string>
     <string name="loading_location">جار تحديد الموقع</string>
     <string name="loading_network">جار تحميل بيانات الطقس</string>
     <string name="loading_permission">انتظار قبول تحديد الموقع</string>
-    <string name="wind_speed_metric">d%  م/ث</string>
-    <string name="wind_speed_imperial">d%  ميل/س</string>
+    <string name="wind_speed_metric">%1$d م/ث</string>
+    <string name="wind_speed_imperial">%1$d ميل/س</string>
     <string name="unknown_wind_speed">...  كم/س</string>
     <string name="wind_directon_label">الاتجاه</string>
     <string name="wind_direction_value">%2$s°%1$d</string>

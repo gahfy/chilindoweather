@@ -2,7 +2,7 @@
     <string name="app_name">Chilindo Weather</string>
 
     <string name="language">en</string>
-    <string name="empty" />
+    <string name="empty" translatable="false" />
 
     <string name="settings">Settings</string>
     <string name="weather_title">Weather</string>
