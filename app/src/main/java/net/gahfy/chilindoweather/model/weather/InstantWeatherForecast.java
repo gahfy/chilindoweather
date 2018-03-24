@@ -52,7 +52,7 @@ public final class InstantWeatherForecast extends AbstractWeather {
      * @return the time to which the forecast applies
      */
     @NonNull
-    public String getCalculationTime(@NonNull final Context context) {
+    public final String getCalculationTime(@NonNull final Context context) {
         if (calculationTimestamp != null) {
             return StringUtils.formatDate(
                     ContextUtils.getLocale(context),

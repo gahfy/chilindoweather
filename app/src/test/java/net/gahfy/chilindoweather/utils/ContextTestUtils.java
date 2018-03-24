@@ -43,6 +43,7 @@ public class ContextTestUtils {
         Mockito.when(resources.getStringArray(R.array.months)).thenReturn(new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"});
 
         Mockito.when(context.getString(R.string.date_format_forecast)).thenReturn("{wd}, {mn} d, yyyy");
+        Mockito.when(context.getString(R.string.calculation_date_format)).thenReturn("MM-dd-yyyy hh:mm a");
         Mockito.when(context.getString(R.string.empty)).thenReturn("");
         Mockito.when(context.getResources()).thenReturn(resources);
 
@@ -79,6 +80,22 @@ public class ContextTestUtils {
                 int argument1 = invocation.getArgument(1);
                 String argument2 = invocation.getArgument(2);
                 return String.format(Locale.US, "%1$d°%2$s", argument1, argument2);
+            }
+        });
+
+        Mockito.when(context.getString(R.string.unknown_pressure)).thenReturn("…hPa");
+        Mockito.when(context.getString(eq(R.string.pressure_value), anyInt())).thenAnswer(new Answer<String>() {
+            public String answer(InvocationOnMock invocation) throws Throwable {
+                int argument = invocation.getArgument(1);
+                return String.format(Locale.US, "%dhPa", argument);
+            }
+        });
+
+        Mockito.when(context.getString(R.string.unknown_humidity)).thenReturn("… %");
+        Mockito.when(context.getString(eq(R.string.humidity_value), anyInt())).thenAnswer(new Answer<String>() {
+            public String answer(InvocationOnMock invocation) throws Throwable {
+                int argument = invocation.getArgument(1);
+                return String.format(Locale.US, "%d %%", argument);
             }
         });
 

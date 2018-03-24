@@ -99,14 +99,6 @@ public final class CurrentWeather extends AbstractWeather {
     }
 
     /**
-     * @author Android Studio Generator
-     */
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    /**
      * Returns the localized date and time when the weather has been calculated.
      *
      * @param context Context in which the application is running
