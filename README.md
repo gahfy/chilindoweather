@@ -12,10 +12,6 @@ A demo weather app for interview with Chilindo
 
 [![Header](https://github.com/gahfy/chilindoweather/raw/master/img/header.png)](https://github.com/gahfy/chilindoweather)
 
-## The worst technical test ever :-)
-
-*You asked me the worst technical test ever. Asking a weather application to a french guy who wants to live in Bangkok also for the climate is a torture. Just take a look at the picture!!! 0°C in Paris. And this screenshot has been taken from real live data!!! And I was always thinking in the meanwhile about you, the reader, who is complaining about the coldness of your 25°C nights. :-)*
-
 ## Features
 
 ### Assumptions
@@ -164,6 +160,10 @@ Firebase is included in order to provide Google Authentication which is required
 
 Glide is used to get image from internet (profile picture) and to deal with big image loading (background of the header of `NavigationDrawer`).
 
+#### Timber
+
+Timber is used to display logs in the application.
+
 ### Unit test Libraries
 
 #### Mockito
@@ -173,3 +173,9 @@ As we use `Context` related objects in presenters, we use Mockito in unit tests 
 #### Gson
 
 Actually, Json deserialization is performed by Moshi, but Gson is used in order to use `TypeToken` in JSON deserialization.
+
+## Not done
+
+### Technical Debt
+
+Code coverage is only a little more than 30% because I didn't have enough time to do more. In order not to make Sonar fail, I used a custom quality gate which would have to be updated in the future as the code coverage increases.
