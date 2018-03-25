@@ -40,6 +40,7 @@ public class DayWeatherForecast implements Parcelable {
             return new DayWeatherForecast[size];
         }
     };
+    private static final String TAG = "DayWeatherForecast";
     /**
      * Comparator for Day Weather. It is used to sort Day Weather by their date chronologically.
      */
@@ -130,7 +131,7 @@ public class DayWeatherForecast implements Parcelable {
                 }
             }
         } else {
-            Logger.w("apiForecast.getForecastItemList() returned null");
+            Logger.w(TAG, "apiForecast.getForecastItemList() returned null");
         }
 
         // Sorting the list

@@ -39,6 +39,8 @@ import net.gahfy.chilindoweather.utils.PermissionUtils;
  * @param <V> the type of View the presenter is associated to.
  */
 public abstract class CommonPresenter<V extends CommonView> extends BasePresenter<V> {
+    private static final String TAG = "CommonPresenter";
+
     /**
      * The request code of asking for geolocation permission
      */
@@ -68,7 +70,7 @@ public abstract class CommonPresenter<V extends CommonView> extends BasePresente
     private final LocationUtils.SingleLocationListener locationListener = new LocationUtils.SingleLocationListener() {
         @Override
         public final void onLocationFound(@NonNull final Location location) {
-            Logger.d("Location found: " + location.getLatitude() + "," + location.getLongitude());
+            Logger.v(TAG, "Location found: " + location.getLatitude() + "," + location.getLongitude());
             onLocationAvailable(location);
         }
 

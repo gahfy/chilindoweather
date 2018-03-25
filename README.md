@@ -12,6 +12,24 @@ A demo weather app for interview with Chilindo
 
 [![Header](https://github.com/gahfy/chilindoweather/raw/master/img/header.png)](https://github.com/gahfy/chilindoweather)
 
+## Before starting
+
+### Worst technical test ever :-)
+
+You asked me the worst technical test ever. Asking a weather application to a french guy who wants to live in Bangkok also for the climate is a torture. Just take a look at the picture!!! 0°C in Paris. And this screenshot has been taken from real live data!!! And I was always thinking about you, the reader, who is complaining about the coldness of your 25°C nights.
+
+### What I'm proud about
+
+I'm proud of providing a localized project, with nice design, settings and a complete CI. I'm also proud of having almost everything done in technical debt for this project.
+
+I'm basically proud of having enough time to do everything requested in the specification, and a little bit more.
+
+### What I'm not proud about
+
+As said above, **ALMOST** everything done in technical debt. I did not have enough time to make at least 80% of code coverage with unit test. I mainly had only time to test models.
+
+I also wish I had more time to make landscape and tablets designs. I only managed designs in all size and density portrait phones, but nothing else... Even if Landscape design is not that bad, it could have been optimized.
+
 ## Features
 
 ### Assumptions
@@ -59,6 +77,14 @@ This article made me confident about the fact that this architecture is a good o
 
 This architecture is relevant as components are separated so anybody is able to work on specific task and a task is not depending on other one.
 
+### Model Architecture
+
+There are two packages for models:
+
+* **api**: which are pojos. They are exactly the same as JSON response from OpenWeatherMap API. As there is no documentation about it on OpenWeatherMap, each field is considered as nullable.
+
+* **weather**: those are models instantiated with API models, and which provide display methods, to be used in layout with DataBinding.
+
 ### UI Architecture
 
 The UI Architecture of the application (Activities, Views and Presenters) consists in three layers:
@@ -84,13 +110,36 @@ key_store_password=chilindo
 release_password=chilindorelease
 ```
 
-### Use of `@SuppressWarning` and `//noinspect`
+### Use of `@SuppressWarnings` and `//noinspect`
 
-The use of `@SuppressWarning` and `//noinspect` allows to remove solve false positive warnings. It allows to have a 0 code smell on Sonar and no warning in Android Studio.
+The use of `@SuppressWarnings` and `//noinspect` allows to remove solve false positive warnings. It allows to have a 0 code smell on Sonar and no warning in Android Studio.
 
 The goal by having 0 warning and code smells is to be able to easily detect new ones when writing new code, as Android Studio warns you when you commit, and you have the ability to check the number of code smells with Sonar.
 
 If it is allowed to use them, they must all be prefixed with a comment explaining why it is safe to use them (typically starting by `//Safe because`)
+
+### Logs
+
+In order to allow override with Build configuration or adding Crashlytics, all log has done through `utils.logger` class.
+
+Currently, here is what is added to log:
+* Exceptions
+* Retrofit requests and responses (below example of logs for a Retrofit request). They log url and headers for request, headers and content for response.
+```
+V/Retrofit: Requesting http://api.openweathermap.org/data/2.5/weather?lat=48.8400377&lon=2.2570947&appid=e609c501379535db475226cd8aad73fd
+V/Rretrofit: {"coord":{"lon":2.26,"lat":48.84},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01d"}],"base":"stations","main":{"temp":287.15,"pressure":1008,"humidity":85,"temp_min":286.15,"temp_max":288.15},"visibility":10000,"wind":{"speed":2.1,"deg":40},"clouds":{"all":0},"dt":1521981000,"sys":{"type":1,"id":5617,"message":0.003,"country":"FR","sunrise":1521956553,"sunset":1522001513},"id":3031137,"name":"Boulogne-Billancourt","cod":200}
+V/Retrofit: ---------- Response Headers ----------
+V/Retrofit: Access-Control-Allow-Credentials: true
+V/Retrofit: Access-Control-Allow-Methods: GET, POST
+V/Retrofit: Access-Control-Allow-Origin: *
+V/Retrofit: Connection: keep-alive
+V/Retrofit: Content-Length: 454
+V/Retrofit: Content-Type: application/json; charset=utf-8
+V/Retrofit: Date: Sun, 25 Mar 2018 12:58:51 GMT
+V/Retrofit: Server: openresty
+V/Retrofit: X-Cache-Key: /data/2.5/weather?lat=48.84&lon=2.26
+V/Retrofit: ---------- Response Headers ----------
+```
 
 ## Continuous Integration
 

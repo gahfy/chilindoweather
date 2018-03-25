@@ -26,13 +26,6 @@ android {
     }
 
     signingConfigs {
-        debug {
-            storeFile file("../keystore/chilindo.pks")
-            storePassword project.property('key_store_password')
-            keyAlias 'release'
-            keyPassword project.property('release_password')
-        }
-
         release {
             storeFile file("../keystore/chilindo.pks")
             storePassword project.property('key_store_password')
@@ -43,12 +36,8 @@ android {
 
     buildTypes {
         release {
-            debuggable false
-            signingConfig signingConfigs.release
-        }
-
-        debug {
-            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
     }

@@ -20,6 +20,8 @@ import static net.gahfy.chilindoweather.utils.weather.WindUtils.WIND_TO_FROM_DIF
  * Weather as it is displayed in the application
  */
 public abstract class AbstractWeather implements Parcelable {
+    private static final String TAG = "AbstractWeather";
+
     /**
      * Timestamp to which the weather applies
      */
@@ -161,7 +163,7 @@ public abstract class AbstractWeather implements Parcelable {
                 );
             }
         } catch (IllegalArgumentException e) {
-            Logger.e(e);
+            Logger.e(TAG, e);
         }
         return context.getString(R.string.unknown_temperature);
     }
@@ -185,7 +187,7 @@ public abstract class AbstractWeather implements Parcelable {
                 );
             }
         } catch (IllegalArgumentException e) {
-            Logger.e(e);
+            Logger.e(TAG, e);
         }
         return context.getString(R.string.unknown_wind_speed);
     }

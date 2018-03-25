@@ -31,6 +31,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 public final class WeatherPresenter extends CommonPresenter<WeatherView> {
+    private static final String TAG = "WeatherPresenter";
+
     private static final String CURRENT_WEATHER_KEY = "currentWeather";
 
     @Inject
@@ -192,7 +194,7 @@ public final class WeatherPresenter extends CommonPresenter<WeatherView> {
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Logger.e(throwable);
+                        Logger.e(TAG, throwable);
                         view.hideContent();
                         view.showNetworkError(new View.OnClickListener() {
                             @Override

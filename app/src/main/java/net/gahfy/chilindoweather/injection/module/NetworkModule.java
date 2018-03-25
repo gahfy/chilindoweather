@@ -4,9 +4,11 @@ import android.support.annotation.NonNull;
 
 import net.gahfy.chilindoweather.BuildConfig;
 import net.gahfy.chilindoweather.network.OpenWeatherMapApi;
+import net.gahfy.chilindoweather.utils.Logger;
 import net.gahfy.chilindoweather.utils.Schedulers;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 
 import javax.inject.Named;
 
@@ -18,6 +20,9 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okio.Buffer;
+import okio.BufferedSource;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
@@ -118,11 +123,35 @@ public class NetworkModule {
                         .addQueryParameter(QUERY_API_KEY, BuildConfig.OPENWEATHERMAP_API_KEY)
                         .build();
 
+                Logger.v("Retrofit", "Requesting ".concat(url.toString()));
+                if (original.headers().size() > 0) {
+                    Logger.v("Retrofit", "---------- Request Headers ----------");
+                    for (String headerName : original.headers().names()) {
+                        Logger.v("Retrofit", headerName + ": " + original.headers().get(headerName));
+                    }
+                    Logger.v("Retrofit", "---------- Request Headers ----------");
+                }
                 Request.Builder requestBuilder = original.newBuilder()
                         .url(url);
 
                 Request request = requestBuilder.build();
-                return chain.proceed(request);
+                Response response = chain.proceed(request);
+
+                ResponseBody responseBody = response.body();
+
+                BufferedSource source = responseBody.source();
+                source.request(Long.MAX_VALUE); // Buffer the entire body.
+                Buffer buffer = source.buffer();
+                Logger.v("Rretrofit", buffer.clone().readString(Charset.defaultCharset()));
+                if (response.headers().size() > 0) {
+                    Logger.v("Retrofit", "---------- Response Headers ----------");
+                    for (String headerName : response.headers().names()) {
+                        Logger.v("Retrofit", headerName + ": " + response.headers().get(headerName));
+                    }
+                    Logger.v("Retrofit", "---------- Response Headers ----------");
+                }
+
+                return response;
             }
         };
     }
