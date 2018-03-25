@@ -146,5 +146,5 @@
     <string name="condition_959_description">Vents extrêmements violents</string>
     <string name="condition_960_description">Orages</string>
     <string name="condition_961_description">Orages violents</string>
-    condition_962_description Hurricane Ouragan
+    <string name="condition_962_description">Ouragan</string>
 </resources>
