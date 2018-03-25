@@ -35,6 +35,8 @@ import static net.gahfy.chilindoweather.utils.ApiConstants.QUERY_API_KEY;
  */
 @Module
 public class NetworkModule {
+    private static final String TAG = "Retrofit";
+
     /**
      * Instance of NetworkModule (as it is a Singleton)
      */
@@ -123,13 +125,13 @@ public class NetworkModule {
                         .addQueryParameter(QUERY_API_KEY, BuildConfig.OPENWEATHERMAP_API_KEY)
                         .build();
 
-                Logger.v("Retrofit", "Requesting ".concat(url.toString()));
+                Logger.v(TAG, "Requesting ".concat(url.toString()));
                 if (original.headers().size() > 0) {
-                    Logger.v("Retrofit", "---------- Request Headers ----------");
+                    Logger.v(TAG, "---------- Request Headers ----------");
                     for (String headerName : original.headers().names()) {
-                        Logger.v("Retrofit", headerName + ": " + original.headers().get(headerName));
+                        Logger.v(TAG, headerName + ": " + original.headers().get(headerName));
                     }
-                    Logger.v("Retrofit", "---------- Request Headers ----------");
+                    Logger.v(TAG, "---------- Request Headers ----------");
                 }
                 Request.Builder requestBuilder = original.newBuilder()
                         .url(url);
@@ -142,13 +144,13 @@ public class NetworkModule {
                 BufferedSource source = responseBody.source();
                 source.request(Long.MAX_VALUE); // Buffer the entire body.
                 Buffer buffer = source.buffer();
-                Logger.v("Rretrofit", buffer.clone().readString(Charset.defaultCharset()));
+                Logger.v(TAG, buffer.clone().readString(Charset.defaultCharset()));
                 if (response.headers().size() > 0) {
-                    Logger.v("Retrofit", "---------- Response Headers ----------");
+                    Logger.v(TAG, "---------- Response Headers ----------");
                     for (String headerName : response.headers().names()) {
-                        Logger.v("Retrofit", headerName + ": " + response.headers().get(headerName));
+                        Logger.v(TAG, headerName + ": " + response.headers().get(headerName));
                     }
-                    Logger.v("Retrofit", "---------- Response Headers ----------");
+                    Logger.v(TAG, "---------- Response Headers ----------");
                 }
 
                 return response;
