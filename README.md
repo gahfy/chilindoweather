@@ -30,6 +30,10 @@ As said above, **ALMOST** everything done in technical debt. I did not have enou
 
 I also wish I had more time to make landscape and tablets designs. I only managed designs in all size and density portrait phones, but nothing else... Even if Landscape design is not that bad, it could have been optimized.
 
+I'm also not proud of having localized the app only into three languages (english, arabic and french). I asked some friends of mine which were living in Thailand and in Spain to provide spanish and thai translation, but it was not done when finalizing the project.
+
+Basically, if you would have given me two days, I would have been able to provide a minimal application (with less design, less CI, ...) and if you would have given me two years, I would still find something missing :-)
+
 ## Features
 
 ### Assumptions
